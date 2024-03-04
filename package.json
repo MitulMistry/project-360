@@ -12,7 +12,8 @@
     "check:types": "tsc --noEmit",
     "prettier": "prettier  --ignore-path .gitignore --check .",
     "cypress": "CYPRESS_REMOTE_DEBUGGING_PORT=9222 cypress open",
-    "test": "jest --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepare": "husky install"
@@ -58,6 +59,7 @@
     "stylelint-config-standard": "^36.0.0",
     "stylelint-config-standard-scss": "^13.0.0",
     "stylelint-prettier": "^5.0.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }
