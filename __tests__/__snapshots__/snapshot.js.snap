@@ -8,7 +8,9 @@ exports[`renders homepage unchanged 1`] = `
     <div
       class="description"
     >
-      <p>
+      <p
+        data-testid="description"
+      >
         Get started by editing 
         <code
           class="code"
