@@ -101,15 +101,9 @@ jobs:
           name: build-artifacts
       - name: Install dependencies
         run: npm ci
-      - name: List downloaded artifacts
-        run: ls -la
       - name: Deploy Project Artifacts to Vercel
         id: deploy
-        run: |
-          DEPLOY_OUTPUT=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})
-          echo "$DEPLOY_OUTPUT"
-          DEPLOY_URL=$(echo "$DEPLOY_OUTPUT" | grep -o 'https://[^ ]*')
-          echo "::set-output name=url::$DEPLOY_URL"
+        run: echo "::set-output name=url::$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} | grep -o 'https://[^ ]*')"
       - name: Comment Deployment URL on PR
         uses: actions/github-script@v6
         if: success()
@@ -136,5 +130,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-artifacts
+      - name: Install dependencies
+        run: npm ci
       - name: Deploy Project Artifacts to Vercel
         run: vercel deploy --prod --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
