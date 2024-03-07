@@ -1,0 +1,10 @@
+@use "color";
+
+body {
+  font-family: Inter, sans-serif;
+  color: color.$general-100;
+}
+
+a {
+  color: color.$primary-100;
+}
