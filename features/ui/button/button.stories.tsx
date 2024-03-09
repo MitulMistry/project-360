@@ -10,11 +10,29 @@ export default meta;
 type Story = StoryObj<typeof Button>;
 
 export const Default: Story = {
-  args: { children: "Button CTA", disabled: false },
+  args: { children: "Button CTA", isDisabled: false },
   argTypes: {
     color: {
       control: "select",
       options: Object.values(ButtonColor),
+    },
+  },
+  parameters: {
+    controls: {
+      exclude: [
+        "form",
+        "formAction",
+        "formEncType",
+        "formMethod",
+        "formNoValidate",
+        "formTarget",
+        "name",
+        "value",
+        "autoFocus",
+        "type",
+        "className",
+        "style",
+      ],
     },
   },
 };

@@ -1,4 +1,8 @@
 import React from "react";
+import {
+  Button as AriaButton,
+  ButtonRenderProps as AriaButtonRenderProps,
+} from "react-aria-components";
 import classNames from "classnames";
 import styles from "./button.module.scss";
 
@@ -21,7 +25,31 @@ export enum ButtonVariant {
   IconOnly = "iconOnly",
 }
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+// React-Aria Button component is not native HTML Button element,
+// so doesn't make sense to extend it.
+// https://react-spectrum.adobe.com/react-aria/Button.html#props
+type AriaButtonProps = {
+  form?: string;
+  formAction?: string;
+  formEncType?: string;
+  formMethod?: string;
+  formNoValidate?: boolean;
+  formTarget?: string;
+  name?: string;
+  value?: string;
+  isDisabled?: boolean;
+  autoFocus?: boolean;
+  type?: "button" | "submit" | "reset";
+  children?:
+    | React.ReactNode
+    | ((values: AriaButtonRenderProps) => React.ReactNode);
+  className?: string | ((values: AriaButtonRenderProps) => string);
+  style?:
+    | React.CSSProperties
+    | ((values: AriaButtonRenderProps) => React.CSSProperties);
+};
+
+type ButtonProps = AriaButtonProps & {
   size?: ButtonSize;
   color?: ButtonColor;
   variant?: ButtonVariant;
@@ -35,7 +63,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   return (
-    <button
+    <AriaButton
       className={classNames(
         styles.button,
         styles[size],
