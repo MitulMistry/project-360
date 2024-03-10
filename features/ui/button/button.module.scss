@@ -33,28 +33,95 @@
   font: font.$text-md-regular;
 }
 
+// Placeholder class
+%disabled {
+  color: color.$white;
+  background: color.$general-50;
+  cursor: not-allowed;
+}
+
 .primary {
   background: color.$primary-100;
   color: color.$white;
+
+  &:disabled {
+    @extend %disabled;
+  }
+
+  &:focus {
+    outline: 4px solid color.$primary-50;
+  }
+
+  &:hover:enabled {
+    background: color.$primary-80;
+  }
 }
 
 .secondary {
   background: color.$primary-40;
   color: color.$primary-100;
+
+  &:disabled {
+    @extend %disabled;
+  }
+
+  &:focus {
+    outline: 4px solid color.$primary-50;
+  }
+
+  &:hover:enabled {
+    background: color.$primary-30;
+  }
 }
 
 .destructive {
   background: color.$red-100;
   color: color.$white;
+
+  &:disabled {
+    @extend %disabled;
+  }
+
+  &:focus {
+    outline: 4px solid color.$red-50;
+  }
+
+  &:hover:enabled {
+    background: color.$red-80;
+  }
 }
 
 .destructive-secondary {
   background: color.$red-30;
   color: color.$red-100;
+
+  &:disabled {
+    @extend %disabled;
+  }
+
+  &:focus {
+    outline: 4px solid color.$red-50;
+  }
+
+  &:hover:enabled {
+    background: color.$red-40;
+  }
 }
 
 .white {
   background: color.$white;
   color: color.$primary-100;
   border: 1px solid color.$general-50;
+
+  &:disabled {
+    @extend %disabled;
+  }
+
+  &:focus {
+    outline: 4px solid color.$primary-40;
+  }
+
+  &:hover:enabled {
+    background: color.$general-30;
+  }
 }
