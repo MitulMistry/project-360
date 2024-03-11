@@ -1,6 +1,7 @@
 @use "@styles/color";
 @use "@styles/font";
-@use "@styles/shadow";
+
+// @use "@styles/shadow";
 @use "@styles/space";
 
 .button {
@@ -15,22 +16,38 @@
   box-sizing: border-box;
 }
 
+.icon {
+  height: 100%;
+}
+
 .sm {
   height: 2.25rem;
   padding: 0.5rem 1.25rem;
   font: font.$text-sm-medium;
+
+  &.iconOnly {
+    padding: 0.5rem;
+  }
 }
 
 .md {
   height: 2.5rem;
   padding: 0.5rem 1.5rem;
   font: font.$text-md-regular;
+
+  &.iconOnly {
+    padding: 0.5rem;
+  }
 }
 
 .lg {
   height: 3rem;
   padding: 0.75rem 1.5rem;
   font: font.$text-md-regular;
+
+  &.iconOnly {
+    padding: 0.75rem;
+  }
 }
 
 // Placeholder class
@@ -40,7 +57,8 @@
   cursor: not-allowed;
 }
 
-.primary {
+.primary.default,
+.primary.iconOnly {
   background: color.$primary-100;
   color: color.$white;
 
@@ -57,7 +75,8 @@
   }
 }
 
-.secondary {
+.secondary.default,
+.secondary.iconOnly {
   background: color.$primary-40;
   color: color.$primary-100;
 
@@ -74,7 +93,8 @@
   }
 }
 
-.destructive {
+.destructive.default,
+.destructive.iconOnly {
   background: color.$red-100;
   color: color.$white;
 
@@ -91,7 +111,8 @@
   }
 }
 
-.destructive-secondary {
+.destructive-secondary,
+.destructive-secondary.iconOnly {
   background: color.$red-30;
   color: color.$red-100;
 
@@ -108,7 +129,8 @@
   }
 }
 
-.white {
+.white,
+.white.iconOnly {
   background: color.$white;
   color: color.$primary-100;
   border: 1px solid color.$general-50;
