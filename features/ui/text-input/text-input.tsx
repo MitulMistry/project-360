@@ -18,6 +18,7 @@ type TextInputProps = TextFieldProps & {
   description?: string;
   errorMessage?: string | ((validation: ValidationResult) => string);
   icon?: React.ReactNode;
+  placeholder?: string;
 };
 
 export function TextInput({
@@ -25,6 +26,7 @@ export function TextInput({
   className,
   description,
   errorMessage,
+  placeholder,
   ...props
 }: TextInputProps) {
   return (
@@ -33,9 +35,13 @@ export function TextInput({
       {...props}
     >
       {label && <Label>{label}</Label>}
-      <Input />
+      <Input className={styles.input} placeholder={placeholder} />
       {description && <Text slot="description">{description}</Text>}
-      {errorMessage && <FieldError>{errorMessage}</FieldError>}
+      {errorMessage && (
+        <FieldError className={styles["field-error"]}>
+          {errorMessage}
+        </FieldError>
+      )}
     </TextField>
   );
 }

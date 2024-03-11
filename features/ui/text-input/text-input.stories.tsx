@@ -15,6 +15,7 @@ type Story = StoryObj<typeof TextInput>;
 export const Default: Story = {
   args: {
     isDisabled: false,
+    placeholder: "Search",
   },
 };
 

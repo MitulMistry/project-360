@@ -11,3 +11,39 @@
   color: color.$general-80;
   font: font.$text-sm-medium;
 }
+
+.input {
+  height: 2.5rem;
+  padding: 0.625rem 0.875rem;
+  gap: space.$s2;
+  border-radius: 0.25rem;
+  border: 1px solid color.$form-gray-50;
+  background: color.$white;
+  box-sizing: border-box;
+  cursor: text;
+  color: color.$general-90;
+  font: font.$text-md-regular;
+  outline: none;
+
+  &::placeholder {
+    color: color.$general-60;
+  }
+
+  &:focus-within {
+    border-color: color.$primary-80;
+  }
+
+  &:disabled {
+    color: color.$general-80;
+    background: color.$form-disabled;
+    cursor: not-allowed;
+  }
+
+  &[data-invalid] {
+    border-color: color.$red-80;
+  }
+}
+
+.field-error {
+  color: color.$red-80;
+}
