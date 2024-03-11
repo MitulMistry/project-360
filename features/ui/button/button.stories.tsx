@@ -17,24 +17,6 @@ export const Default: Story = {
       options: Object.values(ButtonColor),
     },
   },
-  parameters: {
-    controls: {
-      exclude: [
-        "form",
-        "formAction",
-        "formEncType",
-        "formMethod",
-        "formNoValidate",
-        "formTarget",
-        "name",
-        "value",
-        "autoFocus",
-        "type",
-        "className",
-        "style",
-      ],
-    },
-  },
 };
 
 export const Small: Story = {
