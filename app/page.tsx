@@ -1,23 +1,40 @@
 import { AuthPageContainer } from "@/features/ui";
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/features/ui";
-// import styles from "./page.module.css";
+import styles from "./page.module.scss";
 
 export default function Home() {
   return (
     <AuthPageContainer title="Home Page">
-      <h3>Project Management Made Simple</h3>
-      <p>
-        Create projects, assign tasks, and manage the workflow for your
-        organization.
-      </p>
+      <div className={styles.splash}>
+        <Image
+          src="/graphics/logo.svg"
+          width={208}
+          height={39}
+          alt="Graphic logo"
+          className={styles.logo}
+        />
+        <Image
+          src="/graphics/receipt.svg"
+          width={84}
+          height={109}
+          alt="Graphic receipt"
+          className={styles.graphic}
+        />
+        <h3 className={styles.header}>Project Management Made Simple</h3>
+        <p className={styles.text}>
+          Create projects, assign tasks, and manage the workflow for your
+          organization.
+        </p>
 
-      <Link href="/signup" passHref>
-        <Button>Create Account</Button>
-      </Link>
-      <Link href="/login" passHref>
-        Sign In
-      </Link>
+        <Link href="/signup" className={styles.btnLink} passHref>
+          <Button>Create Account</Button>
+        </Link>
+        <Link href="/login" passHref>
+          Sign In
+        </Link>
+      </div>
     </AuthPageContainer>
   );
 }
