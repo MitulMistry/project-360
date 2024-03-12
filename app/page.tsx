@@ -1,95 +1,45 @@
+import { AuthPageContainer } from "@/features/ui";
 import Image from "next/image";
-import styles from "./page.module.css";
+import Link from "next/link";
+import { Button } from "@/features/ui";
+import styles from "./page.module.scss";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p data-testid="description">
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
+    <AuthPageContainer title="Home Page">
+      <div className={styles.splash} data-testid="splash">
         <Image
+          src="/graphics/logo.svg"
+          width={208}
+          height={39}
+          alt="Graphic logo"
           className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
         />
+        <Image
+          src="/graphics/receipt.svg"
+          width={84}
+          height={109}
+          alt="Graphic receipt"
+          className={styles.graphic}
+        />
+        <h3 className={styles.header}>Project Management Made Simple</h3>
+        <p className={styles.text} data-testid="description">
+          Create projects, assign tasks, and manage the workflow for your
+          organization.
+        </p>
+
+        <Link
+          href="/signup"
+          className={styles.btnLink}
+          data-testid="signup"
+          passHref
+        >
+          <Button>Create Account</Button>
+        </Link>
+        <Link href="/login" data-testid="login" passHref>
+          Sign In
+        </Link>
       </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </AuthPageContainer>
   );
 }

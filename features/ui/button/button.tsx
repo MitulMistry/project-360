@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import type { ButtonProps as AriaButtonProps } from "react-aria-components";
 import { Button as AriaButton } from "react-aria-components";
