@@ -3,8 +3,14 @@
 body {
   font-family: Inter, sans-serif;
   color: color.$general-100;
+  background-color: color.$general-30;
 }
 
 a {
   color: color.$primary-100;
+  text-decoration: none;
+
+  &:hover {
+    color: color.$primary-80;
+  }
 }
