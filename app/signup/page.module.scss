@@ -1,0 +1,22 @@
+@use "@styles/color";
+
+// @use "@styles/breakpoint";
+@use "@styles/font";
+
+.signUp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  margin-bottom: 0.25rem;
+}
+
+.text {
+  margin-top: 0.25rem;
+  font: font.$text-md-regular;
+  color: color.$general-80;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
