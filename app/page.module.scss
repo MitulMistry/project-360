@@ -1,5 +1,6 @@
 @use "@styles/color";
-@use "@styles/breakpoint";
+
+// @use "@styles/breakpoint";
 @use "@styles/font";
 
 .splash {
@@ -18,6 +19,7 @@
 
 .header {
   margin-bottom: 0.25rem;
+  text-align: center;
 }
 
 .text {
