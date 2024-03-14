@@ -6,7 +6,7 @@ import styles from "./page.module.scss";
 export default function SignUp() {
   return (
     <AuthPageContainer title="Sign Up">
-      <div className={styles.textContainer} data-testid="login">
+      <div className={styles.textContainer} data-testid="signup">
         <h1 className={styles.header}>Create an Account</h1>
         <p className={styles.text} data-testid="description">
           Have an account?{" "}
