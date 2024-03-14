@@ -1,11 +1,12 @@
 import { AuthPageContainer } from "@/features/ui";
+import { SignUpForm } from "@/features/auth";
 import Link from "next/link";
 import styles from "./page.module.scss";
 
 export default function SignUp() {
   return (
     <AuthPageContainer title="Sign Up">
-      <div className={styles.signUp} data-testid="login">
+      <div className={styles.textContainer} data-testid="login">
         <h1 className={styles.header}>Create an Account</h1>
         <p className={styles.text} data-testid="description">
           Have an account?{" "}
@@ -13,6 +14,9 @@ export default function SignUp() {
             Sign in
           </Link>
         </p>
+      </div>
+      <div className={styles.formContainer}>
+        <SignUpForm className={styles.form} />
       </div>
     </AuthPageContainer>
   );
