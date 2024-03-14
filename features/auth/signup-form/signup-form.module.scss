@@ -1,0 +1,14 @@
+@use "@styles/space";
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.textInput {
+  margin-bottom: space.$s6;
+}
+
+.submit {
+  flex: 1;
+}

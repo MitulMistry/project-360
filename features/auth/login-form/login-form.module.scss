@@ -1,0 +1,15 @@
+@use "@styles/space";
+@use "@styles/breakpoint";
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.textInput {
+  margin-bottom: space.$s6;
+}
+
+.submit {
+  flex: 1;
+}

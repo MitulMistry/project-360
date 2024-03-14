@@ -1,0 +1,37 @@
+@use "@styles/color";
+@use "@styles/breakpoint";
+@use "@styles/font";
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+  text-align: center;
+}
+
+.text {
+  margin-top: 0.25rem;
+  font: font.$text-md-regular;
+  color: color.$general-80;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.formContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  flex: 1;
+  max-width: 30rem;
+
+  @media (min-width: breakpoint.$desktop) {
+    max-width: none;
+  }
+}
