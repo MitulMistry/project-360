@@ -42,16 +42,24 @@ export function Select<T extends object>({
   ...props
 }: SelectProps<T>) {
   return (
-    <AriaSelect {...props} className={classNames(className, styles.select)}>
-      <Label>{label}</Label>
-      <Button>
+    <AriaSelect {...props} className={classNames(styles.select, className)}>
+      <Label className={styles.label}>{label}</Label>
+      <Button
+        className={classNames(styles.button, errorMessage && styles.error)}
+      >
         <SelectValue />
         <span aria-hidden="true">▼</span>
       </Button>
-      {description && <Text slot="description">{description}</Text>}
-      <FieldError>{errorMessage}</FieldError>
-      <Popover>
-        <ListBox items={items}>{children}</ListBox>
+      {description && (
+        <Text className={styles.description} slot="description">
+          {description}
+        </Text>
+      )}
+      <FieldError className={styles.fieldError}>{errorMessage}</FieldError>
+      <Popover className={styles.popover}>
+        <ListBox className={styles.listBox} items={items}>
+          {children}
+        </ListBox>
       </Popover>
     </AriaSelect>
   );
@@ -62,7 +70,7 @@ export function Item(props: ListBoxItemProps) {
     <ListBoxItem
       {...props}
       className={({ isFocused, isSelected }) =>
-        `${styles.item} ${isFocused ? "focused" : ""} ${isSelected ? "selected" : ""}`
+        `${styles.listBoxitem} ${isFocused ? "focused" : ""} ${isSelected ? "selected" : ""}`
       }
     />
   );
