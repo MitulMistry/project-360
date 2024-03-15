@@ -30,14 +30,11 @@
     color: color.$general-60;
   }
 
-  &:focus-visible {
-    border-color: aqua;
-  }
-
   // data-pressed variable set by React Aria
   &[data-pressed="true"]:not(:disabled),
   &:focus-visible {
-    border-color: color.$primary-80;
+    border: 2px solid color.$primary-80;
+    outline: none; // Disable browser default outline when tabbing/selecting
   }
 
   &.error {
