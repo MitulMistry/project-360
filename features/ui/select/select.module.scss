@@ -8,6 +8,13 @@
   flex-direction: column;
   gap: 0.375rem;
   font: font.$text-sm-medium;
+
+  // When select dropdown is open, flip the SVG arrow down
+  &[data-open="true"] {
+    .arrowIcon svg {
+      transform: rotate(180deg);
+    }
+  }
 }
 
 .label {
@@ -47,10 +54,18 @@
   }
 
   &:disabled {
-    border-color: color.$general-30;
-    background: color.$general-50;
-    color: color.$general-50;
+    border-color: color.$form-gray-50;
+    background: color.$form-disabled;
+    color: color.$general-80;
+    cursor: not-allowed;
   }
+}
+
+.arrowIcon {
+  color: color.$general-70;
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .description {
