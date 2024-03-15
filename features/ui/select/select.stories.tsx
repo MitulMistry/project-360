@@ -27,6 +27,23 @@ export const Label: Story = {
   args: { ...Default.args, label: "Label" },
 };
 
+export const Description: Story = {
+  ...Label,
+  args: {
+    ...Label.args,
+    description: "This is a description to inform the user.",
+  },
+};
+
+export const Error: Story = {
+  ...Description,
+  args: {
+    ...Description.args,
+    isInvalid: true,
+    errorMessage: "This is an error message.",
+  },
+};
+
 interface ItemObj {
   id: number;
   name: string;
