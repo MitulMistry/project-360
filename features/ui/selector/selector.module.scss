@@ -15,6 +15,29 @@
   font: font.$text-sm-medium;
   cursor: pointer;
   box-sizing: border-box;
+  outline: none;
+
+  &:focus {
+    outline: 4px solid color.$primary-40;
+  }
+
+  &:disabled {
+    border-color: color.$general-50;
+    color: color.$general-60;
+    background: color.$general-30;
+    cursor: not-allowed;
+  }
+
+  &:hover:enabled {
+    color: color.$primary-100;
+    border-color: color.$general-60;
+  }
+}
+
+.selected {
+  color: color.$primary-100;
+  border-color: color.$primary-100;
+  outline: 1px solid color.$primary-100;
 }
 
 .sm {

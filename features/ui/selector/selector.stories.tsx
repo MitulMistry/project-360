@@ -12,7 +12,7 @@ export default meta;
 type Story = StoryObj<typeof Selector>;
 
 export const Default: Story = {
-  args: { children: "Selector", isDisabled: false },
+  args: { children: "Selector", isDisabled: false, isSelected: false },
 };
 
 export const Small: Story = {
