@@ -40,8 +40,12 @@
   // data-pressed variable set by React Aria
   &[data-pressed="true"]:not(:disabled),
   &:focus-visible {
-    border: 2px solid color.$primary-80;
-    outline: none; // Disable browser default outline when tabbing/selecting
+    // border: 2px solid color.$primary-80;
+    // outline: none; // Disable browser default outline when tabbing/selecting
+
+    // Use an outline to increase size of border without shifting internal contents
+    border-color: color.$primary-80;
+    outline: 1px solid color.$primary-80;
   }
 
   &.error {
@@ -51,6 +55,7 @@
   &.error[data-pressed="true"]:not(:disabled),
   &.error:focus-visible {
     border-color: color.$red-80;
+    outline: 1px solid color.$red-80;
   }
 
   &:disabled {
