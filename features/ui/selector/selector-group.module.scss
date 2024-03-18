@@ -1,0 +1,12 @@
+// @use "@styles/color";
+// @use "@styles/font";
+// @use "@styles/space";
+// @use "@styles/shadow";
+
+.group {
+  display: flex;
+  flex-direction: row;
+  gap: 0.375rem;
+
+  // font: font.$text-sm-medium;
+}
