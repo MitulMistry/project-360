@@ -1,0 +1,18 @@
+@use "@styles/color";
+@use "@styles/font";
+@use "@styles/space";
+
+// @use "@styles/shadow";
+
+.statusButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: space.$s2;
+  border-radius: space.$s1;
+  background-color: color.$white;
+  font: font.$text-sm-medium;
+  cursor: pointer;
+  box-sizing: border-box;
+  outline: none;
+}
