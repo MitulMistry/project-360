@@ -16,6 +16,7 @@ export enum SelectorSize {
 // so doesn't make sense to extend it.
 // https://react-spectrum.adobe.com/react-aria/Button.html#props
 type SelectorProps = AriaButtonProps & {
+  className?: string;
   size?: SelectorSize;
   isSelected?: boolean;
 };
