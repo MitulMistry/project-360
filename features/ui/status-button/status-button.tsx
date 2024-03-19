@@ -67,17 +67,18 @@ export function StatusButton({
   };
 
   return (
-    <AriaButton
-      className={classNames(
-        styles.statusButton,
-        styles[size],
-        styles[items[selectedId].color],
-        className,
-      )}
-      onPress={() => increment()}
-      {...props}
-    >
-      {items[selectedId].name}
-    </AriaButton>
+    <div className={classNames(styles.container, className)}>
+      <AriaButton
+        className={classNames(
+          styles.statusButton,
+          styles[size],
+          styles[items[selectedId].color],
+        )}
+        onPress={() => increment()}
+        {...props}
+      >
+        {items[selectedId].name}
+      </AriaButton>
+    </div>
   );
 }
