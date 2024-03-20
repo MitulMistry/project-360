@@ -1,0 +1,162 @@
+@use "@styles/color";
+@use "@styles/font";
+@use "@styles/space";
+
+// @use "@styles/shadow";
+
+.container {
+  display: flex;
+}
+
+.statusButton {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: space.$s2;
+  border: none;
+  border-radius: space.$s1;
+  background-color: color.$white;
+  font: font.$text-sm-medium;
+  cursor: pointer;
+  box-sizing: border-box;
+  outline: none;
+
+  &:disabled {
+    color: color.$white;
+    background: color.$general-50;
+    cursor: not-allowed;
+  }
+
+  &:focus {
+    outline: 3px solid color.$primary-50;
+  }
+}
+
+.sm {
+  height: 1.5rem;
+  padding: 0.5rem 1.25rem;
+  font: font.$text-sm-medium;
+}
+
+.md {
+  height: 2rem;
+  padding: 0.5rem 1.5rem;
+  font: font.$text-md-regular;
+}
+
+.lg {
+  height: 2.5rem;
+  padding: 0.75rem 1.5rem;
+  font: font.$text-md-regular;
+
+  &:focus {
+    outline-width: 4px;
+  }
+}
+
+/* Status colors */
+.ready {
+  color: color.$white;
+  background-color: color.$primary-100;
+
+  &:focus {
+    outline-color: color.$primary-60;
+  }
+
+  &:hover:enabled {
+    background: color.$primary-80;
+  }
+}
+
+.inProgress {
+  color: color.$white;
+  background-color: color.$yellow-100;
+
+  &:focus {
+    outline-color: color.$yellow-80;
+  }
+
+  &:hover:enabled {
+    background: color.$yellow-80;
+  }
+}
+
+.done {
+  color: color.$white;
+  background-color: color.$green-100;
+
+  &:focus {
+    outline-color: color.$green-70;
+  }
+
+  &:hover:enabled {
+    background: color.$green-80;
+  }
+}
+
+.stuck {
+  color: color.$white;
+  background-color: color.$red-100;
+
+  &:focus {
+    outline-color: color.$red-60;
+  }
+
+  &:hover:enabled {
+    background: color.$red-80;
+  }
+}
+
+/* Priority colors */
+.low {
+  color: color.$green-100;
+  background-color: color.$green-30;
+
+  &:focus {
+    outline-color: color.$green-60;
+  }
+
+  &:hover:enabled {
+    background: color.$green-40;
+  }
+}
+
+.medium {
+  color: color.$primary-100;
+  background-color: color.$primary-40;
+
+  &:focus {
+    outline-color: color.$primary-60;
+  }
+
+  &:hover:enabled {
+    background: color.$primary-50;
+  }
+}
+
+.critical {
+  color: color.$red-100;
+  background-color: color.$red-30;
+
+  &:focus {
+    outline-color: color.$red-60;
+  }
+
+  &:hover:enabled {
+    background: color.$red-40;
+  }
+}
+
+.high {
+  color: color.$yellow-100;
+  background-color: color.$yellow-40;
+
+  &:focus {
+    outline-color: color.$yellow-80;
+  }
+
+  &:hover:enabled {
+    background: color.$yellow-50;
+  }
+}
