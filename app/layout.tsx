@@ -10,6 +10,8 @@ export const metadata: Metadata = {
   description: "Project management application",
 };
 
+// Use SessionProvider to persist user's authentication across the application.
+
 export default function RootLayout({
   children,
 }: Readonly<{
