@@ -36,7 +36,7 @@ export function SignUpForm({ className }: SignUpProps) {
 
         <hr className={styles.ruler} />
         <p className={styles.text}>Or create an account using:</p>
-        <OAuthGitHubButton className={styles.button} />
+        <OAuthGitHubButton />
       </div>
     </form>
   );

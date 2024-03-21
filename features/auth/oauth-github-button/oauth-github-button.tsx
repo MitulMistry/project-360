@@ -1,18 +1,21 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
+import { signIn } from "next-auth/react";
 import { Button, ButtonColor, ButtonIcon } from "@features/ui/";
 import type { ButtonProps } from "@features/ui";
-import styles from "./oauth-github-button.module.scss";
+// import styles from "./oauth-github-button.module.scss";
 
 export function OAuthGitHubButton({ className, ...props }: ButtonProps) {
   return (
-    <Link href="/api/auth/signin" className={styles.link}>
-      <Button className={className} color={ButtonColor.White} {...props}>
-        <ButtonIcon src="/icons/github-mark.svg" />
-        Continue with GitHub
-      </Button>
-    </Link>
+    <Button
+      className={className}
+      color={ButtonColor.White}
+      onPress={() => signIn("github")}
+      {...props}
+    >
+      <ButtonIcon src="/icons/github-mark.svg" />
+      Continue with GitHub
+    </Button>
   );
 }

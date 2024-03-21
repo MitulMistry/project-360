@@ -36,7 +36,7 @@ export function LoginForm({ className }: LoginProps) {
 
         <hr className={styles.ruler} />
         <p className={styles.text}>Or sign in using:</p>
-        <OAuthGitHubButton className={styles.button} />
+        <OAuthGitHubButton />
       </div>
     </form>
   );
