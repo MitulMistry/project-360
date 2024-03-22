@@ -20,6 +20,7 @@ export function LoginForm({ className }: LoginProps) {
           inputMode="email"
           className={styles.textInput}
           autoFocus={true}
+          data-testid="emailInput"
           isDisabled={true}
         />
         <TextInput
@@ -28,9 +29,14 @@ export function LoginForm({ className }: LoginProps) {
           type="password"
           inputMode="text"
           className={styles.textInput}
+          data-testid="passwordInput"
           isDisabled={true}
         />
-        <Button className={styles.button} isDisabled={true}>
+        <Button
+          className={styles.button}
+          data-testid="submitButton"
+          isDisabled={true}
+        >
           Sign In
         </Button>
 

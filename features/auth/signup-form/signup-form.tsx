@@ -20,6 +20,7 @@ export function SignUpForm({ className }: SignUpProps) {
           inputMode="email"
           className={styles.textInput}
           autoFocus={true}
+          data-testid="emailInput"
           isDisabled={true}
         />
         <TextInput
@@ -28,9 +29,14 @@ export function SignUpForm({ className }: SignUpProps) {
           type="password"
           inputMode="text"
           className={styles.textInput}
+          data-testid="passwordInput"
           isDisabled={true}
         />
-        <Button className={styles.submit} isDisabled={true}>
+        <Button
+          className={styles.button}
+          data-testid="submitButton"
+          isDisabled={true}
+        >
           Create Account
         </Button>
 

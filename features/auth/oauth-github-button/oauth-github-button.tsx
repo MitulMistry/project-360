@@ -12,6 +12,7 @@ export function OAuthGitHubButton({ className, ...props }: ButtonProps) {
       className={className}
       color={ButtonColor.White}
       onPress={() => signIn("github")}
+      data-testid="gitHubOAuthButton"
       {...props}
     >
       <ButtonIcon src="/icons/github-mark.svg" />
