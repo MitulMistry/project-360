@@ -99,6 +99,16 @@ const config: Config = {
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   // moduleNameMapper: {},
 
+  // https://stackoverflow.com/questions/76608600/jest-tests-are-failing-because-of-an-unknown-unexpected-token-export
+  setupFiles: ["./setup.jest.js"],
+  moduleNameMapper: {
+    "^jose": require.resolve("jose"),
+    "^@panva/hkdf": require.resolve("@panva/hkdf"),
+    "^preact-render-to-string": require.resolve("preact-render-to-string"),
+    "^preact": require.resolve("preact"),
+    "^uuid": require.resolve("uuid"),
+  },
+
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
 
