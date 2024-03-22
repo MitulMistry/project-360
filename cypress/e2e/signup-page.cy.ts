@@ -1,4 +1,4 @@
-describe("Login page", () => {
+describe("Signup page", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/signup");
   });
@@ -14,9 +14,18 @@ describe("Login page", () => {
   });
 
   it("should show the form", () => {
+    cy.get("[data-testid='emailInput']").should("be.visible");
+    cy.get("[data-testid='passwordInput']").should("be.visible");
+
     cy.get("label").should((labels) => {
       expect(labels[0]).to.contain.text("Email");
       expect(labels[1]).to.contain.text("Password");
     });
+  });
+
+  it("should have a GitHub OAuth button", () => {
+    cy.get("[data-testid='gitHubOAuthButton']").contains(
+      "Continue with GitHub",
+    );
   });
 });
