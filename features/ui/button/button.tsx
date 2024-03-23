@@ -28,7 +28,7 @@ export enum ButtonVariant {
 // React-Aria Button component is not native HTML Button element,
 // so doesn't make sense to extend it.
 // https://react-spectrum.adobe.com/react-aria/Button.html#props
-type ButtonProps = AriaButtonProps & {
+export type ButtonProps = AriaButtonProps & {
   size?: ButtonSize;
   color?: ButtonColor;
   variant?: ButtonVariant;

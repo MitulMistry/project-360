@@ -1,5 +1,8 @@
 @use "@styles/space";
-@use "@styles/breakpoint";
+@use "@styles/font";
+@use "@styles/color";
+
+// @use "@styles/breakpoint";
 
 .container {
   display: flex;
@@ -10,6 +13,19 @@
   margin-bottom: space.$s6;
 }
 
-.submit {
+.button {
   flex: 1;
+}
+
+.ruler {
+  width: 100%;
+  border-top: 1px solid color.$general-50;
+  margin-top: space.$s6;
+}
+
+.text {
+  text-align: center;
+  font: font.$text-sm-regular;
+  color: color.$general-70;
+  margin-bottom: space.$s6;
 }

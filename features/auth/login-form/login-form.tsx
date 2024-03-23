@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Button, TextInput } from "@/features/ui";
+import { OAuthGitHubButton } from "@/features/auth";
 import styles from "./login-form.module.scss";
 
 type LoginProps = {
@@ -19,6 +20,8 @@ export function LoginForm({ className }: LoginProps) {
           inputMode="email"
           className={styles.textInput}
           autoFocus={true}
+          data-testid="emailInput"
+          isDisabled={true}
         />
         <TextInput
           label="Password"
@@ -26,8 +29,20 @@ export function LoginForm({ className }: LoginProps) {
           type="password"
           inputMode="text"
           className={styles.textInput}
+          data-testid="passwordInput"
+          isDisabled={true}
         />
-        <Button className={styles.submit}>Sign In</Button>
+        <Button
+          className={styles.button}
+          data-testid="submitButton"
+          isDisabled={true}
+        >
+          Sign In
+        </Button>
+
+        <hr className={styles.ruler} />
+        <p className={styles.text}>Or sign in using:</p>
+        <OAuthGitHubButton />
       </div>
     </form>
   );
