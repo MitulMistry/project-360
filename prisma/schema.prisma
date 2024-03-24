@@ -75,9 +75,15 @@ model OrganizationUser {
   organization   Organization @relation(fields: [organizationId], references: [id])
   organizationId String // relation scalar field (used in the `@relation` attribute above)
   joinedAt       DateTime     @default(now())
-  role           String
+  role           Role         @default(ASSIGNEE)
 
   @@id([userId, organizationId])
+}
+
+enum Role {
+  OWNER
+  MANAGER
+  ASSIGNEE
 }
 
 model Project {
@@ -92,14 +98,29 @@ model Project {
 model Task {
   id                String    @id @default(cuid())
   createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
   project           Project   @relation(fields: [projectId], references: [id])
   projectId         String
   assignee          User?     @relation(fields: [assigneeId], references: [id])
   assigneeId        String?
   name              String?
-  status            String?
-  priority          String?
+  status            Status    @default(READY)
+  priority          Priority  @default(LOW)
   timeEstimate      Int?
   timeEstimateUnits String?
   dueDate           DateTime?
+}
+
+enum Status {
+  READY
+  INPROGRESS
+  DONE
+  STUCK
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  CRITICAL
+  HIGH
 }
