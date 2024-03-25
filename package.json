@@ -18,6 +18,9 @@
     "build-storybook": "storybook build",
     "prepare": "husky install"
   },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
   "dependencies": {
     "@fontsource/inter": "^5.0.16",
     "@next-auth/prisma-adapter": "^1.0.7",
