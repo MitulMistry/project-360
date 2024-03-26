@@ -4,7 +4,10 @@ import NextAuthProvider from "./context/next-auth-provider";
 import { Inter } from "next/font/google";
 import "@styles/global.scss";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Project 360",
