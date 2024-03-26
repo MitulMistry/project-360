@@ -1,20 +1,44 @@
 @use "@styles/color";
-@use "@styles/font";
 @use "@styles/space";
-@use "@styles/breakpoint";
 
-// .listItem {
+// @use "@styles/font";
+// @use "@styles/breakpoint";
 
-// }
+.listItem {
+  height: space.$s12;
+  display: flex;
+  align-items: center;
+  margin-top: space.$s1;
+  background: transparent;
+  border-radius: space.$s1;
 
-// .active {
+  &:hover {
+    background: color.$primary-30;
+  }
+}
 
-// }
+.listItem.active {
+  color: white;
+  background: color.$primary-100;
+}
 
-// .anchor {
+.listItem:first-child {
+  margin-top: 0;
+}
 
-// }
+.anchor {
+  padding: space.$s0 space.$s3;
 
-// .icon {
+  // Setting height and width to 100% makes the whole container clickable.
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: color.$general-80;
+  text-decoration: none;
+}
 
-// }
+.icon {
+  width: space.$s6;
+  margin-right: space.$s3;
+}

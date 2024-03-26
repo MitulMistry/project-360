@@ -12,3 +12,8 @@ export default meta;
 type Story = StoryObj<typeof SidebarNavigation>;
 
 export const Default: Story = {};
+
+export const CurrentOrganization: Story = {
+  ...Default,
+  args: { ...Default.args, currentOrganization: "Current Organization" },
+};

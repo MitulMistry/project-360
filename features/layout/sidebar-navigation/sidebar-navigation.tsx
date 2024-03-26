@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { Routes } from "@config/routes";
 import { MenuItemLink } from "./menu-item-link";
@@ -18,26 +19,53 @@ const menuItems = [
 
 type SidebarNavigationProps = {
   className?: string;
+  currentOrganization?: string;
 };
 
-export function SidebarNavigation({ className }: SidebarNavigationProps) {
+export function SidebarNavigation({
+  className,
+  currentOrganization,
+}: SidebarNavigationProps) {
   const router = useRouter();
 
   return (
     <div className={classNames(styles.container, className)}>
-      <header className={styles.header}>Project 360</header>
+      <div className={classNames(styles.fixedContainer)}>
+        <header className={styles.header}>
+          <Image
+            src="/graphics/logo.svg"
+            width={177}
+            height={40}
+            alt="Graphic logo"
+            className={styles.logoLarge}
+          />
+        </header>
 
-      <div className={styles.menu}>
-        <ul className={styles.linkList}>
-          {menuItems.map((menuItem, index) => (
+        {currentOrganization && (
+          <div className={styles.currentOrganization}>
+            <p>{currentOrganization}</p>
+          </div>
+        )}
+
+        <div className={styles.menu}>
+          <ul className={styles.linkList}>
+            {menuItems.map((menuItem, index) => (
+              <MenuItemLink
+                key={index}
+                {...menuItem}
+                isActive={router.pathname === menuItem.href}
+              />
+            ))}
+          </ul>
+          <ul className={classNames(styles.list, styles.bottom)}>
             <MenuItemLink
-              key={index}
-              {...menuItem}
-              isActive={router.pathname === menuItem.href}
+              text="Log Out"
+              iconSrc="/icons/power.svg"
+              href="/api/auth/signout"
+              isActive={false}
             />
-          ))}
-        </ul>
-        <ul className={styles.list}></ul>
+          </ul>
+        </div>
       </div>
     </div>
   );
