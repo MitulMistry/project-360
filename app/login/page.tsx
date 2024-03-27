@@ -1,4 +1,4 @@
-import { AuthPageContainer } from "@/features/ui";
+import { AuthPageContainer } from "@features/layout";
 // import { LoginForm, SignUpForm } from "@/features/auth";
 import { LoginForm } from "@/features/auth";
 import Link from "next/link";

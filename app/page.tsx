@@ -1,4 +1,4 @@
-import { AuthPageContainer } from "@/features/ui";
+import { AuthPageContainer } from "@features/layout";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/features/ui";
