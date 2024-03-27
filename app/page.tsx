@@ -1,7 +1,8 @@
 import { AuthPageContainer } from "@features/layout";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/features/ui";
+import { Routes } from "@config/routes";
+import { Button } from "@features/ui";
 import styles from "./page.module.scss";
 
 export default function Home() {
@@ -29,14 +30,14 @@ export default function Home() {
         </p>
 
         <Link
-          href="/signup"
+          href={Routes.signup}
           className={styles.btnLink}
           data-testid="signup"
           passHref
         >
           <Button>Create Account</Button>
         </Link>
-        <Link href="/login" data-testid="login" passHref>
+        <Link href={Routes.login} data-testid="login" passHref>
           Sign In
         </Link>
       </div>
