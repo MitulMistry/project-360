@@ -53,7 +53,7 @@ export function SidebarNavigation({
             width={177}
             height={40}
             alt="Graphic logo"
-            className={styles.logoLarge}
+            className={styles.logo}
           />
           <Button
             onPress={() => setMobileMenuOpen(!isMobileMenuOpen)}
