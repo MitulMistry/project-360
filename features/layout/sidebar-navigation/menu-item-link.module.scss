@@ -18,7 +18,10 @@
 }
 
 .listItem.active {
-  color: white;
+  a {
+    color: white;
+  }
+
   background: color.$primary-100;
 }
 
@@ -41,4 +44,9 @@
 .icon {
   width: space.$s6;
   margin-right: space.$s3;
+  align-items: center;
+}
+
+.span {
+  padding-top: space.$s1;
 }
