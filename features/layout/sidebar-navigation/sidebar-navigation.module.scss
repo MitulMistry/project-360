@@ -3,9 +3,8 @@
 @use "@styles/space";
 @use "@styles/breakpoint";
 @use "styles/shadow";
-
-// @use "@styles/z-index";
-// @use "@styles/misc";
+@use "@styles/z-index";
+@use "@styles/misc";
 
 .container {
   width: 100%;
@@ -27,14 +26,31 @@
 }
 
 .header {
+  height: misc.$header-height;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  padding-top: space.$s4;
+  justify-content: space-between; // Sets first element to left, last element to right
+  padding: space.$s2 space.$s4 space.$s1 space.$s2;
+  padding-top: space.$s2;
+
+  @media (min-width: breakpoint.$desktop) {
+    height: unset;
+    padding: space.$s4 0 0 0;
+    flex-direction: column;
+
+    // padding: space.$s8 space.$s4 space.$s6;
+  }
 }
 
 .logoLarge {
   padding: space.$s4;
+}
+
+.menuButton {
+  @media (min-width: breakpoint.$desktop) {
+    display: none;
+  }
 }
 
 .currentOrganization {
@@ -53,7 +69,7 @@
   }
 }
 
-.menu {
+.nav {
   display: flex;
   flex-direction: column;
   height: 100%; // Make it full height
@@ -61,8 +77,13 @@
 
 .list {
   list-style: none;
-  padding: space.$s4;
   margin: 0;
+  padding: space.$s4;
+  padding-bottom: space.$s2;
+
+  @media (min-width: breakpoint.$desktop) {
+    padding-bottom: space.$s4;
+  }
 }
 
 .linkList {
@@ -71,8 +92,14 @@
 }
 
 .bottom {
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: space.$s2;
+
   // Setting margin-top to auto will automatically take up space
   // and push this element to the bottom of the fixed height container.
-  margin-top: auto;
-  margin-bottom: space.$s6;
+  @media (min-width: breakpoint.$desktop) {
+    margin-top: auto;
+    margin-bottom: space.$s6;
+  }
 }

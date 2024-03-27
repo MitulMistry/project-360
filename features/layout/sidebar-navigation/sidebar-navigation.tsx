@@ -1,5 +1,6 @@
 "use client";
-
+import { useState } from "react";
+import { Button, ButtonVariant, ButtonColor } from "@features/ui";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Routes } from "@config/routes";
@@ -41,6 +42,7 @@ export function SidebarNavigation({
   currentOrganization,
 }: SidebarNavigationProps) {
   const pathname = usePathname();
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <div className={classNames(styles.container, className)}>
@@ -53,6 +55,20 @@ export function SidebarNavigation({
             alt="Graphic logo"
             className={styles.logoLarge}
           />
+          <Button
+            onPress={() => setMobileMenuOpen(!isMobileMenuOpen)}
+            color={ButtonColor.White}
+            variant={ButtonVariant.IconOnly}
+            className={styles.menuButton}
+          >
+            <Image
+              src={isMobileMenuOpen ? "/icons/close.svg" : "/icons/menu.svg"}
+              width={24}
+              height={24}
+              alt={isMobileMenuOpen ? "close menu" : "open menu"}
+              className={styles.menuIcon}
+            />
+          </Button>
         </header>
 
         {currentOrganization && (
@@ -61,7 +77,12 @@ export function SidebarNavigation({
           </div>
         )}
 
-        <div className={styles.menu}>
+        <div
+          className={classNames(
+            styles.nav,
+            isMobileMenuOpen && styles.isMobileMenuOpen,
+          )}
+        >
           <ul className={styles.linkList}>
             {menuItems.map((menuItem, index) => (
               <MenuItemLink
