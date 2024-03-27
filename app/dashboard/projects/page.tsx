@@ -1,10 +1,10 @@
 import { PageContainer } from "@features/layout";
 // import styles from "./page.module.scss";
 
-export default function Organizations() {
+export default function Projects() {
   return (
-    <PageContainer title="Organizations">
-      <h1>Organizations</h1>
+    <PageContainer title="Projects">
+      <h1>Projects</h1>
     </PageContainer>
   );
 }
