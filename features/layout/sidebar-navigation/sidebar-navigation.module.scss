@@ -2,6 +2,7 @@
 @use "@styles/font";
 @use "@styles/space";
 @use "@styles/breakpoint";
+@use "styles/shadow";
 
 // @use "@styles/z-index";
 // @use "@styles/misc";
@@ -22,6 +23,7 @@
   position: fixed;
   font: font.$text-md-medium;
   background-color: color.$white;
+  box-shadow: shadow.$panel;
 }
 
 .header {

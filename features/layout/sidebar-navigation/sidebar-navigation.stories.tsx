@@ -6,6 +6,10 @@ import { SidebarNavigation } from ".";
 const meta: Meta<typeof SidebarNavigation> = {
   title: "UI/SidebarNavigation",
   component: SidebarNavigation,
+  parameters: {
+    // Show component without padding
+    layout: "fullscreen",
+  },
 };
 export default meta;
 
