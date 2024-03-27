@@ -8,9 +8,13 @@
   height: space.$s12;
   display: flex;
   align-items: center;
-  margin-top: space.$s1;
+  margin-top: space.$s2;
   background: transparent;
   border-radius: space.$s1;
+
+  a:hover {
+    color: color.$primary-100;
+  }
 
   &:hover {
     background: color.$primary-30;
