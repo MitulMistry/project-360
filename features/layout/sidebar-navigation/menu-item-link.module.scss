@@ -43,6 +43,16 @@
   align-items: center;
   color: color.$general-80;
   text-decoration: none;
+  border-radius: space.$s1;
+
+  &:focus-visible {
+    outline-offset: 0;
+    outline: 3px solid color.$primary-50;
+  }
+
+  &.isDisabled {
+    pointer-events: none;
+  }
 }
 
 .icon {

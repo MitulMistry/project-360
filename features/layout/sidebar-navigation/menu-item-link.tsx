@@ -10,6 +10,7 @@ type MenuItemProps = {
   image?: React.ReactNode;
   href: string;
   isActive?: boolean;
+  onClick?: () => void;
 };
 
 export function MenuItemLink({
@@ -18,10 +19,17 @@ export function MenuItemLink({
   iconSrc,
   image,
   isActive = false,
+  onClick,
 }: MenuItemProps) {
   return (
     <li className={classNames(styles.listItem, isActive && styles.active)}>
-      <Link className={styles.anchor} href={href}>
+      <Link
+        className={classNames(styles.anchor, isActive && styles.isDisabled)}
+        href={href}
+        aria-disabled={isActive}
+        tabIndex={isActive ? -1 : undefined} // Disable keyboard tabbing
+        onClick={onClick}
+      >
         {iconSrc && (
           <Image
             src={iconSrc}
