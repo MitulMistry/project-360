@@ -46,7 +46,12 @@ export function SidebarNavigation({
 
   return (
     <div className={classNames(styles.container, className)}>
-      <div className={classNames(styles.fixedContainer)}>
+      <div
+        className={classNames(
+          styles.fixedContainer,
+          !isMobileMenuOpen && styles.isMobileMenuClosed,
+        )}
+      >
         <header className={styles.header}>
           <Image
             src="/graphics/logo.svg"
@@ -71,18 +76,24 @@ export function SidebarNavigation({
           </Button>
         </header>
 
-        {currentOrganization && (
-          <div className={styles.currentOrganization}>
-            <p>{currentOrganization}</p>
-          </div>
-        )}
-
+        <div
+          className={classNames(
+            styles.menuOverlay,
+            isMobileMenuOpen && styles.isMobileMenuOpen,
+          )}
+        />
         <div
           className={classNames(
             styles.nav,
             isMobileMenuOpen && styles.isMobileMenuOpen,
           )}
         >
+          {currentOrganization && (
+            <div className={styles.currentOrganization}>
+              <p>{currentOrganization}</p>
+            </div>
+          )}
+
           <ul className={styles.linkList}>
             {menuItems.map((menuItem, index) => (
               <MenuItemLink

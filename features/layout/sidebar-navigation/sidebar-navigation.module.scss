@@ -21,8 +21,16 @@
   composes: container;
   position: fixed;
   font: font.$text-md-medium;
-  background-color: color.$white;
-  box-shadow: shadow.$panel;
+  box-shadow: none;
+
+  // Don't show shadow if mobile and menu is open
+  @media (min-width: breakpoint.$desktop) {
+    box-shadow: shadow.$panel;
+  }
+
+  &.isMobileMenuClosed {
+    box-shadow: shadow.$panel;
+  }
 }
 
 .header {
@@ -40,8 +48,6 @@
     height: unset;
     padding: space.$s4 0 0 0;
     flex-direction: column;
-
-    // padding: space.$s8 space.$s4 space.$s6;
   }
 }
 
@@ -65,7 +71,7 @@
 .currentOrganization {
   font: font.$text-md-medium;
   margin-top: space.$s2;
-  padding: space.$s2 space.$s8;
+  padding: space.$s4 space.$s8;
   display: flex;
   flex-direction: column;
 
@@ -79,9 +85,39 @@
   }
 }
 
+// Creates darken effect on page below open menu (on mobile)
+.menuOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: color.$general-70;
+  z-index: z-index.$header - 2;
+  transform: translateX(100%);
+  opacity: 0;
+  transition:
+    opacity 300ms,
+    transform 0s 300ms;
+
+  &.isMobileMenuOpen {
+    opacity: 0.6;
+    transform: translateX(0);
+    transition:
+      opacity 300ms,
+      transform 0s 0s;
+  }
+
+  @media (min-width: breakpoint.$desktop) {
+    display: none;
+  }
+}
+
 .nav {
   display: flex;
   flex-direction: column;
+  background: color.$white;
+  box-shadow: none;
   z-index: z-index.$header - 1;
   max-height: 0; // Set the initial max-height to 0
   overflow: hidden; // Hide the overflowing content
@@ -93,6 +129,7 @@
   &.isMobileMenuOpen {
     max-height: 100vh; // Set a large max-height when the menu is open
     transform: translateY(0);
+    box-shadow: shadow.$panel; // Show shadow if mobile menu is open
   }
 
   @media (min-width: breakpoint.$desktop) {
@@ -107,8 +144,6 @@
   list-style: none;
   margin: 0;
   padding: space.$s2 space.$s4;
-
-  // padding-bottom: space.$s2;
 
   @media (min-width: breakpoint.$desktop) {
     padding-bottom: space.$s4;
