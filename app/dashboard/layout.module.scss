@@ -1,5 +1,5 @@
-@use "@styles/color";
-@use "@styles/font";
+// @use "@styles/color";
+// @use "@styles/font";
 @use "@styles/space";
 @use "@styles/breakpoint";
 @use "@styles/misc";
@@ -7,10 +7,13 @@
 .container {
   height: 100vh;
   display: grid;
-  grid-template: "navigation" auto "content" 1fr "footer" auto / 1fr;
+
+  // grid-template: "navigation" auto "content" 1fr "footer" auto / 1fr;
+  grid-template: "navigation" auto "content" 1fr;
 
   @media (min-width: breakpoint.$desktop) {
-    grid-template: "navigation content" 1fr "navigation footer" auto / auto 1fr;
+    // grid-template: "navigation content" 1fr "navigation footer" auto / auto 1fr;
+    grid-template: "navigation content" auto / auto 1fr;
   }
 }
 
