@@ -23,12 +23,8 @@
   font: font.$text-md-medium;
   box-shadow: none;
 
-  // Don't show shadow if mobile and menu is open
+  // Don't show shadow if mobile
   @media (min-width: breakpoint.$desktop) {
-    box-shadow: shadow.$panel;
-  }
-
-  &.isMobileMenuClosed {
     box-shadow: shadow.$panel;
   }
 }
@@ -43,11 +39,19 @@
   padding-top: space.$s2;
   background-color: color.$white;
   z-index: z-index.$header;
+  box-shadow: shadow.$panel;
 
+  // Remove shadow if mobile menu is open
+  &.isMobileMenuOpen {
+    box-shadow: none;
+  }
+
+  // Don't show shadow on desktop
   @media (min-width: breakpoint.$desktop) {
     height: unset;
     padding: space.$s4 0 0 0;
     flex-direction: column;
+    box-shadow: none;
   }
 }
 
@@ -117,11 +121,11 @@
   display: flex;
   flex-direction: column;
   background: color.$white;
-  box-shadow: none;
+  box-shadow: shadow.$panel;
   z-index: z-index.$header - 1;
   max-height: 0; // Set the initial max-height to 0
   overflow: hidden; // Hide the overflowing content
-  transform: translateY(calc(-100%));
+  transform: translateY(-100%);
   transition:
     transform 300ms,
     max-height 300ms; // Animate the max-height
@@ -129,7 +133,6 @@
   &.isMobileMenuOpen {
     max-height: 100vh; // Set a large max-height when the menu is open
     transform: translateY(0);
-    box-shadow: shadow.$panel; // Show shadow if mobile menu is open
   }
 
   @media (min-width: breakpoint.$desktop) {
@@ -137,6 +140,7 @@
     height: 100%; // Make it full height (for bottom class)
     transition: none;
     transform: none;
+    box-shadow: none;
   }
 }
 
@@ -164,6 +168,6 @@
   // and push this element to the bottom of the fixed height container.
   @media (min-width: breakpoint.$desktop) {
     margin-top: auto;
-    margin-bottom: space.$s6;
+    margin-bottom: space.$s4;
   }
 }

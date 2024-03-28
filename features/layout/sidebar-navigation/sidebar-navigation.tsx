@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Routes } from "@config/routes";
 import { MenuItemLink } from "./menu-item-link";
 import { HouseIcon, ListIcon, UsersIcon, PowerIcon } from "@features/ui";
+import { signOut } from "next-auth/react";
 import classNames from "classnames";
 import styles from "./sidebar-navigation.module.scss";
 
@@ -46,13 +47,13 @@ export function SidebarNavigation({
 
   return (
     <div className={classNames(styles.container, className)}>
-      <div
-        className={classNames(
-          styles.fixedContainer,
-          !isMobileMenuOpen && styles.isMobileMenuClosed,
-        )}
-      >
-        <header className={styles.header}>
+      <div className={styles.fixedContainer}>
+        <header
+          className={classNames(
+            styles.header,
+            isMobileMenuOpen && styles.isMobileMenuOpen,
+          )}
+        >
           <Image
             src="/graphics/logo.svg"
             width={177}
@@ -100,6 +101,7 @@ export function SidebarNavigation({
                 key={index}
                 {...menuItem}
                 isActive={pathname === menuItem.href}
+                onClick={() => setMobileMenuOpen(false)}
               />
             ))}
           </ul>
@@ -108,8 +110,9 @@ export function SidebarNavigation({
               text="Log Out"
               // iconSrc="/icons/power.svg"
               image={<PowerIcon />}
-              href="/api/auth/signout"
-              isActive={false}
+              // href="/api/auth/signout"
+              href="/#"
+              onClick={() => signOut()}
             />
           </ul>
         </div>
