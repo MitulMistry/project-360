@@ -29,6 +29,7 @@ export function MenuItemLink({
         aria-disabled={isActive}
         tabIndex={isActive ? -1 : undefined} // Disable keyboard tabbing
         onClick={onClick}
+        role="link"
       >
         {iconSrc && (
           <Image
