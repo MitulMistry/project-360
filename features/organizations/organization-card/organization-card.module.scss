@@ -1,0 +1,48 @@
+@use "@styles/space";
+@use "@styles/font";
+@use "@styles/color";
+
+// @use "@styles/breakpoint";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 33.75rem;
+  font: font.$text-sm-regular;
+  color: color.$general-100;
+}
+
+.label {
+  color: color.$general-80;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+
+  // Push left element to left, right element to right
+  justify-content: space-between;
+}
+
+.leftDataCol {
+  flex: 1;
+}
+
+.rightDataCol {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+// .usersGraphic {
+
+// }
+
+// .buttonRow {
+//   @extend .dataRow;
+// }
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+}
