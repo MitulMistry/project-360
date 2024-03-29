@@ -1,6 +1,7 @@
-import { AuthPageContainer } from "@/features/ui";
-import { SignUpForm } from "@/features/auth";
+import { AuthPageContainer } from "@features/layout";
+import { SignUpForm } from "@features/auth";
 import Link from "next/link";
+import { Routes } from "@config/routes";
 import styles from "./page.module.scss";
 
 export default function SignUp() {
@@ -10,7 +11,7 @@ export default function SignUp() {
         <h1 className={styles.header}>Create an Account</h1>
         <p className={styles.text} data-testid="description">
           Have an account?{" "}
-          <Link href="/login" data-testid="login">
+          <Link href={Routes.login} data-testid="login">
             Sign in
           </Link>
         </p>

@@ -1,0 +1,66 @@
+@use "@styles/color";
+@use "@styles/space";
+
+// @use "@styles/font";
+// @use "@styles/breakpoint";
+
+.listItem {
+  height: space.$s12;
+  display: flex;
+  align-items: center;
+  margin-top: space.$s2;
+  background: transparent;
+  border-radius: space.$s1;
+
+  a:hover {
+    color: color.$primary-100;
+  }
+
+  &:hover {
+    background: color.$primary-30;
+  }
+}
+
+.listItem.active {
+  a {
+    color: white;
+  }
+
+  background: color.$primary-100;
+}
+
+.listItem:first-child {
+  margin-top: 0;
+}
+
+.anchor {
+  padding: space.$s0 space.$s3;
+
+  // Setting height and width to 100% makes the whole container clickable.
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: color.$general-80;
+  text-decoration: none;
+  border-radius: space.$s1;
+
+  &:focus-visible {
+    outline-offset: 0;
+    outline: 3px solid color.$primary-50;
+  }
+
+  &.isDisabled {
+    pointer-events: none;
+  }
+}
+
+.icon {
+  width: space.$s6;
+  margin-right: space.$s3;
+  align-items: center;
+}
+
+.span {
+  padding-top: space.$s1;
+}
