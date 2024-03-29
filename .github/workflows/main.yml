@@ -72,6 +72,8 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           start: npm start
+        env:
+          CYPRESS_ENV: true
 
   test:
     runs-on: ubuntu-latest
