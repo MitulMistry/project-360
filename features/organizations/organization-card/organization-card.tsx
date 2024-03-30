@@ -7,9 +7,9 @@ import {
   ButtonColor,
   ButtonSize,
   ButtonVariant,
-} from "@/features/ui";
+} from "@features/ui";
 import type { User, Organization } from "@prisma/client";
-import { EditIcon, TrashIcon } from "@/features/ui";
+import { EditIcon, TrashIcon } from "@features/ui";
 import classNames from "classnames";
 import styles from "./organization-card.module.scss";
 

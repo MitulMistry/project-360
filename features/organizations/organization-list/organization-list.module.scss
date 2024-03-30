@@ -1,0 +1,11 @@
+@use "@styles/space";
+@use "@styles/font";
+@use "@styles/color";
+@use "@styles/shadow";
+
+// @use "@styles/breakpoint";
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
