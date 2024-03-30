@@ -2,6 +2,7 @@
 
 import { PageContainer } from "@features/layout";
 import { Button, ButtonColor, ButtonSize } from "@features/ui";
+import { PlusIcon } from "@features/ui";
 import { OrganizationList } from "@features/organizations";
 import styles from "./page.module.scss";
 
@@ -24,6 +25,7 @@ export default function Organizations() {
               color={ButtonColor.Primary}
               className={styles.button}
             >
+              <PlusIcon />
               New Organization
             </Button>
           </div>

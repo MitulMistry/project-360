@@ -22,31 +22,31 @@
 
 .sm {
   height: 2.25rem;
-  padding: 0.5rem 1.25rem;
+  padding: space.$s2 space.$s4;
   font: font.$text-sm-medium;
 
   &.iconOnly {
-    padding: 0.5rem;
+    padding: space.$s2;
   }
 }
 
 .md {
-  height: 2.5rem;
-  padding: 0.5rem 1.5rem;
+  height: space.$s10;
+  padding: space.$s2 space.$s4;
   font: font.$text-md-regular;
 
   &.iconOnly {
-    padding: 0.5rem;
+    padding: space.$s2;
   }
 }
 
 .lg {
-  height: 3rem;
-  padding: 0.75rem 1.5rem;
+  height: space.$s12;
+  padding: space.$s3 space.$s5;
   font: font.$text-md-regular;
 
   &.iconOnly {
-    padding: 0.75rem;
+    padding: space.$s3;
   }
 }
 

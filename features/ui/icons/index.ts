@@ -5,4 +5,5 @@ export {
   PowerIcon,
   EditIcon,
   TrashIcon,
+  PlusIcon,
 } from "./icons";
