@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import {
@@ -16,7 +18,7 @@ import styles from "./organization-card.module.scss";
 type OrganizationCardProps = {
   className?: string;
   organization: Organization;
-  owner: User;
+  owner?: User;
   isSelected?: boolean;
   userIsOwner?: boolean;
 };
@@ -36,9 +38,11 @@ export function OrganizationCard({
           <p className={styles.label}>
             Join Code: <span className={styles.text}>{organization.id}</span>
           </p>
-          <p className={styles.label}>
-            Owner: <span className={styles.text}>{owner.name}</span>
-          </p>
+          {owner && (
+            <p className={styles.label}>
+              Owner: <span className={styles.text}>{owner.name}</span>
+            </p>
+          )}
         </div>
         <div className={styles.rightDataCol}>
           <Image
