@@ -18,30 +18,43 @@
 
 .icon {
   height: 100%;
+
+  // Since we are no longer hard coding the height of buttons, set a max-height
+  // for the icon to keep it from expanding too big. Currently used icons are 24x24px.
+  max-height: 24px;
 }
 
 .sm {
-  height: 2.25rem;
+  // Remove hard coded height values to allow button to expand to text
+  // height: 2.25rem;
   padding: space.$s2 space.$s4;
   font: font.$text-sm-medium;
 
   &.iconOnly {
     padding: space.$s2;
   }
+
+  .icon {
+    max-height: 20px;
+  }
 }
 
 .md {
-  height: space.$s10;
+  // height: space.$s10;
   padding: space.$s2 space.$s4;
   font: font.$text-md-regular;
 
   &.iconOnly {
     padding: space.$s2;
   }
+
+  .icon {
+    max-height: 22px;
+  }
 }
 
 .lg {
-  height: space.$s12;
+  // height: space.$s12;
   padding: space.$s3 space.$s5;
   font: font.$text-md-regular;
 
