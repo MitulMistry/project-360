@@ -34,12 +34,14 @@ export function OrganizationCard({
     <div className={classNames(styles.container, className)}>
       <div className={styles.dataRow}>
         <div className={styles.leftDataCol}>
-          <h3 className={styles.header}>{organization.name}</h3>
-          <p className={styles.label}>
+          <h3 className={styles.header} data-testid="org-card-name">
+            {organization.name}
+          </h3>
+          <p className={styles.label} data-testid="org-card-id">
             Join Code: <span className={styles.text}>{organization.id}</span>
           </p>
           {owner && (
-            <p className={styles.label}>
+            <p className={styles.label} data-testid="org-card-owner">
               Owner: <span className={styles.text}>{owner.name}</span>
             </p>
           )}
@@ -55,7 +57,11 @@ export function OrganizationCard({
         </div>
       </div>
       <div className={styles.buttonRow}>
-        <Selector size={SelectorSize.Small} isSelected={isSelected}>
+        <Selector
+          size={SelectorSize.Small}
+          isSelected={isSelected}
+          data-testid="org-card-selector"
+        >
           {isSelected ? "Selected" : "Select"}
         </Selector>
         <div className={styles.buttons}>
