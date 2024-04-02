@@ -1,8 +1,8 @@
 // @use "@styles/color";
 // @use "@styles/font";
 @use "@styles/space";
+@use "@styles/breakpoint";
 
-// @use "@styles/breakpoint";
 // @use "@styles/misc";
 
 .container {
@@ -12,9 +12,15 @@
 
 .headerRow {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: space.$s6;
+
+  @media (min-width: breakpoint.$small) {
+    flex-direction: row;
+    margin-bottom: space.$s2;
+  }
 }
 
 .buttons {

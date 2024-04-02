@@ -1,2 +1,11 @@
-@use "@styles/color";
+// @use "@styles/color";
+@use "@styles/space";
 @use "@styles/breakpoint";
+
+.container {
+  padding: 0 space.$s6;
+
+  @media (min-width: breakpoint.$desktop) {
+    padding: 0;
+  }
+}
