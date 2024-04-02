@@ -1,0 +1,27 @@
+// @use "@styles/color";
+// @use "@styles/font";
+@use "@styles/space";
+
+// @use "@styles/breakpoint";
+// @use "@styles/misc";
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.headerRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.button {
+  margin-left: space.$s4;
+}

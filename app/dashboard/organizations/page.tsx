@@ -1,44 +1,28 @@
-"use client";
+// Keep this as a server component to make the direct Prisma
+// server fetch request and access the server session (for user).
 
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/lib/authOptions";
 import { PageContainer } from "@features/layout";
-import { Button, ButtonColor, ButtonSize } from "@features/ui";
-import { PlusIcon } from "@features/ui";
-// import type { Organization } from "@prisma/client";
-import { UserOrganizations } from "./user-organizations";
-// import { OrganizationList } from "@features/organizations";
+import type { Organization } from "@prisma/client";
+import { OrganizationList } from "@features/organizations";
 import styles from "./page.module.scss";
-// import { fetchUserOrganizations } from "@/app/lib/actions/organizations";
+import { fetchUserOrganizations } from "@/app/lib/actions/organizations";
+import OrganizationsInterface from "./organizations-interface";
 
-export default function Organizations() {
-  // const organizations: Organization[] | undefined =
-  //   await fetchUserOrganizations("mitulmistrydev@gmail.com");
+export default async function Organizations() {
+  const session = await getServerSession(authOptions);
+  const email = session?.user?.email;
+
+  const organizations: Organization[] | undefined = email
+    ? await fetchUserOrganizations(email)
+    : [];
 
   return (
     <PageContainer title="Organizations">
       <div className={styles.container}>
-        <div className={styles.headerRow}>
-          <h1>Organizations</h1>
-          <div className={styles.buttons}>
-            <Button
-              size={ButtonSize.Medium}
-              color={ButtonColor.White}
-              className={styles.button}
-            >
-              Join Organization
-            </Button>
-            <Button
-              size={ButtonSize.Medium}
-              color={ButtonColor.Primary}
-              className={styles.button}
-            >
-              <PlusIcon />
-              New Organization
-            </Button>
-          </div>
-        </div>
-
-        <UserOrganizations />
-        {/* <OrganizationList organizations={organizations} /> */}
+        <OrganizationsInterface />
+        <OrganizationList organizations={organizations} />
       </div>
     </PageContainer>
   );
