@@ -26,7 +26,7 @@ export default function OrganizationsInterface() {
   return (
     <div className={styles.container}>
       <div className={styles.headerRow}>
-        <h1>Organizations</h1>
+        <h1 className={styles.header}>Organizations</h1>
         <div className={styles.buttons}>
           <Button
             size={ButtonSize.Medium}

@@ -23,13 +23,21 @@
   }
 }
 
-.buttons {
-  display: flex;
-  flex-direction: row;
+.header {
+  margin-right: space.$s4;
 }
 
 .button {
   margin-left: space.$s4;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+
+  .button:first-child {
+    margin-left: 0;
+  }
 }
 
 .form {
