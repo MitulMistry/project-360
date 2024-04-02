@@ -2,14 +2,42 @@
 @use "@styles/font";
 @use "@styles/color";
 @use "@styles/shadow";
-
-// @use "@styles/breakpoint";
+@use "@styles/breakpoint";
 
 .container {
   display: flex;
   flex-direction: column;
 }
 
-.card {
+.row {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: breakpoint.$desktop) {
+    flex-direction: row;
+
+    .card:first-child {
+      margin-right: space.$s6;
+    }
+  }
+}
+
+%card {
+  flex: 1;
   margin-bottom: space.$s6;
+}
+
+.card {
+  @extend %card;
+}
+
+.emptyCard {
+  @extend %card;
+
+  display: none;
+  margin-left: space.$s12;
+
+  @media (min-width: breakpoint.$desktop) {
+    display: block;
+  }
 }
