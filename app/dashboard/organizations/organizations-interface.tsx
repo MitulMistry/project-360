@@ -34,6 +34,7 @@ export default function OrganizationsInterface() {
             className={styles.button}
             onPress={enableJoinForm}
             isDisabled={showJoinForm}
+            data-testid="org-enable-join-btn"
           >
             Join Organization
           </Button>
@@ -43,6 +44,7 @@ export default function OrganizationsInterface() {
             className={styles.button}
             onPress={enableNewForm}
             isDisabled={showNewForm}
+            data-testid="org-enable-new-btn"
           >
             <PlusIcon />
             New Organization

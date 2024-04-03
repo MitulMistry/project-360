@@ -14,7 +14,7 @@ export function OrganizationJoinForm({ className }: OrganizationJoinFormProps) {
   return (
     <div className={classNames(styles.container, className)}>
       <h3 className={styles.header}>Join Organization</h3>
-      <form className={styles.form}>
+      <form className={styles.form} data-testid="org-join-form">
         <TextInput
           className={styles.textInput}
           label="Enter join code:"

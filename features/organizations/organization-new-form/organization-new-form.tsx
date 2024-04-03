@@ -14,7 +14,7 @@ export function OrganizationNewForm({ className }: OrganizationNewFormProps) {
   return (
     <div className={classNames(styles.container, className)}>
       <h3 className={styles.header}>Create Organization</h3>
-      <form className={styles.form}>
+      <form className={styles.form} data-testid="org-new-form">
         <TextInput
           className={styles.textInput}
           label="Enter organization name:"
