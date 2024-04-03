@@ -1,6 +1,7 @@
 import "normalize.css";
 import type { Metadata } from "next";
-import NextAuthProvider from "./context/next-auth-provider";
+import { appMetadata } from "@/app/lib/app-metadata";
+import NextAuthProvider from "@/app/context/next-auth-provider";
 import { Inter } from "next/font/google";
 import "@styles/global.scss";
 
@@ -10,8 +11,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Project 360",
-  description: "Project management application",
+  title: appMetadata.title,
+  description: appMetadata.description,
 };
 
 // Use SessionProvider (in NexAuthProvider) to persist user's authentication across the application.
