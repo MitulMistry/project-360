@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
 // import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { authOptions } from "@/app/lib/authOptions";
+import { authOptions } from "@/app/lib/auth-options";
 import { redirect } from "next/navigation";
 import { Routes } from "@config/routes";
 import classNames from "classnames";

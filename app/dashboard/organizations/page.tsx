@@ -4,7 +4,7 @@
 import type { Metadata } from "next";
 import { appMetadata } from "@/app/lib/app-metadata";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/lib/authOptions";
+import { authOptions } from "@/app/lib/auth-options";
 import { PageContainer } from "@features/layout";
 import type { Organization } from "@prisma/client";
 import { OrganizationList } from "@features/organizations";
