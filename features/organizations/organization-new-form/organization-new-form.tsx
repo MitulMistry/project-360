@@ -18,8 +18,13 @@ export function OrganizationNewForm({ className }: OrganizationNewFormProps) {
         <TextInput
           className={styles.textInput}
           label="Enter organization name:"
+          data-testid="org-name-input"
         />
-        <Button size={ButtonSize.Medium} color={ButtonColor.Primary}>
+        <Button
+          size={ButtonSize.Medium}
+          color={ButtonColor.Primary}
+          data-testid="org-create-button"
+        >
           Create
         </Button>
       </form>

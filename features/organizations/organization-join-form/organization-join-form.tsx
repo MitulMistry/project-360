@@ -15,8 +15,16 @@ export function OrganizationJoinForm({ className }: OrganizationJoinFormProps) {
     <div className={classNames(styles.container, className)}>
       <h3 className={styles.header}>Join Organization</h3>
       <form className={styles.form}>
-        <TextInput className={styles.textInput} label="Enter join code:" />
-        <Button size={ButtonSize.Medium} color={ButtonColor.Primary}>
+        <TextInput
+          className={styles.textInput}
+          label="Enter join code:"
+          data-testid="org-id-input"
+        />
+        <Button
+          size={ButtonSize.Medium}
+          color={ButtonColor.Primary}
+          data-testid="org-join-button"
+        >
           Join
         </Button>
       </form>
