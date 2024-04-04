@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/lib/authOptions";
+import { authOptions } from "@/app/lib/auth-options";
 import { redirect } from "next/navigation";
 import { Routes } from "@config/routes";
 import { SidebarNavigation } from "@features/layout";
-import { checkIfVercelPreview, checkIfCypress } from "@/app/lib/checkEnv";
+import { checkIfVercelPreview, checkIfCypress } from "@/app/lib/check-env";
 import styles from "./layout.module.scss";
 
 // Asynchronous server component to access session

@@ -1,0 +1,76 @@
+@use "@styles/space";
+@use "@styles/font";
+@use "@styles/color";
+@use "@styles/shadow";
+@use "@styles/breakpoint";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 33.75rem;
+  font: font.$text-sm-regular;
+  color: color.$general-100;
+  background-color: color.$white;
+  border-radius: space.$s1;
+  box-shadow: shadow.$panel;
+  padding: 1.75rem;
+  box-sizing: border-box;
+}
+
+.label {
+  color: color.$general-80;
+  margin: space.$s5 0;
+}
+
+.text {
+  color: color.$general-100;
+}
+
+%row {
+  display: flex;
+  flex-direction: row;
+
+  // Push left element to left, right element to right
+  justify-content: space-between;
+}
+
+.dataRow {
+  @extend %row;
+}
+
+.leftDataCol {
+  flex: 1;
+}
+
+.rightDataCol {
+  flex: 0 auto; // Allow column to shrink (to size of graphic inside)
+  display: flex;
+  justify-content: flex-end;
+}
+
+.header {
+  margin-top: space.$s1;
+}
+
+.usersGraphic {
+  display: none;
+
+  @media (width >= 24rem) {
+    display: block;
+  }
+}
+
+.buttonRow {
+  @extend %row;
+
+  margin-top: 2.5rem;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.button {
+  margin-left: space.$s2;
+}

@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:cypress": "CYPRESS_ENV=true next dev",
     "build": "next build",
     "start": "next start",
-    "start:cypress": "CYPRESS_ENV=true next start",
     "lint": "next lint",
     "lint:code": "eslint --ignore-path .gitignore .",
     "lint:styles": "stylelint  --ignore-path .gitignore \"**/*.scss\"",

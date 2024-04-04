@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { appMetadata } from "@/app/lib/app-metadata";
 import { AuthPageContainer } from "@features/layout";
 import Image from "next/image";
 import Link from "next/link";
@@ -5,9 +7,14 @@ import { Routes } from "@config/routes";
 import { Button } from "@features/ui";
 import styles from "./page.module.scss";
 
+export const metadata: Metadata = {
+  title: `${appMetadata.title} - Home`,
+  description: appMetadata.description,
+};
+
 export default function Home() {
   return (
-    <AuthPageContainer title="Home Page">
+    <AuthPageContainer>
       <div className={styles.splash} data-testid="splash">
         <Image
           src="/graphics/logo.svg"

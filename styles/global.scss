@@ -1,6 +1,5 @@
 @use "styles/color";
-
-// @use "styles/font";
+@use "styles/font";
 
 body {
   font-family: Inter, sans-serif;
@@ -15,4 +14,30 @@ a {
   &:hover {
     color: color.$primary-80;
   }
+}
+
+h1 {
+  font: font.$display-sm-bold;
+}
+
+h2 {
+  font:
+    700 1.5rem/2.125rem inter,
+    sans-serif;
+}
+
+h3 {
+  font: font.$text-lg-bold;
+}
+
+h4 {
+  font:
+    700 1.2rem/1.5rem inter,
+    sans-serif;
+}
+
+h5 {
+  font:
+    700 1.1rem/1.5rem inter,
+    sans-serif;
 }

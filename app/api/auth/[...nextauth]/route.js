@@ -3,7 +3,7 @@ import NextAuth from "next-auth";
 // import { PrismaAdapter } from "@next-auth/prisma-adapter";
 // import GitHubProvider from "next-auth/providers/github";
 // import prisma from "@/lib/prisma";
-import { authOptions } from "@/app/lib/authOptions";
+import { authOptions } from "@/app/lib/auth-options";
 
 // There type incompatibilities between NextAuth and Next API response types that currently
 // cannot be resolved in TypeScript. So leave this as a JavaScript file.
