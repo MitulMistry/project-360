@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { axios } from "@api/axios";
 import { TextInput } from "@features/ui";
 import { Button, ButtonColor, ButtonSize } from "@features/ui";
 import classNames from "classnames";
@@ -13,27 +15,21 @@ type OrganizationNewFormProps = {
 export function OrganizationNewForm({ className }: OrganizationNewFormProps) {
   const [name, setName] = useState("");
 
-  const submitData = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
+  const mutation = useMutation({
+    mutationFn: (event: React.SyntheticEvent) => {
+      event.preventDefault();
 
-    try {
-      const body = { name };
-      await fetch("/api/organizations", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
+      const organization = { name };
+      return axios.post("/api/organizations", organization);
+    },
+  });
 
   return (
     <div className={classNames(styles.container, className)}>
       <h3 className={styles.header}>Create Organization</h3>
       <form
         className={styles.form}
-        onSubmit={submitData}
+        onSubmit={mutation.mutate}
         data-testid="org-new-form"
       >
         <TextInput
