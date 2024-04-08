@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
-import { axios } from "@api/axios";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { newOrganization } from "@api/organizations";
 import { TextInput } from "@features/ui";
 import { Button, ButtonColor, ButtonSize } from "@features/ui";
 import classNames from "classnames";
@@ -15,12 +15,20 @@ type OrganizationNewFormProps = {
 export function OrganizationNewForm({ className }: OrganizationNewFormProps) {
   const [name, setName] = useState("");
 
+  const queryClient = useQueryClient();
+
   const mutation = useMutation({
     mutationFn: (event: React.SyntheticEvent) => {
       event.preventDefault();
 
       const organization = { name };
-      return axios.post("/api/organizations", organization);
+      return newOrganization(organization);
+    },
+    onSuccess: () => {
+      // Invalidate the query to trigger a refetch
+      queryClient.invalidateQueries({ queryKey: ["organizations"] });
+
+      setName("");
     },
   });
 
@@ -45,6 +53,7 @@ export function OrganizationNewForm({ className }: OrganizationNewFormProps) {
           color={ButtonColor.Primary}
           data-testid="org-create-button"
           type="submit"
+          isDisabled={name.length === 0 || mutation.isPending}
         >
           Create
         </Button>

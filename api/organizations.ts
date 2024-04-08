@@ -9,3 +9,12 @@ export async function getOrganizations() {
     .then<Organization[]>((response) => response.data.data);
   return data;
 }
+
+export async function newOrganization(
+  organization: Omit<Organization, "id" | "createdAt">,
+) {
+  const data = await axios
+    .post(ENDPOINT, organization)
+    .then<Organization>((response) => response.data.data);
+  return data;
+}
