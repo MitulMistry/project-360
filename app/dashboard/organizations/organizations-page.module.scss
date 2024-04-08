@@ -1,0 +1,10 @@
+@use "styles/space";
+@use "styles/breakpoint";
+
+.loadingIndicator {
+  margin-top: space.$s12;
+
+  @media (min-width: breakpoint.$desktop) {
+    margin-top: space.$s4;
+  }
+}
