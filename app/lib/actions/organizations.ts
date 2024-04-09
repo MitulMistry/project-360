@@ -1,6 +1,16 @@
 import prisma from "@/lib/prisma";
+import { z } from "zod";
 import type { User, Organization } from "@prisma/client";
 import { Role } from "@prisma/client";
+
+const FormSchema = z.object({
+  id: z.string(),
+  userEmail: z.string().email({ message: "Invalid email address" }),
+  name: z
+    .string()
+    .min(3, { message: "Must be 3 or more characters long" })
+    .max(50, { message: "Must be 50 or fewer characters long" }),
+});
 
 export async function fetchUserOrganizations(userEmail: string) {
   try {
@@ -27,7 +37,26 @@ export async function fetchUserOrganizations(userEmail: string) {
   }
 }
 
-export async function createOrganization(orgName: string, userEmail: string) {
+const CreateOrganization = FormSchema.omit({ id: true });
+
+export async function createOrganization(
+  formData: Omit<Organization, "id" | "createdAt"> & { userEmail: string },
+) {
+  // Validate form using Zod
+  const validatedFields = CreateOrganization.safeParse({
+    name: formData.name,
+    userEmail: formData.userEmail,
+  });
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: "Missing Fields. Failed to Create Organization.",
+    };
+  }
+
+  const { name, userEmail } = validatedFields.data;
+
   try {
     const user: User | null = await prisma.user.findUnique({
       where: { email: userEmail },
@@ -35,7 +64,7 @@ export async function createOrganization(orgName: string, userEmail: string) {
 
     const organization: Organization | null = await prisma.organization.create({
       data: {
-        name: orgName,
+        name: name,
       },
     });
 

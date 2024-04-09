@@ -28,9 +28,12 @@ export async function POST(request) {
   const session = await getServerSession(authOptions);
   if (!session) return unauthorizedResponse;
 
-  const { name } = await request.json();
+  const formData = await request.json();
+  formData.userEmail = session.user.email;
 
-  const organization = await createOrganization(name, session.user.email);
+  const organization = await createOrganization(formData);
+
+  if ("errors" in organization) return failedResponse(organization);
 
   return NextResponse.json(
     {
@@ -51,3 +54,15 @@ const unauthorizedResponse = NextResponse.json(
     status: 401,
   },
 );
+
+const failedResponse = (data) =>
+  NextResponse.json(
+    {
+      success: false,
+      data: null,
+      ...data,
+    },
+    {
+      status: 422,
+    },
+  );
