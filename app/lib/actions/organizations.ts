@@ -34,7 +34,10 @@ export async function fetchUserOrganizations(userEmail: string) {
     return organizations;
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to fetch the user's organizations.");
+    return {
+      errors: error,
+      message: "Failed to fetch the user's organizations.",
+    };
   }
 }
 
@@ -82,7 +85,10 @@ export async function createOrganization(
     return organization;
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to create the organization.");
+    return {
+      errors: error,
+      message: "Failed to create the organization.",
+    };
   }
 }
 
@@ -125,7 +131,10 @@ export async function joinOrganization(
     return organization;
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to join the organization.");
+    return {
+      errors: error,
+      message: "Failed to join the organization.",
+    };
   }
 }
 
@@ -180,7 +189,10 @@ export async function leaveOrganization(
     };
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to leave the organization.");
+    return {
+      errors: error,
+      message: "Failed to leave the organization.",
+    };
   }
 }
 
@@ -223,7 +235,10 @@ export async function updateOrganization(
     });
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to update the organization.");
+    return {
+      errors: error,
+      message: "Failed to update the organization.",
+    };
   }
 }
 
@@ -266,7 +281,10 @@ export async function deleteOrganization(
     };
   } catch (error) {
     console.error("Database Error:", error);
-    throw new Error("Failed to delete the organization.");
+    return {
+      errors: error,
+      message: "Failed to delete the organization.",
+    };
   }
 }
 
