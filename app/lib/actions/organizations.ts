@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
 import { z } from "zod";
-import type { User, Organization, OrganizationUser } from "@prisma/client";
+import type { Organization, OrganizationUser } from "@prisma/client";
+import { findUserByEmail } from "./users";
 import { Role } from "@prisma/client";
 
 const FormSchema = z.object({
@@ -58,9 +59,7 @@ export async function createOrganization(
   const { name, userEmail } = validatedFields.data;
 
   try {
-    const user: User | null = await prisma.user.findUnique({
-      where: { email: userEmail },
-    });
+    const user = await findUserByEmail(userEmail);
 
     const organization: Organization | null = await prisma.organization.create({
       data: {
@@ -108,14 +107,8 @@ export async function joinOrganization(
   const { id, userEmail } = validatedFields.data;
 
   try {
-    const user: User | null = await prisma.user.findUnique({
-      where: { email: userEmail },
-    });
-
-    const organization: Organization | null =
-      await prisma.organization.findUnique({
-        where: { id: id },
-      });
+    const user = await findUserByEmail(userEmail);
+    const organization = await findOrganization(id);
 
     if (user && organization) {
       await prisma.organizationUser.create({
@@ -158,31 +151,21 @@ export async function updateOrganization(
   const { id, name, userEmail } = validatedFields.data;
 
   try {
-    const user: User | null = await prisma.user.findUnique({
-      where: { email: userEmail },
-    });
-
-    const organizationUser: OrganizationUser | null =
-      await prisma.organizationUser.findFirstOrThrow({
-        where: { userId: user?.id, organizationId: id },
-      });
+    const user = await findUserByEmail(userEmail);
+    if (!user) throw new Error("Invalid user.");
 
     // Only update the organization if user is an owner
-    let organization;
-    if (organizationUser.role === Role.OWNER) {
-      organization = await prisma.organization.update({
-        where: {
-          id: id,
-        },
-        data: {
-          name: name,
-        },
-      });
-    } else {
-      throw new Error("Failed to update organization.");
-    }
+    const organizationUser = await findOrganizationUser(user.id, id);
+    authenticateOwner(organizationUser);
 
-    return organization;
+    return await prisma.organization.update({
+      where: {
+        id: id,
+      },
+      data: {
+        name: name,
+      },
+    });
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to update the organization.");
@@ -210,25 +193,18 @@ export async function deleteOrganization(
   const { id, userEmail } = validatedFields.data;
 
   try {
-    const user: User | null = await prisma.user.findUnique({
-      where: { email: userEmail },
-    });
-
-    const organizationUser: OrganizationUser | null =
-      await prisma.organizationUser.findFirstOrThrow({
-        where: { userId: user?.id, organizationId: id },
-      });
+    const user = await findUserByEmail(userEmail);
+    if (!user) throw new Error("Invalid user.");
 
     // Only delete the organization if user is an owner
-    if (organizationUser.role === Role.OWNER) {
-      await prisma.organization.delete({
-        where: {
-          id: id,
-        },
-      });
-    } else {
-      throw new Error("Failed to delete organization.");
-    }
+    const organizationUser = await findOrganizationUser(user.id, id);
+    authenticateOwner(organizationUser);
+
+    await prisma.organization.delete({
+      where: {
+        id: id,
+      },
+    });
 
     return null;
   } catch (error) {
@@ -237,7 +213,27 @@ export async function deleteOrganization(
   }
 }
 
-// const findUser = async (email: string): Promise<User | null> =>
-//   prisma.user.findUnique({
-//     where: { email: email },
-//   });
+/*--- Helper functions ---*/
+
+export const findOrganization = async (
+  id: string,
+): Promise<Organization | null> =>
+  prisma.organization.findUnique({
+    where: { id: id },
+  });
+
+export const findOrganizationUser = async (
+  userId: string,
+  organizationId: string,
+): Promise<OrganizationUser | null> =>
+  prisma.organizationUser.findFirstOrThrow({
+    where: { userId: userId, organizationId: organizationId },
+  });
+
+// Use this in a try/catch block
+export const authenticateOwner = (
+  organizationUser: OrganizationUser | null,
+) => {
+  if (!organizationUser) throw new Error("User not member of organization.");
+  if (organizationUser.role !== Role.OWNER) throw new Error("Unauthorized.");
+};
