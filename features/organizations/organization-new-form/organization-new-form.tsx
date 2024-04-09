@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { newOrganization } from "@api/organizations";
+import { createOrganizationReq } from "@api/organizations";
 import { TextInput } from "@features/ui";
 import { Button, ButtonColor, ButtonSize } from "@features/ui";
 import classNames from "classnames";
@@ -22,7 +22,7 @@ export function OrganizationNewForm({ className }: OrganizationNewFormProps) {
       event.preventDefault();
 
       const organization = { name };
-      return newOrganization(organization);
+      return createOrganizationReq(organization);
     },
     onSuccess: () => {
       // Invalidate the query to trigger a refetch
