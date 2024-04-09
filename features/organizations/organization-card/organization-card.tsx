@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { leaveOrganizationReq } from "@api/organizations";
 import Image from "next/image";
 import {
   Selector,
@@ -30,6 +32,18 @@ export function OrganizationCard({
   isSelected = false,
   userIsOwner = false,
 }: OrganizationCardProps) {
+  const queryClient = useQueryClient();
+
+  const leaveOrgMutation = useMutation({
+    mutationFn: () => {
+      return leaveOrganizationReq(organization);
+    },
+    onSuccess: () => {
+      // Invalidate the query to trigger a refetch
+      queryClient.invalidateQueries({ queryKey: ["organizations"] });
+    },
+  });
+
   return (
     <div className={classNames(styles.container, className)}>
       <div className={styles.dataRow}>
@@ -89,6 +103,8 @@ export function OrganizationCard({
               size={ButtonSize.Small}
               color={ButtonColor.DestructiveSecondary}
               className={styles.button}
+              onPress={() => leaveOrgMutation.mutate()}
+              isDisabled={leaveOrgMutation.isPending}
             >
               Leave
             </Button>
