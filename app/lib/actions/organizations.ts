@@ -129,6 +129,61 @@ export async function joinOrganization(
   }
 }
 
+const LeaveOrganization = FormSchema.omit({ name: true });
+
+export async function leaveOrganization(
+  formData: Omit<Organization, "name" | "createdAt"> & { userEmail: string },
+) {
+  // Validate form using Zod
+  const validatedFields = LeaveOrganization.safeParse({
+    id: formData.id,
+    userEmail: formData.userEmail,
+  });
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: "Missing Fields. Failed to Leave Organization.",
+    };
+  }
+
+  const { id, userEmail } = validatedFields.data;
+
+  try {
+    const user = await findUserByEmail(userEmail);
+    const organization = await findOrganization(id);
+
+    if (user && organization) {
+      const organizationUser = await findOrganizationUser(
+        user.id,
+        organization.id,
+      );
+      // Can't leave organization if owner
+      if (!organizationUser || organizationUser.role === Role.OWNER)
+        throw new Error("Failed to leave the organization.");
+
+      // Syntax for deleting join table (organizationUser doesn't have id)
+      await prisma.organizationUser.delete({
+        where: {
+          userId_organizationId: {
+            userId: organizationUser.userId,
+            organizationId: organizationUser.organizationId,
+          },
+        },
+      });
+    } else {
+      throw new Error("Failed to delete organizationUser.");
+    }
+
+    return {
+      message: "Successfully left organization.",
+    };
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to leave the organization.");
+  }
+}
+
 const UpdateOrganization = FormSchema;
 
 export async function updateOrganization(
@@ -206,7 +261,9 @@ export async function deleteOrganization(
       },
     });
 
-    return null;
+    return {
+      message: "Successfully deleted organization.",
+    };
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to delete the organization.");
