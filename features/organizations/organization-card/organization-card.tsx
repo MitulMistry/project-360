@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useContext } from "react";
+import { CurrentDataContext } from "@/app/context/current-data-provider";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { leaveOrganizationReq } from "@api/organizations";
 import Image from "next/image";
@@ -24,7 +25,7 @@ type OrganizationCardProps = {
   isSelected?: boolean;
   userIsOwner?: boolean;
 };
-
+//
 export function OrganizationCard({
   className,
   organization,
@@ -32,6 +33,10 @@ export function OrganizationCard({
   isSelected = false,
   userIsOwner = false,
 }: OrganizationCardProps) {
+  // Grab the current organization from context provider
+  const { currentOrganization, setCurrentOrganization } =
+    useContext(CurrentDataContext);
+
   const queryClient = useQueryClient();
 
   const leaveOrgMutation = useMutation({
@@ -73,7 +78,8 @@ export function OrganizationCard({
       <div className={styles.buttonRow}>
         <Selector
           size={SelectorSize.Small}
-          isSelected={isSelected}
+          isSelected={isSelected || organization.id === currentOrganization?.id}
+          onPress={() => setCurrentOrganization(organization)}
           data-testid="org-card-selector"
         >
           {isSelected ? "Selected" : "Select"}
