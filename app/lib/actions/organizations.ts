@@ -28,9 +28,14 @@ export async function fetchUserOrganizations(userEmail: string) {
     });
 
     // Map over the organizations to return only the organization objects
-    const organizations = user?.organizations.map(
-      (orgUser) => orgUser.organization,
-    );
+    const organizations = user?.organizations.map((orgUser) => {
+      const isOwner = orgUser.role === Role.OWNER;
+      return {
+        ...orgUser.organization,
+        isOwner, // Add custom field to denote whether the user is an organization owner
+      };
+    });
+
     return organizations;
   } catch (error) {
     console.error("Database Error:", error);

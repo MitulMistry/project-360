@@ -1,12 +1,13 @@
 import { axios } from "./axios";
-import { Organization } from "@prisma/client";
+import type { Organization } from "@prisma/client";
+import type { OrganizationWithOwner } from "@/typings/organization.types";
 
 const ENDPOINT = "/api/organizations";
 
 export async function getOrganizationsReq() {
   const data = await axios
     .get(ENDPOINT)
-    .then<Organization[]>((response) => response.data.data);
+    .then<OrganizationWithOwner[]>((response) => response.data.data);
   return data;
 }
 

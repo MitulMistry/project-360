@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
-import type { User, Organization } from "@prisma/client";
+import type { User } from "@prisma/client";
+import type { OrganizationWithOwner } from "@/typings/organization.types";
 import { OrganizationCard } from ".";
 
 // Storybook CSF3 format
@@ -21,10 +22,11 @@ const owner: User = {
   image: "",
 };
 
-const organization: Organization = {
+const organization: OrganizationWithOwner = {
   id: "clud0qi6g000008l49ga1g1d9",
   createdAt: new Date(date.getDate()),
   name: "Development Team",
+  isOwner: false,
 };
 
 type Story = StoryObj<typeof OrganizationCard>;

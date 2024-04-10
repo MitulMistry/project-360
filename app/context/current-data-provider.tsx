@@ -1,6 +1,6 @@
 "use client";
 
-import { Organization } from "@prisma/client";
+import type { OrganizationWithOwner } from "@/typings/organization.types";
 import { createContext, ReactNode, useState } from "react";
 
 // Use this component to share global data with the child components,
@@ -8,8 +8,8 @@ import { createContext, ReactNode, useState } from "react";
 
 // Define an interface for context
 interface CurrentData {
-  currentOrganization: null | Organization;
-  setCurrentOrganization: (org: null | Organization) => void;
+  currentOrganization: null | OrganizationWithOwner;
+  setCurrentOrganization: (org: null | OrganizationWithOwner) => void;
 }
 
 // Use the interface in createContext (TS for default, which won't be used)
@@ -20,7 +20,7 @@ export const CurrentDataContext = createContext<CurrentData>({
 
 export function CurrentDataProvider({ children }: { children: ReactNode }) {
   const [currentOrganization, setCurrentOrganization] =
-    useState<null | Organization>(null);
+    useState<null | OrganizationWithOwner>(null);
 
   return (
     <CurrentDataContext.Provider

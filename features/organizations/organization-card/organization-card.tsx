@@ -13,14 +13,16 @@ import {
   ButtonSize,
   ButtonVariant,
 } from "@features/ui";
-import type { User, Organization } from "@prisma/client";
+import type { User } from "@prisma/client";
+import type { OrganizationWithOwner } from "@/typings/organization.types";
 import { EditIcon, TrashIcon } from "@features/ui";
 import classNames from "classnames";
 import styles from "./organization-card.module.scss";
+import { sanitizeOrganization } from "@/app/lib/helpers";
 
 type OrganizationCardProps = {
   className?: string;
-  organization: Organization;
+  organization: OrganizationWithOwner;
   owner?: User;
   isSelected?: boolean;
   userIsOwner?: boolean;
@@ -41,7 +43,9 @@ export function OrganizationCard({
 
   const leaveOrgMutation = useMutation({
     mutationFn: () => {
-      return leaveOrganizationReq(organization);
+      // Get rid of extra keys, like isOwner
+      const sanitizedOrg = sanitizeOrganization(organization);
+      return leaveOrganizationReq(sanitizedOrg);
     },
     onSuccess: () => {
       // Invalidate the query to trigger a refetch
@@ -85,7 +89,7 @@ export function OrganizationCard({
           {isSelected ? "Selected" : "Select"}
         </Selector>
         <div className={styles.buttons}>
-          {userIsOwner ? (
+          {userIsOwner || organization.isOwner ? (
             <>
               <Button
                 size={ButtonSize.Small}
