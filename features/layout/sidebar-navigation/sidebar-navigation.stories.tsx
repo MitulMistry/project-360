@@ -19,5 +19,5 @@ export const Default: Story = {};
 
 export const CurrentOrganization: Story = {
   ...Default,
-  args: { ...Default.args, currentOrganization: "Current Organization" },
+  args: { ...Default.args, currentOrgName: "Current Organization" },
 };
