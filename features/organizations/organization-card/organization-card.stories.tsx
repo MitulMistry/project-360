@@ -2,6 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import type { User } from "@prisma/client";
 import type { OrganizationWithOwner } from "@/typings/organization.types";
 import { OrganizationCard } from ".";
+import QueryClientWrapper from "@/api/query-client-wrapper";
 
 // Storybook CSF3 format
 
@@ -42,6 +43,12 @@ export const Default: Story = {
     isSelected: { control: "boolean" },
     userIsOwner: { control: "boolean" },
   },
+  // Need to wrap component with QueryClientProvider since it needs access to queryClient
+  decorators: [
+    (Story) => {
+      return <QueryClientWrapper>{Story()}</QueryClientWrapper>;
+    },
+  ],
 };
 
 export const IsOwner: Story = {

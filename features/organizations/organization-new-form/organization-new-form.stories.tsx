@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { OrganizationNewForm } from ".";
+import QueryClientWrapper from "@/api/query-client-wrapper";
 
 // Storybook CSF3 format
 
@@ -11,4 +12,11 @@ export default meta;
 
 type Story = StoryObj<typeof OrganizationNewForm>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  // Need to wrap component with QueryClientProvider since it needs access to queryClient
+  decorators: [
+    (Story) => {
+      return <QueryClientWrapper>{Story()}</QueryClientWrapper>;
+    },
+  ],
+};

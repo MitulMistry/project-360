@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { OrganizationList } from "./organization-list";
 import { OrganizationWithOwner } from "@/typings/organization.types";
+import QueryClientWrapper from "@/api/query-client-wrapper";
 
 // Storybook CSF3 format
 
@@ -29,7 +30,7 @@ const organizations: OrganizationWithOwner[] = [
     id: "clud0qi6g000008l49ga1g1d6",
     createdAt: new Date(date.getDate()),
     name: "QA Team",
-    isOwner: false,
+    isOwner: true,
   },
 ];
 
@@ -39,4 +40,10 @@ export const Default: Story = {
   args: {
     organizations: organizations,
   },
+  // Need to wrap component with QueryClientProvider since it needs access to queryClient
+  decorators: [
+    (Story) => {
+      return <QueryClientWrapper>{Story()}</QueryClientWrapper>;
+    },
+  ],
 };
