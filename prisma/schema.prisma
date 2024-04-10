@@ -70,9 +70,10 @@ model Organization {
 }
 
 model OrganizationUser {
-  user           User         @relation(fields: [userId], references: [id])
+  // Delete OrganizationUser if Organization or User are deleted (onDelete: Cascade)
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId         String // relation scalar field (used in the `@relation` attribute above)
-  organization   Organization @relation(fields: [organizationId], references: [id])
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   organizationId String // relation scalar field (used in the `@relation` attribute above)
   joinedAt       DateTime     @default(now())
   role           Role         @default(ASSIGNEE)
@@ -87,19 +88,21 @@ enum Role {
 }
 
 model Project {
+  // Delete Project if Organization is deleted (onDelete: Cascade)
   id             String       @id @default(cuid())
   createdAt      DateTime     @default(now())
-  organization   Organization @relation(fields: [organizationId], references: [id])
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   organizationId String
   name           String
   tasks          Task[]
 }
 
 model Task {
+  // Delete Task if Project is deleted (onDelete: Cascade)
   id                String    @id @default(cuid())
   createdAt         DateTime  @default(now())
   updatedAt         DateTime  @updatedAt
-  project           Project   @relation(fields: [projectId], references: [id])
+  project           Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
   projectId         String
   assignee          User?     @relation(fields: [assigneeId], references: [id])
   assigneeId        String?

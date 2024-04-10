@@ -3,7 +3,10 @@
 import React, { useContext } from "react";
 import { CurrentDataContext } from "@/app/context/current-data-provider";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { leaveOrganizationReq } from "@api/organizations";
+import {
+  leaveOrganizationReq,
+  deleteOrganizationReq,
+} from "@api/organizations";
 import Image from "next/image";
 import {
   Selector,
@@ -46,6 +49,18 @@ export function OrganizationCard({
       // Get rid of extra keys, like isOwner
       const sanitizedOrg = sanitizeOrganization(organization);
       return leaveOrganizationReq(sanitizedOrg);
+    },
+    onSuccess: () => {
+      // Invalidate the query to trigger a refetch
+      queryClient.invalidateQueries({ queryKey: ["organizations"] });
+    },
+  });
+
+  const deleteOrgMutation = useMutation({
+    mutationFn: () => {
+      // Get rid of extra keys, like isOwner
+      const sanitizedOrg = sanitizeOrganization(organization);
+      return deleteOrganizationReq(sanitizedOrg);
     },
     onSuccess: () => {
       // Invalidate the query to trigger a refetch
@@ -104,6 +119,8 @@ export function OrganizationCard({
                 color={ButtonColor.DestructiveSecondary}
                 variant={ButtonVariant.IconOnly}
                 className={styles.button}
+                onPress={() => deleteOrgMutation.mutate()}
+                isDisabled={deleteOrgMutation.isPending}
               >
                 <TrashIcon />
               </Button>
