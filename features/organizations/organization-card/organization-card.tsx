@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CurrentDataContext } from "@/app/context/current-data-provider";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
@@ -22,6 +22,7 @@ import { EditIcon, TrashIcon } from "@features/ui";
 import classNames from "classnames";
 import styles from "./organization-card.module.scss";
 import { sanitizeOrganization } from "@/app/lib/helpers";
+import { OrganizationEditForm } from "../organization-edit-form";
 
 type OrganizationCardProps = {
   className?: string;
@@ -38,6 +39,8 @@ export function OrganizationCard({
   isSelected = false,
   userIsOwner = false,
 }: OrganizationCardProps) {
+  const [enableEditForm, setEnableEditForm] = useState(false);
+
   // Grab the current organization from context provider
   const { currentOrganization, setCurrentOrganization } =
     useContext(CurrentDataContext);
@@ -75,13 +78,18 @@ export function OrganizationCard({
           <h3 className={styles.header} data-testid="org-card-name">
             {organization.name}
           </h3>
-          <p className={styles.label} data-testid="org-card-id">
-            Join Code: <span className={styles.text}>{organization.id}</span>
-          </p>
-          {owner && (
-            <p className={styles.label} data-testid="org-card-owner">
-              Owner: <span className={styles.text}>{owner.name}</span>
-            </p>
+          {!enableEditForm && (
+            <>
+              <p className={styles.label} data-testid="org-card-id">
+                Join Code:{" "}
+                <span className={styles.text}>{organization.id}</span>
+              </p>
+              {owner && (
+                <p className={styles.label} data-testid="org-card-owner">
+                  Owner: <span className={styles.text}>{owner.name}</span>
+                </p>
+              )}
+            </>
           )}
         </div>
         <div className={styles.rightDataCol}>
@@ -94,6 +102,12 @@ export function OrganizationCard({
           />
         </div>
       </div>
+      {enableEditForm && (
+        <OrganizationEditForm
+          organization={organization}
+          onSuccessFn={() => setEnableEditForm(false)}
+        />
+      )}
       <div className={styles.buttonRow}>
         <Selector
           size={SelectorSize.Small}
@@ -111,6 +125,7 @@ export function OrganizationCard({
                 color={ButtonColor.White}
                 variant={ButtonVariant.IconOnly}
                 className={styles.button}
+                onPress={() => setEnableEditForm(!enableEditForm)}
               >
                 <EditIcon />
               </Button>
