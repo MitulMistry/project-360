@@ -73,7 +73,12 @@ export function OrganizationCard({
 
   return (
     <div className={classNames(styles.container, className)}>
-      <div className={styles.dataRow}>
+      <div
+        className={classNames(
+          styles.dataRow,
+          enableEditForm && styles.enabledEditForm,
+        )}
+      >
         <div className={styles.leftDataCol}>
           <h3 className={styles.header} data-testid="org-card-name">
             {organization.name}
@@ -106,11 +111,12 @@ export function OrganizationCard({
         <OrganizationEditForm
           organization={organization}
           onSuccessFn={() => setEnableEditForm(false)}
+          className={styles.editForm}
         />
       )}
       <div className={styles.buttonRow}>
         <Selector
-          size={SelectorSize.Small}
+          size={SelectorSize.Medium}
           isSelected={isSelected || organization.id === currentOrganization?.id}
           onPress={() => setCurrentOrganization(organization)}
           data-testid="org-card-selector"
@@ -121,7 +127,7 @@ export function OrganizationCard({
           {userIsOwner || organization.isOwner ? (
             <>
               <Button
-                size={ButtonSize.Small}
+                size={ButtonSize.Medium}
                 color={ButtonColor.White}
                 variant={ButtonVariant.IconOnly}
                 className={styles.button}
@@ -130,7 +136,7 @@ export function OrganizationCard({
                 <EditIcon />
               </Button>
               <Button
-                size={ButtonSize.Small}
+                size={ButtonSize.Medium}
                 color={ButtonColor.DestructiveSecondary}
                 variant={ButtonVariant.IconOnly}
                 className={styles.button}
@@ -142,7 +148,7 @@ export function OrganizationCard({
             </>
           ) : (
             <Button
-              size={ButtonSize.Small}
+              size={ButtonSize.Medium}
               color={ButtonColor.DestructiveSecondary}
               className={styles.button}
               onPress={() => leaveOrgMutation.mutate()}
