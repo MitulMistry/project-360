@@ -1,9 +1,11 @@
 import "normalize.css";
+import { Inter } from "next/font/google";
+import "@styles/global.scss";
 import type { Metadata } from "next";
 import { appMetadata } from "@/app/lib/app-metadata";
 import NextAuthProvider from "@/app/context/next-auth-provider";
-import { Inter } from "next/font/google";
-import "@styles/global.scss";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import QueryClientWrapper from "@api/query-client-wrapper";
 
 const inter = Inter({
   weight: ["400", "500", "600", "700"],
@@ -25,7 +27,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NextAuthProvider>{children}</NextAuthProvider>
+        <QueryClientWrapper>
+          <NextAuthProvider>{children}</NextAuthProvider>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientWrapper>
       </body>
     </html>
   );

@@ -1,0 +1,60 @@
+@use "@styles/color";
+@use "@styles/font";
+
+// @use "@styles/shadow";
+@use "@styles/space";
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: space.$s1;
+  font: font.$text-md-regular;
+  color: color.$white;
+  padding: space.$s3;
+}
+
+.primarySolid {
+  background-color: color.$primary-100;
+}
+
+.successSolid {
+  background-color: color.$green-100;
+}
+
+.errorSolid {
+  background-color: color.$red-100;
+}
+
+.alertSolid {
+  background-color: color.$yellow-100;
+}
+
+.neutralSolid {
+  background-color: color.$general-90;
+}
+
+.primaryLight {
+  color: color.$primary-100;
+  background-color: color.$primary-40;
+}
+
+.successLight {
+  color: color.$green-100;
+  background-color: color.$green-30;
+}
+
+.errorLight {
+  color: color.$red-100;
+  background-color: color.$red-30;
+}
+
+.alertLight {
+  color: color.$yellow-100;
+  background-color: color.$yellow-40;
+}
+
+.neutralLight {
+  color: color.$general-80;
+  background-color: color.$general-40;
+}

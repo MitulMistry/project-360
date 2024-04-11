@@ -1,5 +1,7 @@
 "use client";
-import { useState } from "react";
+
+import { useContext, useState } from "react";
+import { CurrentDataContext } from "@/app/context/current-data-provider";
 import { Button, ButtonVariant, ButtonColor } from "@features/ui";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -35,15 +37,17 @@ const menuItems = [
 
 type SidebarNavigationProps = {
   className?: string;
-  currentOrganization?: string;
+  currentOrgName?: string;
 };
 
 export function SidebarNavigation({
   className,
-  currentOrganization,
+  currentOrgName,
 }: SidebarNavigationProps) {
   const pathname = usePathname();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // Grab the current organization from context provider, or let it be overridden by prop.
+  const { currentOrganization } = useContext(CurrentDataContext);
 
   return (
     <div className={classNames(styles.container, className)}>
@@ -89,9 +93,11 @@ export function SidebarNavigation({
             isMobileMenuOpen && styles.isMobileMenuOpen,
           )}
         >
-          {currentOrganization && (
+          {(currentOrganization?.name || currentOrgName) && (
             <div className={styles.currentOrganization}>
-              <p>{currentOrganization}</p>
+              <p data-testid="current-org-name">
+                {currentOrganization?.name || currentOrgName}
+              </p>
             </div>
           )}
 

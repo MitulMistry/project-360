@@ -23,7 +23,7 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      // "@api/*": ["api/*"],
+      "@api/*": ["api/*"],
       "@config/*": ["config/*"],
       "@features/*": ["features/*"],
       "@styles/*": ["styles/*"],

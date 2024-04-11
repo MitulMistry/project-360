@@ -15,6 +15,9 @@
   box-shadow: shadow.$panel;
   padding: 1.75rem;
   box-sizing: border-box;
+
+  // Remove height: 100% to make card stretch vertically along with neighbor if form is enabled
+  // height: 100%;
 }
 
 .label {
@@ -36,6 +39,13 @@
 
 .dataRow {
   @extend %row;
+
+  margin-bottom: 2.5rem;
+
+  // Switch margin if edit form is visible or not
+  &.enabledEditForm {
+    margin-bottom: 0;
+  }
 }
 
 .leftDataCol {
@@ -60,10 +70,15 @@
   }
 }
 
+.editForm {
+  margin-bottom: 2.5rem;
+}
+
 .buttonRow {
   @extend %row;
 
-  margin-top: 2.5rem;
+  margin-top: auto; // This makes the row pull to bottom of the container
+  // margin-top: 2.5rem;
 }
 
 .buttons {
@@ -74,3 +89,8 @@
 .button {
   margin-left: space.$s2;
 }
+
+// .iconButton {
+//   height: 2.25rem;
+//   width: 2.25rem;
+// }

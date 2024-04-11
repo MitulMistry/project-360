@@ -5,6 +5,7 @@ import { Routes } from "@config/routes";
 import { SidebarNavigation } from "@features/layout";
 import { checkIfVercelPreview, checkIfCypress } from "@/app/lib/check-env";
 import styles from "./layout.module.scss";
+import { CurrentDataProvider } from "../context/current-data-provider";
 
 // Asynchronous server component to access session
 export default async function DashboardLayout({
@@ -25,10 +26,13 @@ export default async function DashboardLayout({
 
   return (
     <div className={styles.container}>
-      <SidebarNavigation className={styles.navigation} />
-      <main className={styles.main}>
-        <div className={styles.contentContainer}>{children}</div>
-      </main>
+      {/* Use CurrentDataProvider to give access to current organization to children */}
+      <CurrentDataProvider>
+        <SidebarNavigation className={styles.navigation} />
+        <main className={styles.main}>
+          <div className={styles.contentContainer}>{children}</div>
+        </main>
+      </CurrentDataProvider>
     </div>
   );
 }

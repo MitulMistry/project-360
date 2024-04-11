@@ -1,12 +1,12 @@
 import React from "react";
-import type { Organization } from "@prisma/client";
+import type { OrganizationWithOwner } from "@/typings/organization.types";
 import { OrganizationCard } from "@features/organizations";
 import classNames from "classnames";
 import styles from "./organization-list.module.scss";
 
 type OrganizationListProps = {
   className?: string;
-  organizations?: Organization[];
+  organizations?: OrganizationWithOwner[];
 };
 
 export function OrganizationList({

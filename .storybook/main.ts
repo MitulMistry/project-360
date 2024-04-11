@@ -26,7 +26,7 @@ const config: StorybookConfig = {
     // config.resolve.alias["next/router"] = require.resolve(
     //   "../__mocks__/next/router.tsx",
     // );
-    // config.resolve.alias["@api"] = path.resolve("./api");
+    config.resolve.alias["@api"] = path.resolve("./api");
     config.resolve.alias["@config"] = path.resolve("./config");
     config.resolve.alias["@features"] = path.resolve("./features");
     config.resolve.alias["@styles"] = path.resolve("./styles");
