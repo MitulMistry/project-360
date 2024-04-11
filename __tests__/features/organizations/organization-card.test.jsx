@@ -1,6 +1,7 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import { OrganizationCard } from "@features/organizations";
+import QueryClientWrapper from "../../../api/query-client-wrapper";
 
 describe("Organization Card", () => {
   const date = new Date();
@@ -18,10 +19,15 @@ describe("Organization Card", () => {
     id: "clud0qi6g000008l49ga1g1d9",
     createdAt: new Date(date.getDate()),
     name: "Development Team",
+    isOwner: false,
   };
 
   beforeEach(() => {
-    render(<OrganizationCard organization={organization} owner={owner} />);
+    render(
+      <QueryClientWrapper>
+        <OrganizationCard organization={organization} owner={owner} />
+      </QueryClientWrapper>,
+    );
   });
 
   it("renders data", () => {

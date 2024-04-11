@@ -1,10 +1,15 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import { OrganizationNewForm } from "@features/organizations";
+import QueryClientWrapper from "../../../api/query-client-wrapper";
 
 describe("Organization New Form", () => {
   beforeEach(() => {
-    render(<OrganizationNewForm />);
+    render(
+      <QueryClientWrapper>
+        <OrganizationNewForm />
+      </QueryClientWrapper>,
+    );
   });
 
   it("renders text input", () => {

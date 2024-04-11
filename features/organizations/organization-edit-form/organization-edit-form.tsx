@@ -60,7 +60,7 @@ export function OrganizationEditForm({
       <Button
         size={ButtonSize.Medium}
         color={ButtonColor.Primary}
-        data-testid="org-edit-button"
+        data-testid="org-update-button"
         type="submit"
         isDisabled={name.length === 0 || editMutation.isPending}
       >

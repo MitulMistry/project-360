@@ -1,10 +1,15 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import { OrganizationJoinForm } from "@features/organizations";
+import QueryClientWrapper from "../../../api/query-client-wrapper";
 
 describe("Organization Join Form", () => {
   beforeEach(() => {
-    render(<OrganizationJoinForm />);
+    render(
+      <QueryClientWrapper>
+        <OrganizationJoinForm />
+      </QueryClientWrapper>,
+    );
   });
 
   it("renders text input", () => {
