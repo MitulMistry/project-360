@@ -2,15 +2,9 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import { OrganizationEditForm } from "@features/organizations";
 import QueryClientWrapper from "../../../api/query-client-wrapper";
+import { mockOrganizationWithOwner1 } from "../../../__mocks__/organization";
 
-const date = new Date();
-
-const organization = {
-  id: "clud0qi6g000008l49ga1g1d9",
-  createdAt: new Date(date.getDate()),
-  name: "Development Team",
-  isOwner: true,
-};
+const organization = mockOrganizationWithOwner1;
 
 describe("Organization Edit Form", () => {
   beforeEach(() => {

@@ -132,6 +132,7 @@ export function OrganizationCard({
                 variant={ButtonVariant.IconOnly}
                 className={styles.button}
                 onPress={() => setEnableEditForm(!enableEditForm)}
+                data-testid="org-edit-button"
               >
                 <EditIcon />
               </Button>
@@ -142,6 +143,7 @@ export function OrganizationCard({
                 className={styles.button}
                 onPress={() => deleteOrgMutation.mutate()}
                 isDisabled={deleteOrgMutation.isPending}
+                data-testid="org-delete-button"
               >
                 <TrashIcon />
               </Button>
@@ -153,6 +155,7 @@ export function OrganizationCard({
               className={styles.button}
               onPress={() => leaveOrgMutation.mutate()}
               isDisabled={leaveOrgMutation.isPending}
+              data-testid="org-leave-button"
             >
               Leave
             </Button>

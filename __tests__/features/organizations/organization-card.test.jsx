@@ -1,49 +1,98 @@
 import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { OrganizationCard } from "@features/organizations";
 import QueryClientWrapper from "../../../api/query-client-wrapper";
+import {
+  mockOrganizationWithOwner1,
+  mockOrganizationWithOwner2,
+} from "../../../__mocks__/organization";
+import { mockUser1 } from "../../../__mocks__/user";
 
 describe("Organization Card", () => {
-  const date = new Date();
+  describe("User is not owner", () => {
+    const owner = mockUser1;
+    const organization = mockOrganizationWithOwner1;
 
-  const owner = {
-    id: "clud0qust000208l4cq5f5usy",
-    createdAt: new Date(date.getDate()),
-    name: "Bob Smith",
-    email: "Bob@example.com",
-    emailVerified: null,
-    image: "",
-  };
+    beforeEach(() => {
+      render(
+        <QueryClientWrapper>
+          <OrganizationCard organization={organization} owner={owner} />
+        </QueryClientWrapper>,
+      );
+    });
 
-  const organization = {
-    id: "clud0qi6g000008l49ga1g1d9",
-    createdAt: new Date(date.getDate()),
-    name: "Development Team",
-    isOwner: false,
-  };
+    it("renders data", () => {
+      const orgName = screen.getByTestId("org-card-name");
+      expect(orgName.textContent).toContain(organization.name);
 
-  beforeEach(() => {
-    render(
-      <QueryClientWrapper>
-        <OrganizationCard organization={organization} owner={owner} />
-      </QueryClientWrapper>,
-    );
+      const orgId = screen.getByTestId("org-card-id");
+      expect(orgId.textContent).toContain(organization.id);
+
+      const ownerName = screen.getByTestId("org-card-owner");
+      expect(ownerName.textContent).toContain(owner.name);
+    });
+
+    it("renders selector", () => {
+      const selector = screen.getByTestId("org-card-selector");
+
+      expect(selector).toBeInTheDocument();
+    });
+
+    it("renders leave button", () => {
+      const leaveButton = screen.getByTestId("org-leave-button");
+
+      expect(leaveButton).toBeInTheDocument();
+    });
+
+    it("does not render owner buttons", () => {
+      // queryByTestId, unlike getByTestId, will return null if element not found
+      const editButton = screen.queryByTestId("org-edit-button");
+      const deleteButton = screen.queryByTestId("org-delete-button");
+
+      expect(editButton).toBeNull();
+      expect(deleteButton).toBeNull();
+    });
   });
 
-  it("renders data", () => {
-    const orgName = screen.getByTestId("org-card-name");
-    expect(orgName.textContent).toContain(organization.name);
+  describe("User is owner", () => {
+    const owner = mockUser1;
+    const organization = mockOrganizationWithOwner2;
 
-    const orgId = screen.getByTestId("org-card-id");
-    expect(orgId.textContent).toContain(organization.id);
+    beforeEach(() => {
+      render(
+        <QueryClientWrapper>
+          <OrganizationCard organization={organization} owner={owner} />
+        </QueryClientWrapper>,
+      );
+    });
 
-    const ownerName = screen.getByTestId("org-card-owner");
-    expect(ownerName.textContent).toContain(owner.name);
-  });
+    it("renders edit button", () => {
+      const editButton = screen.getByTestId("org-edit-button");
 
-  it("renders selector", () => {
-    const selector = screen.getByTestId("org-card-selector");
+      expect(editButton).toBeInTheDocument();
+    });
 
-    expect(selector).toBeInTheDocument();
+    it("renders delete button", () => {
+      const deleteButton = screen.getByTestId("org-delete-button");
+
+      expect(deleteButton).toBeInTheDocument();
+    });
+
+    it("does not render non-owner buttons", () => {
+      const leaveButton = screen.queryByTestId("org-leave-button");
+
+      expect(leaveButton).toBeNull();
+    });
+
+    it("renders edit form on button press", () => {
+      let form = screen.queryByTestId("org-edit-form");
+      expect(form).toBeNull();
+
+      const editButton = screen.getByTestId("org-edit-button");
+      fireEvent.click(editButton);
+
+      form = screen.getByTestId("org-edit-form");
+      expect(form).toBeInTheDocument();
+    });
   });
 });

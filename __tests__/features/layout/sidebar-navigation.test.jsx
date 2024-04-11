@@ -1,10 +1,29 @@
+import React from "react";
 import "@testing-library/jest-dom";
+import { jest } from "@jest/globals";
 import { render, screen } from "@testing-library/react";
 import { SidebarNavigation } from "@features/layout";
+import { CurrentDataProvider } from "../../../app/context/current-data-provider";
+import { mockOrganization1 } from "../../../__mocks__/organization";
 
 describe("Sidebar Navigation", () => {
+  const currentOrganization = mockOrganization1;
+
   beforeEach(() => {
-    render(<SidebarNavigation />);
+    // Mock useState for CurrentDataProvider context - return our mocked data
+    const useStateSpy = jest.spyOn(React, "useState");
+    useStateSpy.mockImplementation(() => [currentOrganization, jest.fn()]);
+
+    render(
+      <CurrentDataProvider>
+        <SidebarNavigation />
+      </CurrentDataProvider>,
+    );
+  });
+
+  afterEach(() => {
+    // Cleanup after each test
+    jest.clearAllMocks();
   });
 
   it("renders links", () => {
@@ -20,5 +39,11 @@ describe("Sidebar Navigation", () => {
     expect(links[2].href).toContain("/dashboard/team");
 
     expect(links[3].textContent).toEqual("Log Out");
+  });
+
+  it("renders current organization name", () => {
+    const name = screen.getByTestId("current-org-name");
+
+    expect(name).toHaveTextContent(currentOrganization.name);
   });
 });

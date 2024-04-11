@@ -95,7 +95,9 @@ export function SidebarNavigation({
         >
           {(currentOrganization?.name || currentOrgName) && (
             <div className={styles.currentOrganization}>
-              <p>{currentOrganization?.name || currentOrgName}</p>
+              <p data-testid="current-org-name">
+                {currentOrganization?.name || currentOrgName}
+              </p>
             </div>
           )}
 
