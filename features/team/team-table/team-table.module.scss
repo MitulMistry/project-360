@@ -4,10 +4,51 @@
 @use "@styles/shadow";
 @use "@styles/breakpoint";
 
-// .container {
-//   display: flex;
-//   flex-direction: column;
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.table {
+  flex: 1;
+  font: font.$text-md-regular;
+  color: color.$general-100;
+}
+
+th,
+td {
+  padding: space.$s4 space.$s2;
+  border-bottom: 2px solid color.$general-40;
+}
+
+.tableHead {
+  color: color.$general-80;
+
+  :first-child {
+    padding-left: space.$s4;
+  }
+
+  th {
+    font: font.$text-md-medium;
+    border-bottom: 3px solid color.$general-40;
+    text-align: left;
+  }
+}
+
+// .tableBody {
+
 // }
 
-// .row {
+.tableRow {
+  padding: space.$s4 space.$s2;
+
+  th {
+    font-weight: normal;
+    text-align: left;
+    padding-left: space.$s4;
+  }
+}
+
+// .avatar {
+//   position: absolute;
 // }
