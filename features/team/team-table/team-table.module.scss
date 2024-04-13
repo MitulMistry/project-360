@@ -13,26 +13,13 @@
   flex: 1;
   font: font.$text-md-regular;
   color: color.$general-100;
+  border-collapse: collapse; // Get rid of border gaps
 }
 
-th,
-td {
-  padding: space.$s4 space.$s2;
+.th,
+.td {
+  padding: space.$s2;
   border-bottom: 2px solid color.$general-40;
-}
-
-.tableHead {
-  color: color.$general-80;
-
-  :first-child {
-    padding-left: space.$s4;
-  }
-
-  th {
-    font: font.$text-md-medium;
-    border-bottom: 3px solid color.$general-40;
-    text-align: left;
-  }
 }
 
 // .tableBody {
@@ -42,13 +29,54 @@ td {
 .tableRow {
   padding: space.$s4 space.$s2;
 
-  th {
+  .th {
+    // Use Flex to center avatar image + text
+    display: flex;
+    align-items: center;
     font-weight: normal;
     text-align: left;
     padding-left: space.$s4;
   }
 }
 
-// .avatar {
-//   position: absolute;
-// }
+.tableHead {
+  color: color.$general-80;
+
+  .th {
+    font: font.$text-md-medium;
+    border-bottom: 3px solid color.$general-40;
+    text-align: left;
+  }
+
+  // Column 1
+  .th:nth-child(1) {
+    padding-left: space.$s4;
+    width: 35%;
+
+    @media (min-width: breakpoint.$desktop) {
+      width: 30%;
+    }
+  }
+
+  // Column 2
+  .th:nth-child(2) {
+    width: 25%;
+
+    @media (min-width: breakpoint.$desktop) {
+      width: 20%;
+    }
+  }
+
+  // Column 3
+  .th:nth-child(3) {
+    width: 40%;
+
+    @media (min-width: breakpoint.$desktop) {
+      width: 60%;
+    }
+  }
+}
+
+.avatar {
+  margin-right: space.$s5;
+}

@@ -16,25 +16,31 @@ export function TeamTable({ className, users }: TeamTableProps) {
     <div className={classNames(styles.container, className)}>
       <table className={styles.table}>
         <thead className={styles.tableHead}>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Role</th>
-            <th scope="col">Email</th>
+          <tr className={styles.tr}>
+            <th scope="col" className={styles.th}>
+              Name
+            </th>
+            <th scope="col" className={styles.th}>
+              Role
+            </th>
+            <th scope="col" className={styles.th}>
+              Email
+            </th>
           </tr>
         </thead>
         <tbody className={styles.tableBody}>
           {users &&
             users.map((user, idx) => (
               <tr key={`team-user-${idx}`} className={styles.tableRow}>
-                <th scope="row">
+                <th scope="row" className={styles.th}>
                   <UserAvatar
                     size={UserAvatarSize.Small}
                     className={styles.avatar}
                   />
                   {user.name}
                 </th>
-                <td>{capitalize(user.role)}</td>
-                <td>{user.email}</td>
+                <td className={styles.td}>{capitalize(user.role)}</td>
+                <td className={styles.td}>{user.email}</td>
               </tr>
             ))}
         </tbody>
