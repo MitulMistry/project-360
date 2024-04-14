@@ -36,6 +36,7 @@ export function TeamTable({ className, users }: TeamTableProps) {
                   <UserAvatar
                     size={UserAvatarSize.Small}
                     className={styles.avatar}
+                    imgUrl={user.image || undefined}
                   />
                   {user.name}
                 </th>

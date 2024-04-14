@@ -24,6 +24,7 @@ export function UserAvatar({
 }: UserAvatarProps) {
   return (
     <Image
+      // For external image hosts (such as GitHub), add them to next.config.mjs
       src={imgUrl || "/icons/avatar-gray.svg"}
       className={classNames(styles.image, className)}
       width={size}
