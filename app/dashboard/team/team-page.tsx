@@ -15,7 +15,7 @@ import {
 import styles from "./team-page.module.scss";
 
 export function TeamPage() {
-  // Grab the current organization from context provider, or let it be overridden by prop.
+  // Grab the current organization from context provider
   const { currentOrganization } = useContext(CurrentDataContext);
   const router = useRouter();
 
