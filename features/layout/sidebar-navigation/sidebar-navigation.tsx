@@ -93,13 +93,13 @@ export function SidebarNavigation({
             isMobileMenuOpen && styles.isMobileMenuOpen,
           )}
         >
-          {(currentOrganization?.name || currentOrgName) && (
-            <div className={styles.currentOrganization}>
-              <p data-testid="current-org-name">
-                {currentOrganization?.name || currentOrgName}
-              </p>
-            </div>
-          )}
+          <div className={styles.currentOrganization}>
+            <p data-testid="current-org-name">
+              {currentOrganization?.name || currentOrgName || (
+                <span>&nbsp;</span> // Use empty placeholder
+              )}
+            </p>
+          </div>
 
           <ul className={styles.linkList}>
             {menuItems.map((menuItem, index) => (
@@ -107,6 +107,12 @@ export function SidebarNavigation({
                 key={index}
                 {...menuItem}
                 isActive={pathname === menuItem.href}
+                isDisabled={
+                  // Disable the link if no current organization, except for organizations link
+                  !currentOrganization &&
+                  !currentOrgName &&
+                  menuItem.href !== Routes.organizations
+                }
                 onClick={() => setMobileMenuOpen(false)}
               />
             ))}

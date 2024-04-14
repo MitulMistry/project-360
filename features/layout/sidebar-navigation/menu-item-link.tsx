@@ -10,6 +10,7 @@ type MenuItemProps = {
   image?: React.ReactNode;
   href: string;
   isActive?: boolean;
+  isDisabled?: boolean;
   onClick?: () => void;
 };
 
@@ -19,30 +20,53 @@ export function MenuItemLink({
   iconSrc,
   image,
   isActive = false,
+  isDisabled = false,
   onClick,
 }: MenuItemProps) {
+  const img = (
+    <>
+      {iconSrc && (
+        <Image
+          src={iconSrc}
+          width={24}
+          height={24}
+          alt={`${text} icon`}
+          className={styles.icon}
+        />
+      )}
+      {!iconSrc && image && (
+        <span className={classNames(styles.span, styles.icon)}>{image}</span>
+      )}
+    </>
+  );
+
+  if (isActive)
+    return (
+      <div className={styles.active}>
+        {img}
+        {text}
+      </div>
+    );
+
+  if (isDisabled)
+    return (
+      <div className={styles.disabled}>
+        {img}
+        {text}
+      </div>
+    );
+
   return (
-    <li className={classNames(styles.listItem, isActive && styles.active)}>
+    <li className={styles.listItem}>
       <Link
-        className={classNames(styles.anchor, isActive && styles.isDisabled)}
+        className={styles.anchor}
         href={href}
-        aria-disabled={isActive}
-        tabIndex={isActive ? -1 : undefined} // Disable keyboard tabbing
+        aria-disabled={isActive || isDisabled}
+        tabIndex={isActive || isDisabled ? -1 : undefined} // Disable keyboard tabbing
         onClick={onClick}
         role="link"
       >
-        {iconSrc && (
-          <Image
-            src={iconSrc}
-            width={24}
-            height={24}
-            alt={`${text} icon`}
-            className={styles.icon}
-          />
-        )}
-        {!iconSrc && image && (
-          <span className={classNames(styles.span, styles.icon)}>{image}</span>
-        )}
+        {img}
         {text}
       </Link>
     </li>
