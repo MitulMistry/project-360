@@ -29,7 +29,7 @@ export function TeamPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentOrganization]);
 
-  const { isPending, isError, data, error } = useGetTeam(
+  const { isPending, isFetching, isError, data, error } = useGetTeam(
     currentOrganization?.id || "",
   );
 
@@ -41,7 +41,8 @@ export function TeamPage() {
           Error: {error.message}
         </Notification>
       )}
-      {isPending ? (
+      {/* isPending for initial request, isFetching for invalidated query (refetch) */}
+      {isPending || isFetching ? (
         <LoadingIndicator
           size={LoadingIndicatorSize.Large}
           className={styles.loadingIndicator}
