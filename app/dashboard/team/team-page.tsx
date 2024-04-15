@@ -49,7 +49,7 @@ export function TeamPage() {
         />
       ) : (
         <div className={styles.main}>
-          <TeamTable users={data} />
+          <TeamTable users={data} isOwner={currentOrganization?.isOwner} />
         </div>
       )}
     </div>

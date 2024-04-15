@@ -31,8 +31,8 @@
 
   .th {
     // Use Flex to center avatar image + text
-    display: flex;
-    align-items: center;
+    // display: flex;
+    // align-items: center;
     font-weight: normal;
     text-align: left;
     padding-left: space.$s4;
@@ -68,15 +68,43 @@
   }
 
   // Column 3
-  .th:nth-child(3) {
+  .th:nth-child(3):not(.ownerEnabled) {
     width: 40%;
 
     @media (min-width: breakpoint.$desktop) {
       width: 60%;
     }
   }
+
+  .th:nth-child(3).ownerEnabled {
+    width: 40%;
+
+    @media (min-width: breakpoint.$desktop) {
+      width: 60%;
+    }
+  }
+
+  // Column 4
+  .th:nth-child(4).ownerEnabled {
+    width: 5%;
+
+    @media (min-width: breakpoint.$desktop) {
+      width: 5%;
+    }
+  }
+}
+
+.cell {
+  // Use Flex to center avatar image + text
+  display: flex;
+  align-items: center;
 }
 
 .avatar {
   margin-right: space.$s5;
 }
+
+// .button {
+//   width: 36px;
+//   height: 36px;
+// }

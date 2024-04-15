@@ -19,6 +19,7 @@ type Story = StoryObj<typeof TeamTable>;
 export const Default: Story = {
   args: {
     users: users,
+    isOwner: false,
   },
   // Need to wrap component with QueryClientProvider since it needs access to queryClient
   decorators: [
