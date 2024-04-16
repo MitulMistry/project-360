@@ -42,14 +42,14 @@ export function TeamPage() {
         </Notification>
       )}
       {/* isPending for initial request, isFetching for invalidated query (refetch) */}
-      {isPending || isFetching ? (
+      {isPending || isFetching || !currentOrganization ? (
         <LoadingIndicator
           size={LoadingIndicatorSize.Large}
           className={styles.loadingIndicator}
         />
       ) : (
         <div className={styles.main}>
-          <TeamTable users={data} isOwner={currentOrganization?.isOwner} />
+          {<TeamTable users={data} currentOrganization={currentOrganization} />}
         </div>
       )}
     </div>

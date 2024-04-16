@@ -3,18 +3,23 @@ import { UserForOrg } from "@/typings/user.types";
 import { TeamTableRow } from "@features/team";
 import classNames from "classnames";
 import styles from "./team-table.module.scss";
+import { OrganizationWithOwner } from "@/typings/organization.types";
 
 type TeamTableProps = {
   className?: string;
   users?: UserForOrg[];
-  isOwner?: boolean;
+  currentOrganization: OrganizationWithOwner;
+  isOwnerProp?: boolean;
 };
 
 export function TeamTable({
   className,
   users,
-  isOwner = false,
+  currentOrganization,
+  isOwnerProp,
 }: TeamTableProps) {
+  const isOwner = currentOrganization?.isOwner || isOwnerProp;
+
   return (
     <div className={classNames(styles.container, className)}>
       <table className={styles.table}>
@@ -61,6 +66,7 @@ export function TeamTable({
                 key={`team-user-${idx}`}
                 user={user}
                 isOwner={isOwner}
+                currentOrgId={currentOrganization?.id}
               />
             ))}
         </tbody>
