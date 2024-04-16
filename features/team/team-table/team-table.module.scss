@@ -1,7 +1,8 @@
 @use "@styles/space";
 @use "@styles/font";
 @use "@styles/color";
-@use "@styles/shadow";
+
+// @use "@styles/shadow";
 @use "@styles/breakpoint";
 
 .container {
@@ -30,9 +31,6 @@
   padding: space.$s4 space.$s2;
 
   .th {
-    // Use Flex to center avatar image + text
-    // display: flex;
-    // align-items: center;
     font-weight: normal;
     text-align: left;
     padding-left: space.$s4;
@@ -93,18 +91,3 @@
     }
   }
 }
-
-.cell {
-  // Use Flex to center avatar image + text
-  display: flex;
-  align-items: center;
-}
-
-.avatar {
-  margin-right: space.$s5;
-}
-
-// .button {
-//   width: 36px;
-//   height: 36px;
-// }
