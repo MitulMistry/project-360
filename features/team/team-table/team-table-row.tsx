@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { UserForOrg } from "@/typings/user.types";
 import { capitalize } from "lodash";
 import { UserAvatar, UserAvatarSize } from "@features/team";
-import { Button, ButtonSize, ButtonColor, ButtonVariant } from "@/features/ui";
-import { EditIcon } from "@/features/ui";
+import {
+  Button,
+  ButtonSize,
+  ButtonColor,
+  ButtonVariant,
+  Select,
+  Item,
+} from "@features/ui";
+import { EditIcon } from "@features/ui";
 import classNames from "classnames";
 import styles from "./team-table-row.module.scss";
 import { Role } from "@prisma/client";
+import type { Key } from "react-aria-components";
 
 type TeamTableRowProps = {
   className?: string;
@@ -19,6 +27,16 @@ export function TeamTableRow({
   user,
   isOwner = false,
 }: TeamTableRowProps) {
+  const [editFormEnabled, setEditFormEnabled] = useState(false);
+  const [userRole, setUserRole] = useState(user.role);
+
+  // Ensure Key type from Select input is of correct Role type
+  const handleRoleChange = (key: Key) => {
+    if (typeof key === "string" && Object.keys(Role).includes(key)) {
+      setUserRole(key as Role);
+    }
+  };
+
   return (
     <tr className={classNames(styles.tableRow, className)}>
       <th scope="row" className={styles.th}>
@@ -31,7 +49,21 @@ export function TeamTableRow({
           {user.name}
         </div>
       </th>
-      <td className={styles.td}>{capitalize(user.role)}</td>
+      <td className={styles.td}>
+        {editFormEnabled ? (
+          <Select selectedKey={userRole} onSelectionChange={handleRoleChange}>
+            {Object.keys(Role)
+              .filter((role) => role !== "OWNER") // Skip Owner (can't promote to owner)
+              .map((role, idx) => (
+                <Item key={idx} id={role}>
+                  {capitalize(role)}
+                </Item>
+              ))}
+          </Select>
+        ) : (
+          capitalize(user.role)
+        )}
+      </td>
       <td className={styles.td}>{user.email}</td>
       {isOwner && (
         <td className={styles.td}>
@@ -41,6 +73,7 @@ export function TeamTableRow({
               size={ButtonSize.Small}
               color={ButtonColor.White}
               className={styles.button}
+              onPress={() => setEditFormEnabled(!editFormEnabled)}
             >
               <EditIcon />
             </Button>
