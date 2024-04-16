@@ -22,22 +22,28 @@ export function TeamTable({
           <tr className={styles.tr}>
             <th
               scope="col"
-              className={classNames(styles.th, styles.ownerEnabled)}
+              className={classNames(styles.th, isOwner && styles.ownerEnabled)}
             >
               Name
             </th>
             <th
               scope="col"
-              className={classNames(styles.th, styles.ownerEnabled)}
+              className={classNames(styles.th, isOwner && styles.ownerEnabled)}
             >
               Role
             </th>
             <th
               scope="col"
-              className={classNames(styles.th, styles.ownerEnabled)}
+              className={classNames(styles.th, isOwner && styles.ownerEnabled)}
             >
               Email
             </th>
+            {isOwner && (
+              <th
+                scope="col"
+                className={classNames(styles.th, styles.ownerEnabled)}
+              ></th>
+            )}
             {isOwner && (
               <th
                 scope="col"

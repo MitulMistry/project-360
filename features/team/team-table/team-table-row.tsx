@@ -65,6 +65,17 @@ export function TeamTableRow({
         )}
       </td>
       <td className={styles.td}>{user.email}</td>
+      <td className={styles.td}>
+        {editFormEnabled && (
+          <Button
+            size={ButtonSize.Small}
+            color={ButtonColor.Primary}
+            className={styles.button}
+          >
+            Submit
+          </Button>
+        )}
+      </td>
       {isOwner && (
         <td className={styles.td}>
           {user.role !== Role.OWNER && (

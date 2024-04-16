@@ -70,20 +70,29 @@
     width: 40%;
 
     @media (min-width: breakpoint.$desktop) {
-      width: 60%;
+      width: 50%;
     }
   }
 
   .th:nth-child(3).ownerEnabled {
-    width: 40%;
+    width: 35%;
 
     @media (min-width: breakpoint.$desktop) {
-      width: 60%;
+      width: 45%;
     }
   }
 
-  // Column 4
+  // Column 4 - Submit Button
   .th:nth-child(4).ownerEnabled {
+    width: 10%;
+
+    @media (min-width: breakpoint.$desktop) {
+      width: 10%;
+    }
+  }
+
+  // Column 5 - Edit Button
+  .th:nth-child(5).ownerEnabled {
     width: 5%;
 
     @media (min-width: breakpoint.$desktop) {
