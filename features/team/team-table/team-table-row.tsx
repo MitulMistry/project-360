@@ -82,6 +82,7 @@ export function TeamTableRow({
       <td className={styles.td} data-testid={`user-role-${idx}`}>
         {editFormEnabled ? (
           <Select
+            className={styles.select}
             selectedKey={userRole}
             onSelectionChange={handleRoleChange}
             data-testid={`user-role-select-${idx}`}
@@ -103,16 +104,18 @@ export function TeamTableRow({
       </td>
       <td className={styles.td}>
         {editFormEnabled && (
-          <Button
-            size={ButtonSize.Small}
-            color={ButtonColor.Primary}
-            className={styles.button}
-            onPress={() => editMutation.mutate()}
-            isDisabled={editMutation.isPending}
-            data-testid={`user-submit-button-${idx}`}
-          >
-            Submit
-          </Button>
+          <div className={styles.containerRight}>
+            <Button
+              size={ButtonSize.Small}
+              color={ButtonColor.Primary}
+              // className={styles.submitButton}
+              onPress={() => editMutation.mutate()}
+              isDisabled={editMutation.isPending}
+              data-testid={`user-submit-button-${idx}`}
+            >
+              Submit
+            </Button>
+          </div>
         )}
       </td>
       {isOwner && (
@@ -122,7 +125,7 @@ export function TeamTableRow({
               variant={ButtonVariant.IconOnly}
               size={ButtonSize.Small}
               color={ButtonColor.White}
-              className={styles.button}
+              // className={styles.button}
               onPress={() => setEditFormEnabled(!editFormEnabled)}
               data-testid={`user-edit-button-${idx}`}
             >

@@ -31,6 +31,20 @@
   margin-right: space.$s5;
 }
 
+.select {
+  gap: 0;
+  max-width: 12rem;
+}
+
+.containerRight {
+  display: flex;
+  justify-content: flex-end;
+}
+
+// .submitButton {
+//   flex: 1;
+// }
+
 // .button {
 //   width: 36px;
 //   height: 36px;

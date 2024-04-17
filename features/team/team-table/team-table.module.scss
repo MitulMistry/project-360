@@ -49,7 +49,7 @@
   // Column 1
   .th:nth-child(1) {
     padding-left: space.$s4;
-    width: 35%;
+    width: 30%;
 
     @media (min-width: breakpoint.$desktop) {
       width: 30%;
@@ -58,7 +58,7 @@
 
   // Column 2
   .th:nth-child(2) {
-    width: 25%;
+    width: 20%;
 
     @media (min-width: breakpoint.$desktop) {
       width: 20%;
@@ -67,7 +67,7 @@
 
   // Column 3
   .th:nth-child(3):not(.ownerEnabled) {
-    width: 40%;
+    width: 45%;
 
     @media (min-width: breakpoint.$desktop) {
       width: 50%;
@@ -75,16 +75,16 @@
   }
 
   .th:nth-child(3).ownerEnabled {
-    width: 35%;
+    width: 25%;
 
     @media (min-width: breakpoint.$desktop) {
-      width: 45%;
+      width: 35%;
     }
   }
 
   // Column 4 - Submit Button
   .th:nth-child(4).ownerEnabled {
-    width: 10%;
+    width: 15%;
 
     @media (min-width: breakpoint.$desktop) {
       width: 10%;
@@ -93,7 +93,7 @@
 
   // Column 5 - Edit Button
   .th:nth-child(5).ownerEnabled {
-    width: 5%;
+    width: 10%;
 
     @media (min-width: breakpoint.$desktop) {
       width: 5%;
