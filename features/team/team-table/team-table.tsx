@@ -67,6 +67,7 @@ export function TeamTable({
                 user={user}
                 isOwner={isOwner}
                 currentOrgId={currentOrganization?.id}
+                idx={idx}
               />
             ))}
         </tbody>

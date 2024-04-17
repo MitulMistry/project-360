@@ -23,6 +23,7 @@ type TeamTableRowProps = {
   user: UserForOrg;
   isOwner?: boolean;
   currentOrgId: string;
+  idx: number;
 };
 
 export function TeamTableRow({
@@ -30,6 +31,7 @@ export function TeamTableRow({
   user,
   isOwner = false,
   currentOrgId,
+  idx,
 }: TeamTableRowProps) {
   const [editFormEnabled, setEditFormEnabled] = useState(false);
   const [userRole, setUserRole] = useState(user.role);
@@ -63,9 +65,12 @@ export function TeamTableRow({
   });
 
   return (
-    <tr className={classNames(styles.tableRow, className)}>
+    <tr
+      className={classNames(styles.tableRow, className)}
+      data-testid={`row-${idx}`}
+    >
       <th scope="row" className={styles.th}>
-        <div className={styles.cell}>
+        <div className={styles.cell} data-testid={`user-name-${idx}`}>
           <UserAvatar
             size={UserAvatarSize.Small}
             className={styles.avatar}
@@ -74,9 +79,13 @@ export function TeamTableRow({
           {user.name}
         </div>
       </th>
-      <td className={styles.td}>
+      <td className={styles.td} data-testid={`user-role-${idx}`}>
         {editFormEnabled ? (
-          <Select selectedKey={userRole} onSelectionChange={handleRoleChange}>
+          <Select
+            selectedKey={userRole}
+            onSelectionChange={handleRoleChange}
+            data-testid={`user-role-select-${idx}`}
+          >
             {Object.keys(Role)
               .filter((role) => role !== "OWNER") // Skip Owner (can't promote to owner)
               .map((role, idx) => (
@@ -89,7 +98,9 @@ export function TeamTableRow({
           capitalize(user.role)
         )}
       </td>
-      <td className={styles.td}>{user.email}</td>
+      <td className={styles.td} data-testid={`user-email-${idx}`}>
+        {user.email}
+      </td>
       <td className={styles.td}>
         {editFormEnabled && (
           <Button
@@ -98,6 +109,7 @@ export function TeamTableRow({
             className={styles.button}
             onPress={() => editMutation.mutate()}
             isDisabled={editMutation.isPending}
+            data-testid={`user-submit-button-${idx}`}
           >
             Submit
           </Button>
@@ -112,6 +124,7 @@ export function TeamTableRow({
               color={ButtonColor.White}
               className={styles.button}
               onPress={() => setEditFormEnabled(!editFormEnabled)}
+              data-testid={`user-edit-button-${idx}`}
             >
               <EditIcon />
             </Button>
