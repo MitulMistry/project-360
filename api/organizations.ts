@@ -1,5 +1,5 @@
 import { axios } from "./axios";
-import type { Organization } from "@prisma/client";
+import type { Organization, OrganizationUser } from "@prisma/client";
 import type { OrganizationWithOwner } from "@/typings/organization.types";
 
 const ENDPOINT = "/api/organizations";
@@ -53,5 +53,14 @@ export async function leaveOrganizationReq(
   const data = await axios
     .post(`${ENDPOINT}/leave`, organization)
     .then<Organization>((response) => response.data.data);
+  return data;
+}
+
+export async function updateOrganizationUserReq(
+  organizationUser: Omit<OrganizationUser, "joinedAt">,
+) {
+  const data = await axios
+    .patch(`${ENDPOINT}/orgusers`, organizationUser)
+    .then<OrganizationUser>((response) => response.data.data);
   return data;
 }

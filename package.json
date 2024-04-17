@@ -30,6 +30,7 @@
     "@tanstack/react-query-devtools": "^5.29.0",
     "axios": "^1.6.8",
     "classnames": "^2.5.1",
+    "lodash": "^4.17.21",
     "next": "14.1.0",
     "next-auth": "^4.24.7",
     "normalize.css": "^8.0.1",

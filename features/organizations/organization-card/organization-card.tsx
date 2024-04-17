@@ -47,6 +47,13 @@ export function OrganizationCard({
 
   const queryClient = useQueryClient();
 
+  const selectOrganization = () => {
+    setCurrentOrganization(organization);
+
+    // Invalidate the query to trigger a refetch
+    queryClient.invalidateQueries({ queryKey: ["team"] });
+  };
+
   const leaveOrgMutation = useMutation({
     mutationFn: () => {
       // Get rid of extra keys, like isOwner
@@ -118,7 +125,7 @@ export function OrganizationCard({
         <Selector
           size={SelectorSize.Medium}
           isSelected={isSelected || organization.id === currentOrganization?.id}
-          onPress={() => setCurrentOrganization(organization)}
+          onPress={selectOrganization}
           data-testid="org-card-selector"
         >
           {isSelected ? "Selected" : "Select"}

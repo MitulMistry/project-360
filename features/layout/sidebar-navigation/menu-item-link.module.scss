@@ -4,13 +4,17 @@
 // @use "@styles/font";
 // @use "@styles/breakpoint";
 
-.listItem {
+%list-item {
   height: space.$s12;
   display: flex;
   align-items: center;
   margin-top: space.$s2;
   background: transparent;
   border-radius: space.$s1;
+}
+
+.listItem {
+  @extend %list-item;
 
   a:hover {
     color: color.$primary-100;
@@ -21,12 +25,22 @@
   }
 }
 
-.listItem.active {
-  a {
-    color: white;
-  }
+.active {
+  @extend %list-item;
 
+  color: white;
   background: color.$primary-100;
+  padding: space.$s0 space.$s3;
+  pointer-events: none;
+}
+
+.disabled {
+  @extend %list-item;
+
+  color: color.$general-60;
+  background-color: color.$general-30;
+  padding: space.$s0 space.$s3;
+  cursor: not-allowed;
 }
 
 .listItem:first-child {
@@ -48,10 +62,6 @@
   &:focus-visible {
     outline-offset: 0;
     outline: 3px solid color.$primary-50;
-  }
-
-  &.isDisabled {
-    pointer-events: none;
   }
 }
 

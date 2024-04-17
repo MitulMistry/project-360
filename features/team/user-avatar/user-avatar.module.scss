@@ -1,0 +1,9 @@
+@use "@styles/space";
+@use "@styles/font";
+@use "@styles/color";
+@use "@styles/shadow";
+@use "@styles/breakpoint";
+
+.image {
+  border-radius: 50%; // Crop into a circle
+}

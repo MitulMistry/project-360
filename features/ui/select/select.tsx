@@ -86,7 +86,7 @@ export function Item(props: ListBoxItemProps) {
     <ListBoxItem
       {...props}
       className={({ isFocused, isSelected }) =>
-        `${styles.listBoxitem} ${isFocused ? "focused" : ""} ${isSelected ? "selected" : ""}`
+        `${styles.listBoxItem} ${isFocused ? "focused" : ""} ${isSelected ? "selected" : ""}`
       }
     />
   );

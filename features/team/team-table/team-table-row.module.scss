@@ -1,0 +1,51 @@
+@use "@styles/space";
+@use "@styles/font";
+@use "@styles/color";
+
+// @use "@styles/shadow";
+// @use "@styles/breakpoint";
+
+.th,
+.td {
+  padding: space.$s2;
+  border-bottom: 2px solid color.$general-40;
+}
+
+.tableRow {
+  padding: space.$s4 space.$s2;
+
+  .th {
+    font-weight: normal;
+    text-align: left;
+    padding-left: space.$s4;
+  }
+}
+
+.cell {
+  // Use Flex to center avatar image + text
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  margin-right: space.$s5;
+}
+
+.select {
+  gap: 0;
+  max-width: 12rem;
+}
+
+.containerRight {
+  display: flex;
+  justify-content: flex-end;
+}
+
+// .submitButton {
+//   flex: 1;
+// }
+
+// .button {
+//   width: 36px;
+//   height: 36px;
+// }

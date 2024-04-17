@@ -94,7 +94,7 @@
   outline: none;
 }
 
-.listBoxitem {
+.listBoxItem {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -105,6 +105,7 @@
   cursor: default;
 
   &[data-selected="true"],
+  &[data-hovered="true"],
   &:focus-visible {
     color: color.$primary-100;
     background: color.$primary-30;

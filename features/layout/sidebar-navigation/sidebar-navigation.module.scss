@@ -89,6 +89,14 @@
   }
 }
 
+.hideEmptyOrgOnMobile {
+  display: none;
+
+  @media (min-width: breakpoint.$desktop) {
+    display: block;
+  }
+}
+
 // Creates darken effect on page below open menu (on mobile)
 .menuOverlay {
   position: fixed;

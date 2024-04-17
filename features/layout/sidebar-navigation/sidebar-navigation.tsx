@@ -48,6 +48,7 @@ export function SidebarNavigation({
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   // Grab the current organization from context provider, or let it be overridden by prop.
   const { currentOrganization } = useContext(CurrentDataContext);
+  const orgName = currentOrgName || currentOrganization?.name;
 
   return (
     <div className={classNames(styles.container, className)}>
@@ -93,13 +94,19 @@ export function SidebarNavigation({
             isMobileMenuOpen && styles.isMobileMenuOpen,
           )}
         >
-          {(currentOrganization?.name || currentOrgName) && (
-            <div className={styles.currentOrganization}>
-              <p data-testid="current-org-name">
-                {currentOrganization?.name || currentOrgName}
-              </p>
-            </div>
-          )}
+          {/* Don't show the current org name if no org name and mobile menu open*/}
+          <div
+            className={classNames(
+              styles.currentOrganization,
+              isMobileMenuOpen && !orgName && styles.hideEmptyOrgOnMobile,
+            )}
+          >
+            <p data-testid="current-org-name">
+              {orgName || (
+                <span>&nbsp;</span> // Use empty placeholder (for desktop)
+              )}
+            </p>
+          </div>
 
           <ul className={styles.linkList}>
             {menuItems.map((menuItem, index) => (
@@ -107,6 +114,12 @@ export function SidebarNavigation({
                 key={index}
                 {...menuItem}
                 isActive={pathname === menuItem.href}
+                isDisabled={
+                  // Disable the link if no current organization, except for organizations link
+                  !currentOrganization &&
+                  !currentOrgName &&
+                  menuItem.href !== Routes.organizations
+                }
                 onClick={() => setMobileMenuOpen(false)}
               />
             ))}
