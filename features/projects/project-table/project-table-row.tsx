@@ -1,7 +1,7 @@
 import React from "react";
 import type { TaskWithAssignee } from "@/typings/task.types";
 import classNames from "classnames";
-import styles from "./project-table.module.scss";
+import styles from "./project-table-row.module.scss";
 import { capitalize } from "lodash";
 import { formatDate } from "@/app/lib/helpers";
 
