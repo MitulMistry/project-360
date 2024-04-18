@@ -18,7 +18,8 @@ export function TeamTable({
   currentOrganization,
   isOwnerProp,
 }: TeamTableProps) {
-  const isOwner = currentOrganization?.isOwner || isOwnerProp;
+  const isOwner =
+    isOwnerProp !== undefined ? isOwnerProp : currentOrganization?.isOwner;
 
   return (
     <div className={classNames(styles.container, className)}>
