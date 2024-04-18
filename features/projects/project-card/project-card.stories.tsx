@@ -16,6 +16,7 @@ type Story = StoryObj<typeof ProjectCard>;
 export const Default: Story = {
   args: {
     project: mockProjectWithTasks1,
+    isManagerProp: true,
   },
   // Need to wrap component with QueryClientProvider since it needs access to queryClient
   decorators: [

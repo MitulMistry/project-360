@@ -8,13 +8,18 @@ import { ProjectTable } from "../project-table";
 type ProjectCardProps = {
   className?: string;
   project: ProjectWithTasks;
+  isManagerProp?: boolean;
 };
 
-export function ProjectCard({ className, project }: ProjectCardProps) {
+export function ProjectCard({
+  className,
+  project,
+  isManagerProp,
+}: ProjectCardProps) {
   return (
     <div className={classNames(styles.container, className)}>
       <h2>{capitalize(project.name)}</h2>
-      <ProjectTable project={project} />
+      <ProjectTable project={project} isManagerProp={isManagerProp} />
     </div>
   );
 }

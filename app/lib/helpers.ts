@@ -7,3 +7,8 @@ export const sanitizeOrganization = ({
   isOwner,
   ...organization
 }: OrganizationWithOwner): Organization => organization;
+
+export const formatDate = (date: Date | null) =>
+  date
+    ? `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
+    : null;
