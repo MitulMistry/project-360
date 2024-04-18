@@ -50,6 +50,7 @@ type StatusButtonProps = AriaButtonProps & {
   size?: StatusButtonSize;
   initializedId?: number;
   items: StatusColorItem[];
+  isActive?: boolean;
 };
 
 export function StatusButton({
@@ -57,6 +58,7 @@ export function StatusButton({
   size = StatusButtonSize.Medium,
   initializedId = 0,
   items,
+  isActive = true,
   ...props
 }: StatusButtonProps) {
   const [selectedId, setSelectedId] = useState(initializedId);
@@ -68,17 +70,32 @@ export function StatusButton({
 
   return (
     <div className={classNames(styles.container, className)}>
-      <AriaButton
-        className={classNames(
-          styles.statusButton,
-          styles[size],
-          styles[items[selectedId].color],
-        )}
-        onPress={() => increment()}
-        {...props}
-      >
-        {items[selectedId].name}
-      </AriaButton>
+      {isActive ? (
+        // If the component is active, render a clickable button
+        <AriaButton
+          className={classNames(
+            styles.statusButton,
+            styles[size],
+            styles[items[selectedId].color],
+          )}
+          onPress={() => increment()}
+          {...props}
+        >
+          {items[selectedId].name}
+        </AriaButton>
+      ) : (
+        // If the component is not active, render an un-clickable div (with same styles)
+        <div
+          className={classNames(
+            styles.statusButton,
+            styles[size],
+            styles[items[selectedId].color],
+            !isActive && styles.inactive,
+          )}
+        >
+          {items[selectedId].name}
+        </div>
+      )}
     </div>
   );
 }

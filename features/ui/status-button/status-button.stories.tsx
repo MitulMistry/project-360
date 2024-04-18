@@ -17,7 +17,7 @@ export default meta;
 type Story = StoryObj<typeof StatusButton>;
 
 export const Default: Story = {
-  args: { items: statusColors, isDisabled: false },
+  args: { items: statusColors, isDisabled: false, isActive: true },
 };
 
 export const Small: Story = {
