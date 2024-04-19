@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import type { ButtonProps as AriaButtonProps } from "react-aria-components";
 import { Button as AriaButton } from "react-aria-components";
+import { Status, Priority } from "@prisma/client";
 import classNames from "classnames";
 import styles from "./status-button.module.scss";
 
@@ -19,8 +20,8 @@ export enum StatusColor {
   Stuck = "stuck",
   Low = "low",
   Medium = "medium",
-  Critical = "critical",
   High = "high",
+  Critical = "critical",
 }
 
 type StatusColorItem = {
@@ -38,9 +39,20 @@ export const statusColors = [
 export const priorityColors = [
   { name: "Low", color: StatusColor.Low },
   { name: "Medium", color: StatusColor.Medium },
-  { name: "Critical", color: StatusColor.Critical },
   { name: "High", color: StatusColor.High },
+  { name: "Critical", color: StatusColor.Critical },
 ];
+
+const statusToColorMap = {
+  [Status.READY]: StatusColor.Ready,
+  [Status.INPROGRESS]: StatusColor.InProgress,
+  [Status.DONE]: StatusColor.Done,
+  [Status.STUCK]: StatusColor.Stuck,
+  [Priority.LOW]: StatusColor.Low,
+  [Priority.MEDIUM]: StatusColor.Medium,
+  [Priority.HIGH]: StatusColor.High,
+  [Priority.CRITICAL]: StatusColor.Critical,
+};
 
 // React-Aria Button component is not native HTML Button element,
 // so doesn't make sense to extend it.
@@ -48,7 +60,7 @@ export const priorityColors = [
 type StatusButtonProps = AriaButtonProps & {
   className?: string;
   size?: StatusButtonSize;
-  initializedId?: number;
+  initialItem?: Status | Priority;
   items: StatusColorItem[];
   isActive?: boolean;
 };
@@ -56,11 +68,16 @@ type StatusButtonProps = AriaButtonProps & {
 export function StatusButton({
   className,
   size = StatusButtonSize.Medium,
-  initializedId = 0,
+  initialItem,
   items,
   isActive = true,
   ...props
 }: StatusButtonProps) {
+  // Find the index of the item that matches the initial status
+  const initializedId = initialItem
+    ? items.findIndex((item) => item.color === statusToColorMap[initialItem])
+    : 0;
+
   const [selectedId, setSelectedId] = useState(initializedId);
 
   const increment = () => {

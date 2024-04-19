@@ -2,8 +2,15 @@ import React from "react";
 import type { TaskWithAssignee } from "@/typings/task.types";
 import classNames from "classnames";
 import styles from "./project-table-row.module.scss";
+import { UserAvatar, UserAvatarSize } from "@/features/team";
 import { capitalize } from "lodash";
 import { formatDate } from "@/app/lib/helpers";
+import {
+  priorityColors,
+  StatusButton,
+  StatusButtonSize,
+  statusColors,
+} from "@/features/ui/status-button";
 
 type ProjectTableRowProps = {
   className?: string;
@@ -27,13 +34,30 @@ export function ProjectTableRow({
         {capitalize(task.name || undefined)}
       </th>
       <td className={styles.td} data-testid={`task-assignee-${idx}`}>
-        {capitalize(task.assignee.name || undefined)}
+        <div className={styles.cell} data-testid={`user-name-${idx}`}>
+          <UserAvatar
+            size={UserAvatarSize.Small}
+            className={styles.avatar}
+            imgUrl={task.assignee.image || undefined}
+          />
+          {capitalize(task.assignee.name || undefined)}
+        </div>
       </td>
       <td className={styles.td} data-testid={`task-status-${idx}`}>
-        {capitalize(task.status || undefined)}
+        <StatusButton
+          size={StatusButtonSize.Medium}
+          items={statusColors}
+          initialItem={task.status}
+          isActive={isManager}
+        />
       </td>
       <td className={styles.td} data-testid={`task-priority-${idx}`}>
-        {capitalize(task.priority || undefined)}
+        <StatusButton
+          size={StatusButtonSize.Medium}
+          items={priorityColors}
+          initialItem={task.priority}
+          isActive={isManager}
+        />
       </td>
       <td className={styles.td} data-testid={`task-time-estimate-${idx}`}>
         {`${task.timeEstimate} ${task.timeEstimateUnits}`}
