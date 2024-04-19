@@ -47,11 +47,16 @@ export function OrganizationCard({
 
   const queryClient = useQueryClient();
 
+  const resetCurrentOrg = () => {
+    if (organization === currentOrganization) setCurrentOrganization(null);
+  };
+
   const selectOrganization = () => {
     setCurrentOrganization(organization);
 
     // Invalidate the query to trigger a refetch
     queryClient.invalidateQueries({ queryKey: ["team"] });
+    queryClient.invalidateQueries({ queryKey: ["projects"] });
   };
 
   const leaveOrgMutation = useMutation({
@@ -63,6 +68,7 @@ export function OrganizationCard({
     onSuccess: () => {
       // Invalidate the query to trigger a refetch
       queryClient.invalidateQueries({ queryKey: ["organizations"] });
+      resetCurrentOrg();
     },
   });
 
@@ -75,6 +81,7 @@ export function OrganizationCard({
     onSuccess: () => {
       // Invalidate the query to trigger a refetch
       queryClient.invalidateQueries({ queryKey: ["organizations"] });
+      resetCurrentOrg();
     },
   });
 
