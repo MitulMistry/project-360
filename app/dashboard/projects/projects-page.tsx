@@ -50,7 +50,11 @@ export function ProjectsPage() {
       ) : (
         <div className={styles.main}>
           {data?.map((project, idx) => (
-            <ProjectCard project={project} key={idx} />
+            <ProjectCard
+              className={styles.projectCard}
+              project={project}
+              key={idx}
+            />
           ))}
         </div>
       )}

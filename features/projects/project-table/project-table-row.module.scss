@@ -8,6 +8,7 @@
 .th,
 .td {
   padding: space.$s2;
+  padding-right: space.$s6; // Create space between cells
   border-bottom: 2px solid color.$general-40;
 }
 
