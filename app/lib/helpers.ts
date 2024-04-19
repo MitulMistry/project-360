@@ -8,7 +8,10 @@ export const sanitizeOrganization = ({
   ...organization
 }: OrganizationWithOwner): Organization => organization;
 
-export const formatDate = (date: Date | null) =>
-  date
-    ? `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
-    : null;
+// Will take either DateTime object, or string to convert to DateTime object
+export const formatDate = (date: Date | string | null) => {
+  if (date === null) return null;
+  const convertedDate = date instanceof Date ? date : new Date(date);
+
+  return `${convertedDate.getMonth() + 1}/${convertedDate.getDate()}/${convertedDate.getFullYear()}`;
+};

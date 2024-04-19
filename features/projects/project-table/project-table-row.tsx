@@ -48,7 +48,7 @@ export function ProjectTableRow({
           size={StatusButtonSize.Medium}
           items={statusColors}
           initialItem={task.status}
-          isActive={isManager}
+          isActive={false}
         />
       </td>
       <td className={styles.td} data-testid={`task-priority-${idx}`}>
@@ -56,11 +56,11 @@ export function ProjectTableRow({
           size={StatusButtonSize.Medium}
           items={priorityColors}
           initialItem={task.priority}
-          isActive={isManager}
+          isActive={false}
         />
       </td>
       <td className={styles.td} data-testid={`task-time-estimate-${idx}`}>
-        {`${task.timeEstimate} ${task.timeEstimateUnits}`}
+        {task.timeEstimate && `${task.timeEstimate} ${task.timeEstimateUnits}`}
       </td>
       <td className={styles.td} data-testid={`task-due-date-${idx}`}>
         {formatDate(task.dueDate)}
