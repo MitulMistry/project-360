@@ -49,13 +49,20 @@ export function ProjectsPage() {
         />
       ) : (
         <div className={styles.main}>
-          {data?.map((project, idx) => (
-            <ProjectCard
-              className={styles.projectCard}
-              project={project}
-              key={idx}
-            />
-          ))}
+          {data && data.length > 0 ? (
+            data?.map((project, idx) => (
+              <ProjectCard
+                className={styles.projectCard}
+                project={project}
+                key={idx}
+              />
+            ))
+          ) : (
+            <div className={styles.noProjects}>
+              <p>No projects have been created for this organization yet.</p>
+              <p>Create one, or have a manager create one to get started.</p>
+            </div>
+          )}
         </div>
       )}
     </div>

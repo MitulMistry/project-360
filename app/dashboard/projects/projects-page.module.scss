@@ -36,3 +36,9 @@
 .projectCard {
   margin-bottom: space.$s10;
 }
+
+.noProjects {
+  :first-child {
+    font-weight: bold;
+  }
+}
