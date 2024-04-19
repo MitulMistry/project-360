@@ -2,7 +2,7 @@ import React from "react";
 import type { ProjectWithTasks } from "@/typings/project.types";
 import classNames from "classnames";
 import styles from "./project-card.module.scss";
-import { capitalize } from "lodash";
+import { titleCase } from "@/app/lib/helpers";
 import { ProjectTable } from "../project-table";
 
 type ProjectCardProps = {
@@ -18,7 +18,7 @@ export function ProjectCard({
 }: ProjectCardProps) {
   return (
     <div className={classNames(styles.container, className)}>
-      <h2>{capitalize(project.name)}</h2>
+      <h2>{titleCase(project.name)}</h2>
       <ProjectTable project={project} isManagerProp={isManagerProp} />
     </div>
   );

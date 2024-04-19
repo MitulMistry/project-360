@@ -1,5 +1,6 @@
 import { OrganizationWithOwner } from "@/typings/organization.types";
 import type { Organization } from "@prisma/client";
+import { lowerCase, startCase } from "lodash";
 
 // This removes the isOwner key through destructuring
 /* eslint-disable @typescript-eslint/no-unused-vars*/
@@ -15,3 +16,6 @@ export const formatDate = (date: Date | string | null) => {
 
   return `${convertedDate.getMonth() + 1}/${convertedDate.getDate()}/${convertedDate.getFullYear()}`;
 };
+
+export const titleCase = (str: string | null) =>
+  str ? startCase(lowerCase(str)) : null;

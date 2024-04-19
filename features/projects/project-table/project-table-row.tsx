@@ -3,7 +3,7 @@ import type { TaskWithAssignee } from "@/typings/task.types";
 import classNames from "classnames";
 import styles from "./project-table-row.module.scss";
 import { UserAvatar, UserAvatarSize } from "@/features/team";
-import { capitalize } from "lodash";
+import { titleCase } from "@/app/lib/helpers";
 import { formatDate } from "@/app/lib/helpers";
 import {
   priorityColors,
@@ -31,7 +31,7 @@ export function ProjectTableRow({
       data-testid={`task-row-${idx}`}
     >
       <th scope="row" className={styles.th}>
-        {capitalize(task.name || undefined)}
+        {titleCase(task.name)}
       </th>
       <td className={styles.td} data-testid={`task-assignee-${idx}`}>
         <div className={styles.cell} data-testid={`user-name-${idx}`}>
@@ -40,7 +40,7 @@ export function ProjectTableRow({
             className={styles.avatar}
             imgUrl={task.assignee.image || undefined}
           />
-          {capitalize(task.assignee.name || undefined)}
+          {titleCase(task.assignee.name)}
         </div>
       </td>
       <td className={styles.td} data-testid={`task-status-${idx}`}>

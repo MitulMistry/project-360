@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateOrganizationUserReq } from "@/api/organizations";
 import { UserForOrg } from "@/typings/user.types";
-import { capitalize } from "lodash";
+import { titleCase } from "@/app/lib/helpers";
 import { UserAvatar, UserAvatarSize } from "@features/team";
 import {
   Button,
@@ -76,7 +76,7 @@ export function TeamTableRow({
             className={styles.avatar}
             imgUrl={user.image || undefined}
           />
-          {user.name}
+          {titleCase(user.name)}
         </div>
       </th>
       <td className={styles.td} data-testid={`user-role-${idx}`}>
@@ -91,12 +91,12 @@ export function TeamTableRow({
               .filter((role) => role !== "OWNER") // Skip Owner (can't promote to owner)
               .map((role, idx) => (
                 <Item key={idx} id={role}>
-                  {capitalize(role)}
+                  {titleCase(role)}
                 </Item>
               ))}
           </Select>
         ) : (
-          capitalize(user.role)
+          titleCase(user.role)
         )}
       </td>
       <td className={styles.td} data-testid={`user-email-${idx}`}>

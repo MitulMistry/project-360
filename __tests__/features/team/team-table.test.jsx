@@ -8,7 +8,7 @@ import {
 } from "../../../__mocks__/organization";
 import { mockUsersSimple1 } from "../../../__mocks__/user";
 import { Role } from "@prisma/client";
-import { capitalize } from "lodash";
+import { titleCase } from "@/app/lib/helpers";
 
 describe("Team Table", () => {
   describe("User is not owner", () => {
@@ -34,7 +34,7 @@ describe("Team Table", () => {
         expect(emailCell.textContent).toContain(email);
 
         const roleCell = screen.getByTestId(`user-role-${i}`);
-        expect(roleCell.textContent).toContain(capitalize(role));
+        expect(roleCell.textContent).toContain(titleCase(role));
       }
     });
 
