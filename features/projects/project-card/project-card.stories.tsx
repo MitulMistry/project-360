@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { ProjectCard } from "./project-card";
 import { mockProjectWithTasks1 } from "@/__mocks__/project";
-import QueryClientWrapper from "@/api/query-client-wrapper";
+import QueryClientWrapper from "@api/query-client-wrapper";
 
 // Storybook CSF3 format
 

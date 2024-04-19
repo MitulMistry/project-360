@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { TeamTable } from "./team-table";
 import { UserForOrg } from "@/typings/user.types";
-import QueryClientWrapper from "@/api/query-client-wrapper";
+import QueryClientWrapper from "@api/query-client-wrapper";
 import { mockUsersSimple1 } from "@/__mocks__/user";
 import { mockOrganizationWithOwner1 } from "@/__mocks__/organization";
 import { OrganizationWithOwner } from "@/typings/organization.types";

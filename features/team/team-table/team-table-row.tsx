@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateOrganizationUserReq } from "@/api/organizations";
+import { updateOrganizationUserReq } from "@api/organizations";
+import { queryKeys } from "@api/query-keys";
 import { UserForOrg } from "@/typings/user.types";
 import { titleCase } from "@/app/lib/helpers";
 import { UserAvatar, UserAvatarSize } from "@features/team";
@@ -57,7 +58,7 @@ export function TeamTableRow({
     },
     onSuccess: () => {
       // Invalidate the query to trigger a refetch
-      queryClient.invalidateQueries({ queryKey: ["team"] });
+      queryClient.invalidateQueries({ queryKey: [queryKeys.team] });
       // Invoke prop function (typically a set state function from parent component)
       // if (onSuccessFn) onSuccessFn();
       setEditFormEnabled(false);
