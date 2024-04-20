@@ -1,0 +1,35 @@
+@use "@styles/space";
+@use "@styles/font";
+@use "@styles/color";
+@use "@styles/shadow";
+
+// @use "@styles/breakpoint";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 33.75rem;
+  font: font.$text-sm-regular;
+  color: color.$general-100;
+  background-color: color.$white;
+  border-radius: space.$s1;
+  box-shadow: shadow.$panel;
+  padding: 1.75rem;
+  box-sizing: border-box;
+}
+
+.header {
+  margin-top: space.$s0;
+}
+
+.form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.textInput {
+  flex: 1;
+  margin-right: space.$s4;
+}
