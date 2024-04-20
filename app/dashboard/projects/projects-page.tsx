@@ -13,6 +13,7 @@ import {
   NotificationColor,
 } from "@features/ui";
 import styles from "./projects-page.module.scss";
+import ProjectsInterface from "./projects-interface";
 
 export function ProjectsPage() {
   // Grab the current organization from context provider
@@ -35,7 +36,8 @@ export function ProjectsPage() {
 
   return (
     <div className={styles.container}>
-      <h1>Projects</h1>
+      <ProjectsInterface />
+
       {isError && (
         <Notification color={NotificationColor.ErrorSolid}>
           Error: {error.message}
