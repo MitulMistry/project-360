@@ -6,3 +6,4 @@ export * from "./selector";
 export * from "./icons";
 export * from "./loading-indicator";
 export * from "./notification";
+export * from "./status-button";

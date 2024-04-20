@@ -29,19 +29,16 @@ type StatusColorItem = {
   color: StatusColor;
 };
 
-export const statusColors = [
-  { name: "Ready to Start", color: StatusColor.Ready },
-  { name: "In Progress", color: StatusColor.InProgress },
-  { name: "Done", color: StatusColor.Done },
-  { name: "Stuck", color: StatusColor.Stuck },
-];
-
-export const priorityColors = [
-  { name: "Low", color: StatusColor.Low },
-  { name: "Medium", color: StatusColor.Medium },
-  { name: "High", color: StatusColor.High },
-  { name: "Critical", color: StatusColor.Critical },
-];
+export const statusToTextMap = {
+  [Status.READY]: "Ready to Start",
+  [Status.INPROGRESS]: "In Progress",
+  [Status.DONE]: "Done",
+  [Status.STUCK]: "Stuck",
+  [Priority.LOW]: "Low",
+  [Priority.MEDIUM]: "Medium",
+  [Priority.HIGH]: "High",
+  [Priority.CRITICAL]: "Critical",
+};
 
 const statusToColorMap = {
   [Status.READY]: StatusColor.Ready,
@@ -53,6 +50,41 @@ const statusToColorMap = {
   [Priority.HIGH]: StatusColor.High,
   [Priority.CRITICAL]: StatusColor.Critical,
 };
+
+export const statusColors = [
+  {
+    name: statusToTextMap[Status.READY],
+    color: statusToColorMap[Status.READY],
+  },
+  {
+    name: statusToTextMap[Status.INPROGRESS],
+    color: statusToColorMap[Status.INPROGRESS],
+  },
+  { name: statusToTextMap[Status.DONE], color: statusToColorMap[Status.DONE] },
+  {
+    name: statusToTextMap[Status.STUCK],
+    color: statusToColorMap[Status.STUCK],
+  },
+];
+
+export const priorityColors = [
+  {
+    name: statusToTextMap[Priority.LOW],
+    color: statusToColorMap[Priority.LOW],
+  },
+  {
+    name: statusToTextMap[Priority.MEDIUM],
+    color: statusToColorMap[Priority.MEDIUM],
+  },
+  {
+    name: statusToTextMap[Priority.HIGH],
+    color: statusToColorMap[Priority.HIGH],
+  },
+  {
+    name: statusToTextMap[Priority.CRITICAL],
+    color: statusToColorMap[Priority.CRITICAL],
+  },
+];
 
 // React-Aria Button component is not native HTML Button element,
 // so doesn't make sense to extend it.

@@ -4,4 +4,5 @@ export {
   StatusColor,
   statusColors,
   priorityColors,
+  statusToTextMap,
 } from "./status-button";
