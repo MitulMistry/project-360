@@ -2,10 +2,11 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { getTeamReq } from "@api/users";
+import { queryKeys } from "@api/query-keys";
 
 export function useGetTeam(orgId: string) {
   return useQuery({
-    queryKey: ["team"],
+    queryKey: [queryKeys.team],
     queryFn: () => getTeamReq(orgId),
   });
 }

@@ -7,6 +7,7 @@ import {
   leaveOrganizationReq,
   deleteOrganizationReq,
 } from "@api/organizations";
+import { queryKeys } from "@api/query-keys";
 import Image from "next/image";
 import {
   Selector,
@@ -47,11 +48,16 @@ export function OrganizationCard({
 
   const queryClient = useQueryClient();
 
+  const resetCurrentOrg = () => {
+    if (organization === currentOrganization) setCurrentOrganization(null);
+  };
+
   const selectOrganization = () => {
     setCurrentOrganization(organization);
 
     // Invalidate the query to trigger a refetch
-    queryClient.invalidateQueries({ queryKey: ["team"] });
+    queryClient.invalidateQueries({ queryKey: [queryKeys.team] });
+    queryClient.invalidateQueries({ queryKey: [queryKeys.projects] });
   };
 
   const leaveOrgMutation = useMutation({
@@ -62,7 +68,8 @@ export function OrganizationCard({
     },
     onSuccess: () => {
       // Invalidate the query to trigger a refetch
-      queryClient.invalidateQueries({ queryKey: ["organizations"] });
+      queryClient.invalidateQueries({ queryKey: [queryKeys.organizations] });
+      resetCurrentOrg();
     },
   });
 
@@ -74,7 +81,8 @@ export function OrganizationCard({
     },
     onSuccess: () => {
       // Invalidate the query to trigger a refetch
-      queryClient.invalidateQueries({ queryKey: ["organizations"] });
+      queryClient.invalidateQueries({ queryKey: [queryKeys.organizations] });
+      resetCurrentOrg();
     },
   });
 

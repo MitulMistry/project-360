@@ -1,0 +1,44 @@
+@use "@styles/color";
+@use "@styles/font";
+@use "@styles/space";
+@use "@styles/breakpoint";
+@use "@styles/shadow";
+@use "@styles/misc";
+
+.loadingIndicator {
+  margin-top: space.$s12;
+
+  @media (min-width: breakpoint.$desktop) {
+    margin-top: space.$s4;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: color.$white;
+  box-shadow: shadow.$panel;
+  padding: space.$s8;
+
+  @media (min-width: breakpoint.$desktop) {
+    max-width: 90rem;
+    border-radius: 0.375rem;
+    margin-top: space.$s2;
+  }
+}
+
+.projectCard {
+  margin-bottom: space.$s10;
+}
+
+.noProjects {
+  :first-child {
+    font-weight: bold;
+  }
+}

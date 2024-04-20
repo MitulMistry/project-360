@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import type { User } from "@prisma/client";
 import type { OrganizationWithOwner } from "@/typings/organization.types";
 import { OrganizationCard } from ".";
-import QueryClientWrapper from "@/api/query-client-wrapper";
+import QueryClientWrapper from "@api/query-client-wrapper";
 
 // Storybook CSF3 format
 

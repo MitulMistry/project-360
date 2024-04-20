@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { OrganizationEditForm } from ".";
-import QueryClientWrapper from "@/api/query-client-wrapper";
+import QueryClientWrapper from "@api/query-client-wrapper";
 import type { OrganizationWithOwner } from "@/typings/organization.types";
 
 // Storybook CSF3 format

@@ -7,6 +7,7 @@ import { TextInput } from "@features/ui";
 import { Button, ButtonColor, ButtonSize } from "@features/ui";
 import classNames from "classnames";
 import styles from "./organization-new-form.module.scss";
+import { queryKeys } from "@api/query-keys";
 
 type OrganizationNewFormProps = {
   className?: string;
@@ -26,7 +27,7 @@ export function OrganizationNewForm({ className }: OrganizationNewFormProps) {
     },
     onSuccess: () => {
       // Invalidate the query to trigger a refetch
-      queryClient.invalidateQueries({ queryKey: ["organizations"] });
+      queryClient.invalidateQueries({ queryKey: [queryKeys.organizations] });
 
       setName("");
     },

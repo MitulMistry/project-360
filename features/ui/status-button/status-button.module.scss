@@ -13,6 +13,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   gap: space.$s2;
   border: none;
   border-radius: space.$s1;
@@ -34,25 +35,30 @@
 }
 
 .sm {
-  height: 1.5rem;
-  padding: 0.5rem 1.25rem;
-  font: font.$text-sm-medium;
+  // Remove hard coded height values to allow button to expand to text
+  // height: 1.5rem;
+  padding: 0.25rem 1.25rem;
+  font: font.$text-sm-regular;
 }
 
 .md {
-  height: 2rem;
-  padding: 0.5rem 1.5rem;
+  // height: 2rem;
+  padding: 0.25rem 1.5rem;
   font: font.$text-md-regular;
 }
 
 .lg {
-  height: 2.5rem;
-  padding: 0.75rem 1.5rem;
+  // height: 2.5rem;
+  padding: 0.5rem 1.5rem;
   font: font.$text-md-regular;
 
   &:focus {
     outline-width: 4px;
   }
+}
+
+.inactive {
+  cursor: default;
 }
 
 /* Status colors */
@@ -64,7 +70,7 @@
     outline-color: color.$primary-60;
   }
 
-  &:hover:enabled {
+  &:hover:enabled:not(.inactive) {
     background: color.$primary-80;
   }
 }
@@ -77,7 +83,7 @@
     outline-color: color.$yellow-80;
   }
 
-  &:hover:enabled {
+  &:hover:enabled:not(.inactive) {
     background: color.$yellow-80;
   }
 }
@@ -90,7 +96,7 @@
     outline-color: color.$green-70;
   }
 
-  &:hover:enabled {
+  &:hover:enabled:not(.inactive) {
     background: color.$green-80;
   }
 }
@@ -103,7 +109,7 @@
     outline-color: color.$red-60;
   }
 
-  &:hover:enabled {
+  &:hover:enabled:not(.inactive) {
     background: color.$red-80;
   }
 }
@@ -117,7 +123,7 @@
     outline-color: color.$green-60;
   }
 
-  &:hover:enabled {
+  &:hover:enabled:not(.inactive) {
     background: color.$green-40;
   }
 }
@@ -130,7 +136,7 @@
     outline-color: color.$primary-60;
   }
 
-  &:hover:enabled {
+  &:hover:enabled:not(.inactive) {
     background: color.$primary-50;
   }
 }
@@ -143,7 +149,7 @@
     outline-color: color.$red-60;
   }
 
-  &:hover:enabled {
+  &:hover:enabled:not(.inactive) {
     background: color.$red-40;
   }
 }
@@ -156,7 +162,7 @@
     outline-color: color.$yellow-80;
   }
 
-  &:hover:enabled {
+  &:hover:enabled:not(.inactive) {
     background: color.$yellow-50;
   }
 }

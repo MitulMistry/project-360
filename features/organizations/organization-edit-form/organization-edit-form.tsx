@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateOrganizationReq } from "@api/organizations";
+import { queryKeys } from "@api/query-keys";
 import { TextInput } from "@features/ui";
 import { Button, ButtonColor, ButtonSize } from "@features/ui";
 import classNames from "classnames";
@@ -37,7 +38,7 @@ export function OrganizationEditForm({
     },
     onSuccess: () => {
       // Invalidate the query to trigger a refetch
-      queryClient.invalidateQueries({ queryKey: ["organizations"] });
+      queryClient.invalidateQueries({ queryKey: [queryKeys.organizations] });
       // Invoke prop function (typically a set state function from parent component)
       if (onSuccessFn) onSuccessFn();
     },

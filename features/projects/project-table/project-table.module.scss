@@ -1,0 +1,137 @@
+@use "@styles/space";
+@use "@styles/font";
+@use "@styles/color";
+@use "@styles/breakpoint";
+
+// @use "@styles/shadow";
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.table {
+  flex: 1;
+  font: font.$text-md-regular;
+  color: color.$general-100;
+  border-collapse: collapse; // Get rid of border gaps
+}
+
+.th,
+.td {
+  padding: space.$s2;
+  border-bottom: 2px solid color.$general-40;
+}
+
+// .tableBody {
+
+// }
+
+.tableRow {
+  padding: space.$s4 space.$s2;
+
+  .th {
+    font-weight: normal;
+    text-align: left;
+    padding-left: space.$s4;
+  }
+}
+
+.tableHead {
+  color: color.$general-80;
+
+  .th {
+    font: font.$text-md-medium;
+    border-bottom: 3px solid color.$general-40;
+    text-align: left;
+  }
+
+  // Column 1 - Task
+  .th:nth-child(1) {
+    padding-left: space.$s4;
+    width: 25%;
+
+    @media (min-width: breakpoint.$desktop) {
+      width: 25%;
+    }
+  }
+
+  // Column 2 - Asignee
+  .th:nth-child(2) {
+    width: 19%;
+
+    @media (min-width: breakpoint.$desktop) {
+      width: 19%;
+    }
+  }
+
+  // Column 3 - Status
+  .th:nth-child(3) {
+    width: 18%;
+
+    @media (min-width: breakpoint.$desktop) {
+      width: 18%;
+    }
+  }
+
+  // Column 4 - Priority
+  .th:nth-child(4) {
+    width: 18%;
+
+    @media (min-width: breakpoint.$desktop) {
+      width: 18%;
+    }
+  }
+
+  // Column 5 - Time Estimate
+  .th:nth-child(5) {
+    width: 10%;
+
+    @media (min-width: breakpoint.$desktop) {
+      width: 10%;
+    }
+  }
+
+  // Column 6 - Due Date
+  .th:nth-child(6) {
+    width: 10%;
+
+    @media (min-width: breakpoint.$desktop) {
+      width: 10%;
+    }
+  }
+
+  // .th:nth-child(3):not(.ownerEnabled) {
+  //   width: 45%;
+
+  //   @media (min-width: breakpoint.$desktop) {
+  //     width: 50%;
+  //   }
+  // }
+
+  // .th:nth-child(3).ownerEnabled {
+  //   width: 25%;
+
+  //   @media (min-width: breakpoint.$desktop) {
+  //     width: 35%;
+  //   }
+  // }
+
+  // Column 7 - Submit Button
+  .th:nth-child(7).ownerEnabled {
+    width: 15%;
+
+    @media (min-width: breakpoint.$desktop) {
+      width: 10%;
+    }
+  }
+
+  // Column 8 - Edit Button
+  .th:nth-child(8).ownerEnabled {
+    width: 10%;
+
+    @media (min-width: breakpoint.$desktop) {
+      width: 5%;
+    }
+  }
+}

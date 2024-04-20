@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { OrganizationList } from "./organization-list";
 import { OrganizationWithOwner } from "@/typings/organization.types";
-import QueryClientWrapper from "@/api/query-client-wrapper";
+import QueryClientWrapper from "@api/query-client-wrapper";
 
 // Storybook CSF3 format
 
