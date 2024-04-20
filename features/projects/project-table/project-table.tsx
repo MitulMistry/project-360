@@ -7,12 +7,14 @@ import styles from "./project-table.module.scss";
 type ProjectTableProps = {
   className?: string;
   project: ProjectWithTasks;
+  projectIdx?: number;
   isManagerProp?: boolean;
 };
 
 export function ProjectTable({
   className,
   project,
+  projectIdx = 0,
   isManagerProp,
 }: ProjectTableProps) {
   const isManager =
@@ -100,7 +102,8 @@ export function ProjectTable({
                 key={`project-task-${idx}`}
                 task={task}
                 isManager={isManager}
-                idx={idx}
+                projectIdx={projectIdx}
+                rowIdx={idx}
               />
             ))}
         </tbody>

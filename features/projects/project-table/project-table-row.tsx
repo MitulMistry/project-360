@@ -16,25 +16,29 @@ type ProjectTableRowProps = {
   className?: string;
   task: TaskWithAssignee;
   isManager?: boolean;
-  idx: number;
+  projectIdx?: number;
+  rowIdx: number;
 };
 
 export function ProjectTableRow({
   className,
   task,
   isManager = false,
-  idx,
+  projectIdx = 0,
+  rowIdx,
 }: ProjectTableRowProps) {
+  const idx = `${projectIdx}-${rowIdx}`;
+
   return (
     <tr
       className={classNames(styles.tableRow, className)}
       data-testid={`task-row-${idx}`}
     >
-      <th scope="row" className={styles.th}>
+      <th scope="row" className={styles.th} data-testid={`task-name-${idx}`}>
         {titleCase(task.name)}
       </th>
-      <td className={styles.td} data-testid={`task-assignee-${idx}`}>
-        <div className={styles.cell} data-testid={`user-name-${idx}`}>
+      <td className={styles.td}>
+        <div className={styles.cell} data-testid={`task-assignee-name-${idx}`}>
           <UserAvatar
             size={UserAvatarSize.Small}
             className={styles.avatar}

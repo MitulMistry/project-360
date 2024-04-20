@@ -55,6 +55,7 @@ export function ProjectsPage() {
                 className={styles.projectCard}
                 project={project}
                 key={idx}
+                projectIdx={idx}
               />
             ))
           ) : (

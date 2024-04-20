@@ -9,17 +9,25 @@ type ProjectCardProps = {
   className?: string;
   project: ProjectWithTasks;
   isManagerProp?: boolean;
+  projectIdx: number;
 };
 
 export function ProjectCard({
   className,
   project,
   isManagerProp,
+  projectIdx,
 }: ProjectCardProps) {
   return (
     <div className={classNames(styles.container, className)}>
-      <h2>{titleCase(project.name)}</h2>
-      <ProjectTable project={project} isManagerProp={isManagerProp} />
+      <h2 data-testid={`project-card-title-${projectIdx}`}>
+        {titleCase(project.name)}
+      </h2>
+      <ProjectTable
+        project={project}
+        isManagerProp={isManagerProp}
+        projectIdx={projectIdx}
+      />
     </div>
   );
 }
