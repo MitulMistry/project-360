@@ -23,11 +23,17 @@ export function ProjectCard({
       <h2 data-testid={`project-card-title-${projectIdx}`}>
         {titleCase(project.name)}
       </h2>
-      <ProjectTable
-        project={project}
-        isManagerProp={isManagerProp}
-        projectIdx={projectIdx}
-      />
+      {project.tasks.length > 0 ? (
+        <ProjectTable
+          project={project}
+          isManagerProp={isManagerProp}
+          projectIdx={projectIdx}
+        />
+      ) : (
+        <p>
+          This project has no tasks. Create one to start managing this project.
+        </p>
+      )}
     </div>
   );
 }
