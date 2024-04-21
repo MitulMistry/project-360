@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma";
-import type { User } from "@prisma/client";
+import { Role, type User } from "@prisma/client";
+import { findOrganizationUser } from "./organizations";
 
 export const findUser = async (id: string): Promise<User | null> =>
   prisma.user.findUnique({
@@ -10,6 +11,14 @@ export const findUserByEmail = async (email: string): Promise<User | null> =>
   prisma.user.findUnique({
     where: { email: email },
   });
+
+export const checkIfManager = async (
+  userId: string,
+  organizationId: string,
+): Promise<boolean> => {
+  const orgUser = await findOrganizationUser(userId, organizationId);
+  return orgUser?.role === Role.MANAGER || orgUser?.role === Role.OWNER;
+};
 
 export async function fetchTeam(orgId: string) {
   try {
