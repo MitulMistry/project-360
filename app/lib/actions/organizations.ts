@@ -317,3 +317,14 @@ export const authenticateOwner = (
   if (!organizationUser) throw new Error("User not member of organization.");
   if (organizationUser.role !== Role.OWNER) throw new Error("Unauthorized.");
 };
+
+export const authenticateManager = (
+  organizationUser: OrganizationUser | null,
+) => {
+  if (!organizationUser) throw new Error("User not member of organization.");
+  if (
+    organizationUser.role !== Role.OWNER &&
+    organizationUser.role !== Role.MANAGER
+  )
+    throw new Error("Unauthorized.");
+};

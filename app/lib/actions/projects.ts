@@ -1,6 +1,6 @@
 import prisma from "@/lib/prisma";
 import { z } from "zod";
-import { findOrganizationUser } from "./organizations";
+import { authenticateManager, findOrganizationUser } from "./organizations";
 import { checkIfManager, findUserByEmail } from "./users";
 import { Project, Role } from "@prisma/client";
 
@@ -99,6 +99,102 @@ export async function createProject(
     return {
       errors: error,
       message: "Failed to create the organization.",
+    };
+  }
+}
+
+const UpdateProject = FormSchema;
+
+export async function updateProject(
+  formData: Omit<Project, "createdAt"> & { userEmail: string },
+) {
+  // Validate form using Zod
+  const validatedFields = UpdateProject.safeParse({
+    id: formData.id,
+    name: formData.name,
+    userEmail: formData.userEmail,
+    organizationId: formData.organizationId,
+  });
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: "Missing Fields. Failed to Update Organization.",
+    };
+  }
+
+  const { id, name, userEmail, organizationId } = validatedFields.data;
+
+  try {
+    const user = await findUserByEmail(userEmail);
+    if (!user) throw new Error("Invalid user.");
+
+    // Only update the project if user is a manager (or owner)
+    const organizationUser = await findOrganizationUser(
+      user.id,
+      organizationId,
+    );
+    authenticateManager(organizationUser);
+
+    return await prisma.project.update({
+      where: {
+        id: id,
+      },
+      data: {
+        name: name,
+      },
+    });
+  } catch (error) {
+    console.error("Database Error:", error);
+    return {
+      errors: error,
+      message: "Failed to update the project.",
+    };
+  }
+}
+
+const DeleteProject = FormSchema.omit({ name: true });
+
+export async function deleteProject(
+  formData: Omit<Project, "name" | "createdAt"> & { userEmail: string },
+) {
+  // Validate form using Zod
+  const validatedFields = DeleteProject.safeParse({
+    id: formData.id,
+    userEmail: formData.userEmail,
+  });
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: "Missing Fields. Failed to Delete Project.",
+    };
+  }
+
+  const { id, userEmail } = validatedFields.data;
+
+  try {
+    const user = await findUserByEmail(userEmail);
+    if (!user) throw new Error("Invalid user.");
+
+    // Only delete the project if user is a manager
+    const organizationUser = await findOrganizationUser(user.id, id);
+    authenticateManager(organizationUser);
+
+    await prisma.project.delete({
+      where: {
+        id: id,
+      },
+    });
+
+    return {
+      message: "Successfully deleted project.",
+    };
+  } catch (error) {
+    console.error("Database Error:", error);
+    return {
+      errors: error,
+      message: "Failed to delete the project.",
     };
   }
 }
