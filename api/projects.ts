@@ -22,7 +22,7 @@ export async function createProjectReq(
 
 export async function updateProjectReq(project: Omit<Project, "createdAt">) {
   const data = await axios
-    .patch(ENDPOINT, project)
+    .patch(`${ENDPOINT}/${project.id}`, project)
     .then<Project>((response) => response.data.data);
   return data;
 }
@@ -31,7 +31,7 @@ export async function deleteProjectReq(
   project: Omit<Project, "name" | "createdAt">,
 ) {
   const data = await axios
-    .delete(ENDPOINT, { data: project })
+    .delete(`${ENDPOINT}/${project.id}`, { data: project })
     .then<Project>((response) => response.data.data);
   return data;
 }

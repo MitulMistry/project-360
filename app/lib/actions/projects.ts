@@ -162,6 +162,7 @@ export async function deleteProject(
   const validatedFields = DeleteProject.safeParse({
     id: formData.id,
     userEmail: formData.userEmail,
+    organizationId: formData.organizationId,
   });
 
   if (!validatedFields.success) {
@@ -171,14 +172,17 @@ export async function deleteProject(
     };
   }
 
-  const { id, userEmail } = validatedFields.data;
+  const { id, userEmail, organizationId } = validatedFields.data;
 
   try {
     const user = await findUserByEmail(userEmail);
     if (!user) throw new Error("Invalid user.");
 
     // Only delete the project if user is a manager
-    const organizationUser = await findOrganizationUser(user.id, id);
+    const organizationUser = await findOrganizationUser(
+      user.id,
+      organizationId,
+    );
     authenticateManager(organizationUser);
 
     await prisma.project.delete({
