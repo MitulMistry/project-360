@@ -29,3 +29,14 @@
 
   // flex: none;
 }
+
+.editForm {
+  margin-bottom: space.$s4;
+  max-width: 30rem;
+}
+
+.editFormContainer {
+  display: flex;
+
+  // justify-content: flex-end;
+}

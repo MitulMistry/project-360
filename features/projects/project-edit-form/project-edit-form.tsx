@@ -38,7 +38,7 @@ export function ProjectEditForm({
     },
     onSuccess: () => {
       // Invalidate the query to trigger a refetch
-      queryClient.invalidateQueries({ queryKey: [queryKeys.organizations] });
+      queryClient.invalidateQueries({ queryKey: [queryKeys.projects] });
       // Invoke prop function (typically a set state function from parent component)
       if (onSuccessFn) onSuccessFn();
     },

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteProjectReq } from "@/api/projects";
 import type { ProjectWithTasks } from "@/typings/project.types";
@@ -15,6 +15,7 @@ import { sanitizeProject, titleCase } from "@/app/lib/helpers";
 import classNames from "classnames";
 import styles from "./project-card.module.scss";
 import { queryKeys } from "@/api/query-keys";
+import { ProjectEditForm } from "../project-edit-form";
 
 type ProjectCardProps = {
   className?: string;
@@ -29,6 +30,8 @@ export function ProjectCard({
   isManagerProp,
   projectIdx,
 }: ProjectCardProps) {
+  const [enableEditForm, setEnableEditForm] = useState(false);
+
   // Override with isManagerProp
   const isManager =
     isManagerProp !== undefined ? isManagerProp : project.isManager;
@@ -63,7 +66,7 @@ export function ProjectCard({
                 color={ButtonColor.White}
                 variant={ButtonVariant.IconOnly}
                 className={styles.editButton}
-                // onPress={() => setEnableEditForm(!enableEditForm)}
+                onPress={() => setEnableEditForm(!enableEditForm)}
                 data-testid="project-edit-button"
               >
                 <EditIcon />
@@ -83,6 +86,11 @@ export function ProjectCard({
           )}
         </div>
       </div>
+      {enableEditForm && (
+        <div className={styles.editFormContainer}>
+          <ProjectEditForm project={project} className={styles.editForm} />
+        </div>
+      )}
       {project.tasks.length > 0 ? (
         <ProjectTable
           project={project}
