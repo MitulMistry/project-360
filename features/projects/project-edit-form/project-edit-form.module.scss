@@ -1,0 +1,19 @@
+@use "@styles/space";
+@use "@styles/font";
+@use "@styles/color";
+@use "@styles/shadow";
+
+// @use "@styles/breakpoint";
+
+.form {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.textInput {
+  flex: 1;
+  margin-right: space.$s4;
+}
