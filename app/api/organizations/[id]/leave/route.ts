@@ -6,15 +6,19 @@ import {
   unauthorizedResponse,
   failedResponse,
   checkForErrors,
-} from "../../lib/response-helpers";
+} from "../../../lib/response-helpers";
 
-export async function POST(request: Request) {
+export async function POST(
+  request: Request,
+  { params }: { params: { id: string } },
+) {
   const session = await getServerSession(authOptions);
   if (!session) return unauthorizedResponse;
   if (!session?.user?.email) return failedResponse();
 
   const formData = await request.json();
   formData.userEmail = session.user.email;
+  formData.id = params.id;
 
   const organization = await leaveOrganization(formData);
   if (checkForErrors(organization)) return failedResponse(organization);
