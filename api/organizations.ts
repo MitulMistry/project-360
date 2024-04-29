@@ -24,7 +24,7 @@ export async function updateOrganizationReq(
   organization: Omit<Organization, "createdAt">,
 ) {
   const data = await axios
-    .patch(ENDPOINT, organization)
+    .patch(`${ENDPOINT}/${organization.id}`, organization)
     .then<Organization>((response) => response.data.data);
   return data;
 }
@@ -33,7 +33,7 @@ export async function deleteOrganizationReq(
   organization: Omit<Organization, "name" | "createdAt">,
 ) {
   const data = await axios
-    .delete(ENDPOINT, { data: organization })
+    .delete(`${ENDPOINT}/${organization.id}`, { data: organization })
     .then<Organization>((response) => response.data.data);
   return data;
 }
@@ -42,7 +42,7 @@ export async function joinOrganizationReq(
   organization: Omit<Organization, "name" | "createdAt">,
 ) {
   const data = await axios
-    .post(`${ENDPOINT}/join`, organization)
+    .post(`${ENDPOINT}/${organization.id}/join`, organization)
     .then<Organization>((response) => response.data.data);
   return data;
 }
@@ -51,7 +51,7 @@ export async function leaveOrganizationReq(
   organization: Omit<Organization, "name" | "createdAt">,
 ) {
   const data = await axios
-    .post(`${ENDPOINT}/leave`, organization)
+    .post(`${ENDPOINT}/${organization.id}/leave`, organization)
     .then<Organization>((response) => response.data.data);
   return data;
 }

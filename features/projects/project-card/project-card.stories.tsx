@@ -1,6 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { ProjectCard } from "./project-card";
-import { mockProjectWithTasks1 } from "@/__mocks__/project";
+import {
+  mockProjectWithNoTasks1,
+  mockProjectWithTasks1,
+} from "@/__mocks__/project";
 import QueryClientWrapper from "@api/query-client-wrapper";
 
 // Storybook CSF3 format
@@ -24,4 +27,9 @@ export const Default: Story = {
       return <QueryClientWrapper>{Story()}</QueryClientWrapper>;
     },
   ],
+};
+
+export const NoTasks: Story = {
+  ...Default,
+  args: { ...Default.args, project: mockProjectWithNoTasks1 },
 };

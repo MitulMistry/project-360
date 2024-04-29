@@ -153,3 +153,12 @@ export const mockProjectWithTasks2: ProjectWithTasks = {
     },
   ],
 };
+
+export const mockProjectWithNoTasks1: ProjectWithTasks = {
+  id: "clud0qi6g000008t49ga1g1d1",
+  organizationId: mockOrganization1.id,
+  createdAt: currentDate(),
+  name: "New Project",
+  isManager: true,
+  tasks: [],
+};
