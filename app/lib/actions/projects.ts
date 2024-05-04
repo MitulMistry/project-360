@@ -202,3 +202,10 @@ export async function deleteProject(
     };
   }
 }
+
+/*--- Helper functions ---*/
+
+export const findProject = async (id: string): Promise<Project | null> =>
+  prisma.project.findUnique({
+    where: { id: id },
+  });
