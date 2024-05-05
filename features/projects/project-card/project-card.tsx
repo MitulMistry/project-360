@@ -67,7 +67,7 @@ export function ProjectCard({
                 variant={ButtonVariant.IconOnly}
                 className={styles.editButton}
                 onPress={() => setEnableEditForm(!enableEditForm)}
-                data-testid="project-edit-button"
+                data-testid={`project-edit-button-${projectIdx}`}
               >
                 <EditIcon />
               </Button>
@@ -78,7 +78,7 @@ export function ProjectCard({
                 className={styles.editButton}
                 onPress={() => deleteProjectMutation.mutate()}
                 isDisabled={deleteProjectMutation.isPending}
-                data-testid="project-delete-button"
+                data-testid={`project-delete-button-${projectIdx}`}
               >
                 <TrashIcon />
               </Button>

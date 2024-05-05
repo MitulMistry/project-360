@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import type { TaskWithAssignee } from "@/typings/task.types";
 import classNames from "classnames";
 import styles from "./project-table-row.module.scss";
@@ -11,6 +11,14 @@ import {
   StatusButtonSize,
   statusColors,
 } from "@/features/ui/status-button";
+import {
+  Button,
+  ButtonColor,
+  ButtonSize,
+  ButtonVariant,
+  EditIcon,
+  TrashIcon,
+} from "@features/ui";
 
 type ProjectTableRowProps = {
   className?: string;
@@ -27,6 +35,7 @@ export function ProjectTableRow({
   projectIdx = 0,
   rowIdx,
 }: ProjectTableRowProps) {
+  const [enableEditForm, setEnableEditForm] = useState(false);
   const idx = `${projectIdx}-${rowIdx}`;
 
   return (
@@ -69,15 +78,49 @@ export function ProjectTableRow({
       <td className={styles.td} data-testid={`task-due-date-${idx}`}>
         {formatDate(task.dueDate)}
       </td>
+
       {isManager && (
-        <td className={styles.td} data-testid={`task-submit-button-${idx}`}>
-          Submit
-        </td>
-      )}
-      {isManager && (
-        <td className={styles.td} data-testid={`task-edit-button-${idx}`}>
-          Edit
-        </td>
+        <>
+          <td className={styles.td} data-testid={`task-submit-${idx}`}>
+            {enableEditForm && (
+              <Button
+                size={ButtonSize.Small}
+                color={ButtonColor.Primary}
+                // className={styles.submitButton}
+                // onPress={() => editMutation.mutate()}
+                // isDisabled={editMutation.isPending}
+                data-testid={`user-submit-button-${idx}`}
+              >
+                Submit
+              </Button>
+            )}
+          </td>
+          <td className={styles.td} data-testid={`task-edit-${idx}`}>
+            <div className={styles.cell}>
+              <Button
+                size={ButtonSize.Medium}
+                color={ButtonColor.White}
+                variant={ButtonVariant.IconOnly}
+                className={styles.editButton}
+                onPress={() => setEnableEditForm(!enableEditForm)}
+                data-testid={`task-edit-button-${idx}`}
+              >
+                <EditIcon />
+              </Button>
+              <Button
+                size={ButtonSize.Medium}
+                color={ButtonColor.DestructiveSecondary}
+                variant={ButtonVariant.IconOnly}
+                className={styles.editButton}
+                // onPress={() => deleteTaskMutation.mutate()}
+                // isDisabled={deleteTaskMutation.isPending}
+                data-testid={`task-delete-button-${idx}`}
+              >
+                <TrashIcon />
+              </Button>
+            </div>
+          </td>
+        </>
       )}
     </tr>
   );

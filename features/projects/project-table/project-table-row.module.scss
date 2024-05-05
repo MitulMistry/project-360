@@ -27,6 +27,15 @@
   // Use Flex to center avatar image + text
   display: flex;
   align-items: center;
+
+  // Reuse cell class for edit buttons
+  .editButton {
+    margin-right: space.$s2;
+  }
+
+  .editButton:last-of-type {
+    margin-right: 0;
+  }
 }
 
 .avatar {
