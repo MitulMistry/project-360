@@ -1,6 +1,7 @@
 import { OrganizationWithOwner } from "@/typings/organization.types";
 import { ProjectWithTasks } from "@/typings/project.types";
-import type { Organization, Project } from "@prisma/client";
+import { TaskWithAssignee } from "@/typings/task.types";
+import type { Organization, Project, Task } from "@prisma/client";
 import { lowerCase, startCase } from "lodash";
 
 // This removes the isOwner key through destructuring
@@ -17,6 +18,11 @@ export const sanitizeProject = ({
   isManager,
   ...project
 }: ProjectWithTasks): Project => project;
+
+// This removes the assignee key through destructuring (leaves assigneeId)
+/* eslint-disable @typescript-eslint/no-unused-vars*/
+export const sanitizeTask = ({ assignee, ...task }: TaskWithAssignee): Task =>
+  task;
 
 // Will take either DateTime object, or string to convert to DateTime object
 export const formatDate = (date: Date | string | null) => {

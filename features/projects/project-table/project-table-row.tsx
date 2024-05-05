@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { queryKeys } from "@/api/query-keys";
+import { deleteTaskReq } from "@/api/tasks";
 import type { TaskWithAssignee } from "@/typings/task.types";
 import classNames from "classnames";
 import styles from "./project-table-row.module.scss";
 import { UserAvatar, UserAvatarSize } from "@/features/team";
-import { titleCase } from "@/app/lib/helpers";
+import { sanitizeTask, titleCase } from "@/app/lib/helpers";
 import { formatDate } from "@/app/lib/helpers";
 import {
   priorityColors,
@@ -37,6 +40,20 @@ export function ProjectTableRow({
 }: ProjectTableRowProps) {
   const [enableEditForm, setEnableEditForm] = useState(false);
   const idx = `${projectIdx}-${rowIdx}`;
+
+  const queryClient = useQueryClient();
+
+  const deleteTaskMutation = useMutation({
+    mutationFn: () => {
+      // Get rid of extra keys, like Assignee
+      const sanitizedTask = sanitizeTask(task);
+      return deleteTaskReq(sanitizedTask);
+    },
+    onSuccess: () => {
+      // Invalidate the query to trigger a refetch
+      queryClient.invalidateQueries({ queryKey: [queryKeys.projects] });
+    },
+  });
 
   return (
     <tr
@@ -112,8 +129,8 @@ export function ProjectTableRow({
                 color={ButtonColor.DestructiveSecondary}
                 variant={ButtonVariant.IconOnly}
                 className={styles.editButton}
-                // onPress={() => deleteTaskMutation.mutate()}
-                // isDisabled={deleteTaskMutation.isPending}
+                onPress={() => deleteTaskMutation.mutate()}
+                isDisabled={deleteTaskMutation.isPending}
                 data-testid={`task-delete-button-${idx}`}
               >
                 <TrashIcon />

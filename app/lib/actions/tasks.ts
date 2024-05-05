@@ -169,10 +169,18 @@ export async function updateTask(
   }
 }
 
-const DeleteTask = FormSchema.omit({ name: true });
+const DeleteTask = FormSchema.omit({
+  name: true,
+  projectId: true,
+  status: true,
+  priority: true,
+});
 
 export async function deleteTask(
-  formData: Omit<Task, "name" | "createdAt" | "updatedAt" | "projectId"> & {
+  formData: Omit<
+    Task,
+    "name" | "createdAt" | "updatedAt" | "projectId" | "status" | "priority"
+  > & {
     userEmail: string;
   },
 ) {
@@ -181,6 +189,7 @@ export async function deleteTask(
     id: formData.id,
     userEmail: formData.userEmail,
   });
+  console.log(validatedFields);
 
   if (!validatedFields.success) {
     return {
