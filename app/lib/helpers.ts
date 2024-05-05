@@ -32,5 +32,5 @@ export const formatDate = (date: Date | string | null) => {
   return `${convertedDate.getMonth() + 1}/${convertedDate.getDate()}/${convertedDate.getFullYear()}`;
 };
 
-export const titleCase = (str: string | null) =>
+export const titleCase = (str: string | null | undefined) =>
   str ? startCase(lowerCase(str)) : null;

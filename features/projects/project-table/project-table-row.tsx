@@ -64,14 +64,19 @@ export function ProjectTableRow({
         {titleCase(task.name)}
       </th>
       <td className={styles.td}>
-        <div className={styles.cell} data-testid={`task-assignee-name-${idx}`}>
-          <UserAvatar
-            size={UserAvatarSize.Small}
-            className={styles.avatar}
-            imgUrl={task.assignee.image || undefined}
-          />
-          {titleCase(task.assignee.name)}
-        </div>
+        {task.assignee && (
+          <div
+            className={styles.cell}
+            data-testid={`task-assignee-name-${idx}`}
+          >
+            <UserAvatar
+              size={UserAvatarSize.Small}
+              className={styles.avatar}
+              imgUrl={task.assignee?.image || undefined}
+            />
+            {titleCase(task.assignee?.name)}
+          </div>
+        )}
       </td>
       <td className={styles.td} data-testid={`task-status-${idx}`}>
         <StatusButton
