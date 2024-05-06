@@ -2,7 +2,7 @@ import prisma from "@/lib/prisma";
 import { z } from "zod";
 import { authenticateManager, findOrganizationUser } from "./organizations";
 import { checkIfManager, findUserByEmail } from "./users";
-import { Priority, Status, Task } from "@prisma/client";
+import { Priority, Status, Task, TimeUnits } from "@prisma/client";
 import { findProject } from "./projects";
 
 const FormSchema = z.object({
@@ -18,7 +18,7 @@ const FormSchema = z.object({
   status: z.nativeEnum(Status),
   priority: z.nativeEnum(Priority),
   timeEstimate: z.number().optional(),
-  timeEstimateUnits: z.string().optional(),
+  timeEstimateUnits: z.nativeEnum(TimeUnits).optional(),
   dueDate: z.date().optional(),
 });
 
