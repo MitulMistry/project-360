@@ -1,5 +1,5 @@
 import type { Project } from "@prisma/client";
-import { Status, Priority } from "@prisma/client";
+import { Status, Priority, TimeUnits } from "@prisma/client";
 import type { ProjectWithTasks } from "@/typings/project.types";
 import type { TaskWithAssignee } from "@/typings/task.types";
 import { mockOrganization1 } from "./organization";
@@ -39,7 +39,7 @@ export const mockProjectWithTasks1: ProjectWithTasks = {
       status: Status.READY,
       priority: Priority.CRITICAL,
       timeEstimate: 20,
-      timeEstimateUnits: "hrs",
+      timeEstimateUnits: TimeUnits.HOURS,
       dueDate: incrementDate(6),
       assignee: mockUsersSimple1[0],
     },
@@ -53,7 +53,7 @@ export const mockProjectWithTasks1: ProjectWithTasks = {
       status: Status.INPROGRESS,
       priority: Priority.LOW,
       timeEstimate: 5,
-      timeEstimateUnits: "hrs",
+      timeEstimateUnits: TimeUnits.HOURS,
       dueDate: incrementDate(3),
       assignee: mockUsersSimple1[1],
     },
@@ -67,7 +67,7 @@ export const mockProjectWithTasks1: ProjectWithTasks = {
       status: Status.DONE,
       priority: Priority.HIGH,
       timeEstimate: 10,
-      timeEstimateUnits: "hrs",
+      timeEstimateUnits: TimeUnits.HOURS,
       dueDate: incrementDate(1),
       assignee: mockUsersSimple1[2],
     },
@@ -81,7 +81,7 @@ export const mockProjectWithTasks1: ProjectWithTasks = {
       status: Status.DONE,
       priority: Priority.LOW,
       timeEstimate: 5,
-      timeEstimateUnits: "hrs",
+      timeEstimateUnits: TimeUnits.HOURS,
       dueDate: incrementDate(3),
       assignee: mockUsersSimple1[3],
     },
@@ -95,7 +95,7 @@ export const mockProjectWithTasks1: ProjectWithTasks = {
       status: Status.STUCK,
       priority: Priority.MEDIUM,
       timeEstimate: 10,
-      timeEstimateUnits: "hrs",
+      timeEstimateUnits: TimeUnits.HOURS,
       dueDate: incrementDate(7),
       assignee: mockUsersSimple1[4],
     },
@@ -119,7 +119,7 @@ export const mockProjectWithTasks2: ProjectWithTasks = {
       status: Status.INPROGRESS,
       priority: Priority.MEDIUM,
       timeEstimate: 5,
-      timeEstimateUnits: "hrs",
+      timeEstimateUnits: TimeUnits.HOURS,
       dueDate: incrementDate(4),
       assignee: mockUsersSimple1[3],
     },
@@ -133,7 +133,7 @@ export const mockProjectWithTasks2: ProjectWithTasks = {
       status: Status.STUCK,
       priority: Priority.CRITICAL,
       timeEstimate: 20,
-      timeEstimateUnits: "hrs",
+      timeEstimateUnits: TimeUnits.HOURS,
       dueDate: incrementDate(10),
       assignee: mockUsersSimple1[4],
     },
@@ -147,7 +147,7 @@ export const mockProjectWithTasks2: ProjectWithTasks = {
       status: Status.READY,
       priority: Priority.HIGH,
       timeEstimate: 10,
-      timeEstimateUnits: "hrs",
+      timeEstimateUnits: TimeUnits.HOURS,
       dueDate: incrementDate(10),
       assignee: mockUsersSimple1[2],
     },
