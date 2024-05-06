@@ -25,6 +25,7 @@ export enum StatusColor {
 }
 
 type StatusColorItem = {
+  item: Status | Priority;
   name: string;
   color: StatusColor;
 };
@@ -53,15 +54,22 @@ const statusToColorMap = {
 
 export const statusColors = [
   {
+    item: Status.READY,
     name: statusToTextMap[Status.READY],
     color: statusToColorMap[Status.READY],
   },
   {
+    item: Status.INPROGRESS,
     name: statusToTextMap[Status.INPROGRESS],
     color: statusToColorMap[Status.INPROGRESS],
   },
-  { name: statusToTextMap[Status.DONE], color: statusToColorMap[Status.DONE] },
   {
+    item: Status.DONE,
+    name: statusToTextMap[Status.DONE],
+    color: statusToColorMap[Status.DONE],
+  },
+  {
+    item: Status.STUCK,
     name: statusToTextMap[Status.STUCK],
     color: statusToColorMap[Status.STUCK],
   },
@@ -69,18 +77,22 @@ export const statusColors = [
 
 export const priorityColors = [
   {
+    item: Priority.LOW,
     name: statusToTextMap[Priority.LOW],
     color: statusToColorMap[Priority.LOW],
   },
   {
+    item: Priority.MEDIUM,
     name: statusToTextMap[Priority.MEDIUM],
     color: statusToColorMap[Priority.MEDIUM],
   },
   {
+    item: Priority.HIGH,
     name: statusToTextMap[Priority.HIGH],
     color: statusToColorMap[Priority.HIGH],
   },
   {
+    item: Priority.CRITICAL,
     name: statusToTextMap[Priority.CRITICAL],
     color: statusToColorMap[Priority.CRITICAL],
   },
@@ -95,6 +107,9 @@ type StatusButtonProps = AriaButtonProps & {
   initialItem?: Status | Priority;
   items: StatusColorItem[];
   isActive?: boolean;
+  // Pass a setState function from parent component, cast enum value as string.
+  // Need to specify on parent, "as Status" or "as Priority".
+  onStatusChange?: (newEnumValue: string) => void;
 };
 
 export function StatusButton({
@@ -103,6 +118,7 @@ export function StatusButton({
   initialItem,
   items,
   isActive = true,
+  onStatusChange,
   ...props
 }: StatusButtonProps) {
   // Find the index of the item that matches the initial status
@@ -115,6 +131,9 @@ export function StatusButton({
   const increment = () => {
     const newId = selectedId === items.length - 1 ? 0 : selectedId + 1;
     setSelectedId(newId);
+
+    // Invoke parent's setState function, use this item.
+    if (onStatusChange) onStatusChange(items[newId].item);
   };
 
   return (
