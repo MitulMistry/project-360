@@ -110,7 +110,7 @@ model Task {
   status            Status    @default(READY)
   priority          Priority  @default(LOW)
   timeEstimate      Int?
-  timeEstimateUnits String?
+  timeEstimateUnits TimeUnits @default(HOURS)
   dueDate           DateTime?
 }
 
@@ -126,4 +126,10 @@ enum Priority {
   MEDIUM
   CRITICAL
   HIGH
+}
+
+enum TimeUnits {
+  HOURS
+  DAYS
+  WEEKS
 }
