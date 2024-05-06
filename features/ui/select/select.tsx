@@ -5,6 +5,7 @@ import type {
   ListBoxItemProps,
   SelectProps as AriaSelectProps,
   ValidationResult,
+  Key,
 } from "react-aria-components";
 import {
   Button,
@@ -31,6 +32,44 @@ interface SelectProps<T extends object>
   items?: Iterable<T>;
   children: React.ReactNode | ((item: T) => React.ReactNode);
 }
+
+// This is a higher order function that ensures Key type from Select input is
+// of the correct (Prisma) enum type. It is used to create handler functions like this:
+// const handleRoleChange = createEnumChangeHandler(setUserRole, Role);
+// const handleStatusChange = createEnumChangeHandler(setUserStatus, Status);
+
+// It's a generic function to replace specific cases such as:
+// const handleRoleChange = (key: Key) => {
+//   if (typeof key === "string" && Object.keys(Role).includes(key)) {
+//     setUserRole(key as Role);
+//   }
+// };
+
+// export const createEnumChangeHandler =
+//   (
+//     setEnumValue: (value: string) => void, // A React setState function
+//     enumObject: Record<string, unknown>, // A Prisma enum like Role, Priority, etc.
+//   ) =>
+//   (key: Key) => {
+//     // The key is from React Aria select component
+//     if (typeof key === "string" && Object.keys(enumObject).includes(key)) {
+//       setEnumValue(key);
+//     }
+//   };
+
+export const createEnumChangeHandler =
+  <T extends string | number>(
+    setEnumValue: React.Dispatch<React.SetStateAction<T>>,
+    enumObject: Record<string, T>,
+  ) =>
+  (key: Key) => {
+    if (
+      typeof key === "string" &&
+      Object.values(enumObject).includes(key as T)
+    ) {
+      setEnumValue(key as T);
+    }
+  };
 
 export function Select<T extends object>({
   className,
