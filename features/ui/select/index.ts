@@ -1,1 +1,1 @@
-export { Select, Item } from "./select";
+export { Select, Item, createEnumChangeHandler } from "./select";

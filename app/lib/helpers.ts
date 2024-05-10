@@ -34,3 +34,25 @@ export const formatDate = (date: Date | string | null) => {
 
 export const titleCase = (str: string | null | undefined) =>
   str ? startCase(lowerCase(str)) : null;
+
+// If value is a number, return it as a number, or else return null
+export const parseNumber = (val: string | number | null | undefined) =>
+  !isNaN(Number(val)) ? Number(val) : null;
+
+// If string provided can be converted to a date, return the date, or else return null
+export const parseDate = (
+  dateString: string | null | undefined,
+): Date | null => {
+  if (!dateString) return null;
+
+  const date = new Date(dateString);
+
+  // If date was successfully created, getTime() should return a valid number
+  if (Number.isNaN(date.getTime())) {
+    // Date creation was invalid
+    return null;
+  } else {
+    // Date creation was valid
+    return date;
+  }
+};
