@@ -95,7 +95,8 @@ export function ProjectTableRow({
         />
       </td>
       <td className={styles.td} data-testid={`task-time-estimate-${idx}`}>
-        {task.timeEstimate && `${task.timeEstimate} ${task.timeEstimateUnits}`}
+        {task.timeEstimate &&
+          `${task.timeEstimate} ${titleCase(task.timeEstimateUnits)}`}
       </td>
       <td className={styles.td} data-testid={`task-due-date-${idx}`}>
         {formatDate(task.dueDate)}

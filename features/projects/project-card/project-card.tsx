@@ -9,6 +9,7 @@ import {
   ButtonSize,
   ButtonVariant,
   EditIcon,
+  PlusIcon,
   TrashIcon,
 } from "@/features/ui";
 import { sanitizeProject, titleCase } from "@/app/lib/helpers";
@@ -16,6 +17,7 @@ import classNames from "classnames";
 import styles from "./project-card.module.scss";
 import { queryKeys } from "@/api/query-keys";
 import { ProjectEditForm } from "../project-edit-form";
+import { TaskNewForm } from "@/features/tasks";
 
 type ProjectCardProps = {
   className?: string;
@@ -31,6 +33,9 @@ export function ProjectCard({
   projectIdx,
 }: ProjectCardProps) {
   const [enableEditForm, setEnableEditForm] = useState(false);
+  const [showTaskNewForm, setShowTaskNewForm] = useState(false);
+
+  const toggleShowTaskNewForm = () => setShowTaskNewForm(!showTaskNewForm);
 
   // Override with isManagerProp
   const isManager =
@@ -92,11 +97,33 @@ export function ProjectCard({
         </div>
       )}
       {project.tasks.length > 0 ? (
-        <ProjectTable
-          project={project}
-          isManagerProp={isManagerProp}
-          projectIdx={projectIdx}
-        />
+        <>
+          <ProjectTable
+            project={project}
+            isManagerProp={isManagerProp}
+            projectIdx={projectIdx}
+          />
+
+          {isManager && (
+            <>
+              {showTaskNewForm && (
+                <TaskNewForm project={project} className={styles.taskNewForm} />
+              )}
+              <div className={styles.bottomButtons}>
+                <Button
+                  size={ButtonSize.Medium}
+                  color={ButtonColor.Primary}
+                  className={styles.button}
+                  onPress={toggleShowTaskNewForm}
+                  data-testid="task-enable-new-btn"
+                >
+                  <PlusIcon />
+                  New Task
+                </Button>
+              </div>
+            </>
+          )}
+        </>
       ) : (
         <p>
           This project has no tasks. Create one to start managing this project.

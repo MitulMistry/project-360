@@ -40,3 +40,14 @@
 
   // justify-content: flex-end;
 }
+
+.bottomButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: space.$s4;
+}
+
+.taskNewForm {
+  margin: space.$s6 0;
+}
