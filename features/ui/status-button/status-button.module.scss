@@ -6,6 +6,13 @@
 
 .container {
   display: flex;
+  flex-direction: column;
+}
+
+.label {
+  color: color.$general-80;
+  font: font.$text-sm-medium;
+  margin-bottom: 6px;
 }
 
 .statusButton {

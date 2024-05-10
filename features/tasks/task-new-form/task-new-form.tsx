@@ -127,6 +127,8 @@ export function TaskNewForm({ project, users, className }: TaskNewFormProps) {
           items={statusColors}
           isActive={true}
           onStatusChange={handleStatusChange}
+          label="Status"
+          data-testid="task-status-input"
         />
 
         <StatusButton
@@ -135,6 +137,8 @@ export function TaskNewForm({ project, users, className }: TaskNewFormProps) {
           items={priorityColors}
           isActive={true}
           onStatusChange={handlePriorityChange}
+          label="Priority"
+          data-testid="task-priority-input"
         />
 
         <TextInput

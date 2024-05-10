@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import type { ButtonProps as AriaButtonProps } from "react-aria-components";
-import { Button as AriaButton } from "react-aria-components";
+import { Button as AriaButton, Label } from "react-aria-components";
 import { Status, Priority } from "@prisma/client";
 import classNames from "classnames";
 import styles from "./status-button.module.scss";
@@ -103,6 +103,7 @@ export const priorityColors = [
 // https://react-spectrum.adobe.com/react-aria/Button.html#props
 type StatusButtonProps = AriaButtonProps & {
   className?: string;
+  label?: string;
   size?: StatusButtonSize;
   initialItem?: Status | Priority;
   items: StatusColorItem[];
@@ -114,6 +115,7 @@ type StatusButtonProps = AriaButtonProps & {
 
 export function StatusButton({
   className,
+  label,
   size = StatusButtonSize.Medium,
   initialItem,
   items,
@@ -138,6 +140,8 @@ export function StatusButton({
 
   return (
     <div className={classNames(styles.container, className)}>
+      {label && <Label className={styles.label}>{label}</Label>}
+
       {isActive ? (
         // If the component is active, render a clickable button
         <AriaButton

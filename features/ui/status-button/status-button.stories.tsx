@@ -39,3 +39,8 @@ export const Priority: Story = {
   ...Default,
   args: { ...Default.args, items: priorityColors },
 };
+
+export const Label: Story = {
+  ...Default,
+  args: { ...Default.args, label: "Label" },
+};
