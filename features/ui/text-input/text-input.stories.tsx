@@ -43,3 +43,35 @@ export const Error: Story = {
     errorMessage: "This is an error message.",
   },
 };
+
+export const Email: Story = {
+  ...Default,
+  args: {
+    ...Default.args,
+    type: "email",
+  },
+};
+
+export const Password: Story = {
+  ...Default,
+  args: {
+    ...Default.args,
+    type: "password",
+  },
+};
+
+export const Number: Story = {
+  ...Default,
+  args: {
+    ...Default.args,
+    type: "number",
+  },
+};
+
+export const Date: Story = {
+  ...Default,
+  args: {
+    ...Default.args,
+    type: "date",
+  },
+};
