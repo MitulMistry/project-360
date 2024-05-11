@@ -17,7 +17,7 @@ import classNames from "classnames";
 import styles from "./project-card.module.scss";
 import { queryKeys } from "@/api/query-keys";
 import { ProjectEditForm } from "../project-edit-form";
-import { TaskNewForm } from "@/features/tasks";
+import { TaskNewFormWithTeam } from "@/features/tasks";
 
 type ProjectCardProps = {
   className?: string;
@@ -107,7 +107,11 @@ export function ProjectCard({
           {isManager && (
             <>
               {showTaskNewForm && (
-                <TaskNewForm project={project} className={styles.taskNewForm} />
+                // <TaskNewForm project={project} className={styles.taskNewForm} />
+                <TaskNewFormWithTeam
+                  project={project}
+                  className={styles.taskNewForm}
+                />
               )}
               <div className={styles.bottomButtons}>
                 <Button
