@@ -6,7 +6,7 @@ import { OrganizationList } from "@features/organizations";
 import OrganizationsInterface from "./organizations-interface";
 import { useGetOrganizations } from "./api/use-get-organizations";
 import {
-  LoadingIndicator,
+  LoadingIndicatorWithContainer,
   LoadingIndicatorSize,
   Notification,
   NotificationColor,
@@ -37,7 +37,7 @@ export default function OrganizationsPage() {
         </Notification>
       )}
       {isPending ? (
-        <LoadingIndicator
+        <LoadingIndicatorWithContainer
           size={LoadingIndicatorSize.Large}
           className={styles.loadingIndicator}
         />

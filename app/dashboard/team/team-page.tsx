@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { TeamTable } from "@/features/team";
 import { useGetTeam } from "./api/use-get-team";
 import {
-  LoadingIndicator,
+  LoadingIndicatorWithContainer,
   LoadingIndicatorSize,
   Notification,
   NotificationColor,
@@ -43,7 +43,7 @@ export function TeamPage() {
       )}
       {/* isPending for initial request, isFetching for invalidated query (refetch) */}
       {isPending || isFetching || !currentOrganization ? (
-        <LoadingIndicator
+        <LoadingIndicatorWithContainer
           size={LoadingIndicatorSize.Large}
           className={styles.loadingIndicator}
         />

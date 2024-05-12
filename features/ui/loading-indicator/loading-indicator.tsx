@@ -21,12 +21,13 @@ export function LoadingIndicator({
   const src = `/icons/loading-circle-${size}.svg`;
 
   return (
-    <div
-      className={classNames(styles.container, className)}
-      data-testid="loading-indicator"
-    >
+    <>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className={styles.loadingIndicator} src={src} alt="loading circle" />
-    </div>
+      <img
+        className={classNames(styles.loadingIndicator, className)}
+        src={src}
+        alt="loading circle"
+      />
+    </>
   );
 }

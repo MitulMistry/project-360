@@ -4,15 +4,6 @@
 // @use "@styles/font";
 // @use "@styles/space";
 
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  // height: 300px;
-  width: 100%;
-}
-
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -25,8 +16,4 @@
 
 .loadingIndicator {
   animation: spin 1s ease-in-out infinite;
-
-  @media (min-width: breakpoint.$desktop) {
-    margin-top: 6rem;
-  }
 }

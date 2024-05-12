@@ -6,10 +6,6 @@ import { LoadingIndicator, LoadingIndicatorSize } from ".";
 const meta: Meta<typeof LoadingIndicator> = {
   title: "UI/LoadingIndicator",
   component: LoadingIndicator,
-  parameters: {
-    // Show component without padding
-    layout: "fullscreen",
-  },
 };
 export default meta;
 

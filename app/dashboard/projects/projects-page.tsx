@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { ProjectCard } from "@/features/projects";
 import { useGetProjects } from "./api/use-get-projects";
 import {
-  LoadingIndicator,
+  LoadingIndicatorWithContainer,
   LoadingIndicatorSize,
   Notification,
   NotificationColor,
@@ -45,7 +45,7 @@ export function ProjectsPage() {
       )}
       {/* isPending for initial request, isFetching for invalidated query (refetch) */}
       {isPending || isFetching || !currentOrganization ? (
-        <LoadingIndicator
+        <LoadingIndicatorWithContainer
           size={LoadingIndicatorSize.Large}
           className={styles.loadingIndicator}
         />
