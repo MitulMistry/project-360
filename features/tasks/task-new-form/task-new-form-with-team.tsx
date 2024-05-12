@@ -5,7 +5,10 @@ import { CurrentDataContext } from "@/app/context/current-data-provider";
 import { useGetTeam } from "@/app/dashboard/team/api/use-get-team";
 import type { ProjectWithTasks } from "@/typings/project.types";
 import { TaskNewForm } from "./task-new-form";
-import { LoadingIndicator, LoadingIndicatorSize } from "@features/ui";
+import {
+  LoadingIndicatorSize,
+  LoadingIndicatorWithContainer,
+} from "@features/ui";
 import styles from "./task-new-form-with-team.module.scss";
 
 type TaskNewFormWithTeamProps = {
@@ -29,7 +32,7 @@ export function TaskNewFormWithTeam({
   return (
     <div className={styles.container}>
       {isPending || isFetching || !currentOrganization ? (
-        <LoadingIndicator
+        <LoadingIndicatorWithContainer
           size={LoadingIndicatorSize.Small}
           className={styles.loadingIndicator}
         />

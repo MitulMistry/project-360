@@ -11,8 +11,5 @@
 
   // height: 300px;
   width: 100%;
-
-  @media (min-width: breakpoint.$desktop) {
-    padding-top: 6rem;
-  }
+  padding: 6rem 0;
 }
