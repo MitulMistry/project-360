@@ -9,17 +9,18 @@ const FormSchema = z.object({
   id: z.string(),
   userEmail: z.string().email({ message: "Invalid email address" }),
   projectId: z.string(),
-  assigneeId: z.string().optional(),
+  assigneeId: z.string().optional().nullable(),
   name: z
     .string()
     .min(3, { message: "Must be 3 or more characters long" })
     .max(100, { message: "Must be 100 or fewer characters long" })
-    .optional(),
+    .optional()
+    .nullable(),
   status: z.nativeEnum(Status),
   priority: z.nativeEnum(Priority),
-  timeEstimate: z.number().optional(),
+  timeEstimate: z.number().optional().nullable(),
   timeEstimateUnits: z.nativeEnum(TimeUnits).optional(),
-  dueDate: z.date().optional(),
+  dueDate: z.coerce.date().optional().nullable(),
 });
 
 const CreateTask = FormSchema.omit({ id: true });

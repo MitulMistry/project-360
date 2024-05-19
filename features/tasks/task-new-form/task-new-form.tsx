@@ -19,7 +19,12 @@ import { queryKeys } from "@api/query-keys";
 import { ProjectWithTasks } from "@typings/project.types";
 import { UserForOrg } from "@typings/user.types";
 import { Priority, Status, TimeUnits } from "@prisma/client";
-import { parseDate, parseNumber, titleCase } from "@/app/lib/helpers";
+import {
+  checkEmptyString,
+  parseDate,
+  parseNumber,
+  titleCase,
+} from "@/app/lib/helpers";
 import { createEnumChangeHandler } from "@features/ui";
 
 type TaskNewFormProps = {
@@ -73,8 +78,8 @@ export function TaskNewForm({ project, users, className }: TaskNewFormProps) {
 
       const task = {
         projectId: project.id,
-        name,
-        assigneeId,
+        name: checkEmptyString(name),
+        assigneeId: checkEmptyString(assigneeId),
         status,
         priority,
         timeEstimate: parseNumber(timeEstimate),
@@ -154,6 +159,7 @@ export function TaskNewForm({ project, users, className }: TaskNewFormProps) {
         <Select
           className={styles.input}
           onSelectionChange={handleTimeEstimateUnitsChange}
+          selectedKey={timeEstimateUnits}
           label="Time Units"
           data-testid={"task-new-time-estimate-units-input"}
         >

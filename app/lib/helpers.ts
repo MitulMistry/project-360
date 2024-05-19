@@ -36,8 +36,18 @@ export const titleCase = (str: string | null | undefined) =>
   str ? startCase(lowerCase(str)) : null;
 
 // If value is a number, return it as a number, or else return null
-export const parseNumber = (val: string | number | null | undefined) =>
-  !isNaN(Number(val)) ? Number(val) : null;
+export const parseNumber = (val: string | number | null | undefined) => {
+  // Number() returns 0 for these:
+  if (val === "" || val === null || val === undefined) {
+    return null;
+  } else {
+    return !isNaN(Number(val)) ? Number(val) : null;
+  }
+};
+
+// If string is empty (""), return null, else return the string
+export const checkEmptyString = (str: string) =>
+  str.length === 0 ? null : str;
 
 // If string provided can be converted to a date, return the date, or else return null
 export const parseDate = (

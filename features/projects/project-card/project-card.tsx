@@ -97,41 +97,39 @@ export function ProjectCard({
         </div>
       )}
       {project.tasks.length > 0 ? (
-        <>
-          <ProjectTable
-            project={project}
-            isManagerProp={isManagerProp}
-            projectIdx={projectIdx}
-          />
-
-          {isManager && (
-            <>
-              {showTaskNewForm && (
-                // <TaskNewForm project={project} className={styles.taskNewForm} />
-                <TaskNewFormWithTeam
-                  project={project}
-                  className={styles.taskNewForm}
-                />
-              )}
-              <div className={styles.bottomButtons}>
-                <Button
-                  size={ButtonSize.Medium}
-                  color={ButtonColor.Primary}
-                  className={styles.button}
-                  onPress={toggleShowTaskNewForm}
-                  data-testid="task-enable-new-btn"
-                >
-                  <PlusIcon />
-                  New Task
-                </Button>
-              </div>
-            </>
-          )}
-        </>
+        <ProjectTable
+          project={project}
+          isManagerProp={isManagerProp}
+          projectIdx={projectIdx}
+        />
       ) : (
         <p>
-          This project has no tasks. Create one to start managing this project.
+          {!showTaskNewForm &&
+            "This project has no tasks. Create one to start managing this project."}
         </p>
+      )}
+      {isManager && (
+        <>
+          {showTaskNewForm && (
+            // <TaskNewForm project={project} className={styles.taskNewForm} />
+            <TaskNewFormWithTeam
+              project={project}
+              className={styles.taskNewForm}
+            />
+          )}
+          <div className={styles.bottomButtons}>
+            <Button
+              size={ButtonSize.Medium}
+              color={ButtonColor.Primary}
+              className={styles.button}
+              onPress={toggleShowTaskNewForm}
+              data-testid="task-enable-new-btn"
+            >
+              <PlusIcon />
+              New Task
+            </Button>
+          </div>
+        </>
       )}
     </div>
   );
