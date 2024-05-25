@@ -11,13 +11,14 @@ import {
   EditIcon,
   PlusIcon,
   TrashIcon,
-} from "@/features/ui";
+} from "@features/ui";
 import { sanitizeProject, titleCase } from "@/app/lib/helpers";
 import classNames from "classnames";
 import styles from "./project-card.module.scss";
 import { queryKeys } from "@/api/query-keys";
 import { ProjectEditForm } from "../project-edit-form";
-import { TaskNewFormWithTeam } from "@/features/tasks";
+import { TaskNewFormWithTeam } from "@features/tasks";
+import { Card } from "@features/layout";
 
 type ProjectCardProps = {
   className?: string;
@@ -56,13 +57,14 @@ export function ProjectCard({
   });
 
   return (
-    <div className={classNames(styles.container, className)}>
+    <Card className={classNames(styles.card, className)}>
       <div className={styles.headerRow}>
-        <div className={styles.h2}>
-          <h2 data-testid={`project-card-title-${projectIdx}`}>
-            {titleCase(project.name)}
-          </h2>
-        </div>
+        <h2
+          className={styles.h2}
+          data-testid={`project-card-title-${projectIdx}`}
+        >
+          {titleCase(project.name)}
+        </h2>
         <div className={styles.editButtons}>
           {isManager && (
             <>
@@ -131,6 +133,6 @@ export function ProjectCard({
           </div>
         </>
       )}
-    </div>
+    </Card>
   );
 }

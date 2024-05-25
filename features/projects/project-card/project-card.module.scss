@@ -5,9 +5,10 @@
 // @use "@styles/shadow";
 // @use "@styles/breakpoint";
 
-// .container {
-
-// }
+.card {
+  padding: space.$s10;
+  padding-top: space.$s6;
+}
 
 .headerRow {
   display: flex;
@@ -45,7 +46,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  margin-top: space.$s4;
+  margin-top: space.$s5;
 }
 
 .taskNewForm {
